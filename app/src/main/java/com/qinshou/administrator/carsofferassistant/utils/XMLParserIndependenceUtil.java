@@ -17,7 +17,7 @@ import javax.xml.parsers.SAXParserFactory;
  */
 
 public class XMLParserIndependenceUtil {
-    public List<Series> parserIndependence(String data) {
+    public static List<Series> parserIndependence(String data) {
         // 步骤：
         // ①解析器工厂实例的构建
         SAXParserFactory factory = SAXParserFactory.newInstance();
