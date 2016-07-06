@@ -1,7 +1,5 @@
 package com.qinshou.administrator.carsofferassistant.utils;
 
-import android.util.Log;
-
 import com.qinshou.administrator.carsofferassistant.bean.Car;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -21,14 +19,14 @@ import java.util.Map;
 
 public class ParseXml {
     public static Map<String, List<Car>> parseSelectModels(InputStream xmlData) {
+        List<Car> cars = null;
+        Map<String, List<Car>> map = null;
+        String groupName = null;
         try {
             XmlPullParserFactory xmlPullParserFactory = XmlPullParserFactory.newInstance();
             XmlPullParser xmlPullParser = xmlPullParserFactory.newPullParser();
             xmlPullParser.setInput(xmlData, "UTF-8");
             int eventType = xmlPullParser.getEventType();
-            List<Car> cars = null;
-            Map<String, List<Car>> map = null;
-            String groupName = null;
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 switch (eventType) {
                     case XmlPullParser.START_DOCUMENT:
@@ -64,17 +62,11 @@ public class ParseXml {
                 }
                 eventType = xmlPullParser.next();
             }
-            for (String string : map.keySet()) {
-                Log.i("daolema", string);
-            }
-            return map;
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return null;
+        return map;
     }
-
 }
