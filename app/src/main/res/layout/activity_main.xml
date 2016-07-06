@@ -1,16 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.qinshou.administrator.carsofferassistant.MainActivity">
+    android:orientation="vertical"
+    tools:context="com.qinshou.administrator.carsofferassistant.activity.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:id="@+id/content_fm"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+        android:background="#cdcdcd"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/select_models_bt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/select_models_selected"
+            android:onClick="chooseFragment"
+            android:text="@string/select_models" />
+
+        <Button
+            android:id="@+id/independent_car_bt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/independent_car_normal"
+            android:onClick="chooseFragment"
+            android:text="@string/independent_car" />
+
+        <Button
+            android:id="@+id/price_reduction_zone_bt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/price_reduction_zone_normal"
+            android:onClick="chooseFragment"
+            android:text="@string/price_reduction_zone" />
+
+        <Button
+            android:id="@+id/my_garage_bt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/my_garage_normal"
+            android:onClick="chooseFragment"
+            android:text="@string/my_garage" />
+
+    </LinearLayout>
+</LinearLayout>
