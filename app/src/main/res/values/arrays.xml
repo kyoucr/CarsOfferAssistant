@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="c_price">
+        <item>0-5万</item>
+        <item>5-10万</item>
+        <item>10-18万</item>
+        <item>18-25万</item>
+        <item>25-40万</item>
+        <item>40-60万</item>
+        <item>60-100万</item>
+        <item>100万以上</item>
+    </string-array>
+    <string-array name="c_compartment">
+        <item>两厢</item>
+        <item>三厢</item>
+        <item>SUV</item>
+        <item>MPV</item>
+        <item>跑车</item>
+        <item>面包车</item>
+    </string-array>
+    <string-array name="c_country">
+        <item>合资</item>
+        <item>国产</item>
+        <item>德系</item>
+        <item>美系</item>
+        <item>进口</item>
+        <item>欧系</item>
+        <item>日系</item>
+        <item>韩系</item>
+        <item>全部</item>
+    </string-array>
+    <string-array name="user_order_refund_cause_list">
+        <item>预约不上</item>
+        <item>商家停业/装修/转让</item>
+        <item>朋友/网上评价不好</item>
+        <item>买多了/买错了</item>
+        <item>计划变动，没时间消费</item>
+        <item>不想买了</item>
+    </string-array>
+</resources>
