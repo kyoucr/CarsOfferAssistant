@@ -11,7 +11,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,25 +27,24 @@ public class ParseXml {
             xmlPullParser.setInput(xmlData, "UTF-8");
             int eventType = xmlPullParser.getEventType();
             List<Car> cars = null;
-//            Car car = null;
             Map<String, List<Car>> map = null;
             String groupName = null;
             while (eventType != XmlPullParser.END_DOCUMENT) {
-                String tagName = xmlPullParser.getName();
                 switch (eventType) {
                     case XmlPullParser.START_DOCUMENT:
-                        map = new HashMap<>();
+                        map = new LinkedHashMap<>();
                         break;
                     case XmlPullParser.START_TAG:
+                        String tagName = xmlPullParser.getName();
                         if ("group".equals(tagName)) {
                             cars = new ArrayList<>();
-                            groupName = xmlPullParser.nextText();
+                            groupName = xmlPullParser.getAttributeValue(0);
                         } else if ("master".equals(tagName)) {
                             Car car = new Car();
                             int count = xmlPullParser.getAttributeCount();
-                            for (int i = 0; i < count; i++) {
-                                String attributeName = xmlPullParser.getAttributeName(i);
-                                String attributeValue = xmlPullParser.getAttributeValue(i);
+                            for (int j = 0; j < count; j++) {
+                                String attributeName = xmlPullParser.getAttributeName(j);
+                                String attributeValue = xmlPullParser.getAttributeValue(j);
                                 if ("bsID".equals(attributeName)) {
                                     car.setBsID(attributeValue);
                                 } else if ("bsName".equals(attributeName)) {
@@ -55,16 +54,19 @@ public class ParseXml {
                                 }
                             }
                             cars.add(car);
-                            Log.i("toString", car.toString());
                         }
                         break;
                     case XmlPullParser.END_TAG:
                         map.put(groupName, cars);
                         break;
+                    default:
+                        break;
                 }
                 eventType = xmlPullParser.next();
             }
-
+            for (String string : map.keySet()) {
+                Log.i("daolema", string);
+            }
             return map;
         } catch (XmlPullParserException e) {
             e.printStackTrace();
