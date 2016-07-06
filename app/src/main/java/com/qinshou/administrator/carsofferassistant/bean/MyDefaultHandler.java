@@ -1,5 +1,5 @@
 /**
- *
+ * 解析器实例
  */
 package com.qinshou.administrator.carsofferassistant.bean;
 
@@ -15,7 +15,6 @@ public class MyDefaultHandler extends DefaultHandler {
     private List<Series> seriesList;
     private Series series;
     private String tmpQName;// 便签名
-    private Series p;// 数据项
 
     public List<Series> getSeriesList() {
         return seriesList;
