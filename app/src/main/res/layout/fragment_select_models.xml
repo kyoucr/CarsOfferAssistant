@@ -4,23 +4,37 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v4.widget.DrawerLayout
-        android:id="@+id/select_models_content_dl"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <ExpandableListView
-            android:id="@+id/select_models_brand_elv"
+        <android.support.v4.widget.DrawerLayout
+            android:id="@+id/select_models_content_dl"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></ExpandableListView>
-
-        <ExpandableListView
-            android:id="@+id/brand_detail_elv"
-            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:background="#FFFFFF">
+            android:layout_weight="1">
 
-        </ExpandableListView>
-    </android.support.v4.widget.DrawerLayout>
+            <ExpandableListView
+                android:id="@+id/select_models_brand_elv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></ExpandableListView>
+
+            <ExpandableListView
+                android:id="@+id/brand_detail_elv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:background="#FFFFFF">
+
+            </ExpandableListView>
+        </android.support.v4.widget.DrawerLayout>
+
+        <com.qinshou.administrator.carsofferassistant.view.IndexOnRight
+            android:id="@+id/index_on_right_view"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right" />
+    </LinearLayout>
+
 </LinearLayout>

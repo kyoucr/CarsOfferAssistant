@@ -17,6 +17,7 @@ import com.qinshou.administrator.carsofferassistant.bean.ModelsSeries;
 import com.qinshou.administrator.carsofferassistant.constant.Urls;
 import com.qinshou.administrator.carsofferassistant.task.BrandDetailTask;
 import com.qinshou.administrator.carsofferassistant.task.SelectModelsTask;
+import com.qinshou.administrator.carsofferassistant.view.IndexOnRight;
 
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,7 @@ public class SelectModelsFragment extends android.app.Fragment {
     private Map<String, List<Brand>> selectModelsMap;
     private Map<String, List<ModelsSeries>> brandDetailMap;
     private List<String> selectModelsList, brandDetailList;
+    private IndexOnRight index_on_right_view;
 
     @Nullable
     @Override
@@ -42,6 +44,7 @@ public class SelectModelsFragment extends android.app.Fragment {
         select_models_brand_elv = (ExpandableListView) view.findViewById(R.id.select_models_brand_elv);
         brand_detail_elv = (ExpandableListView) view.findViewById(R.id.brand_detail_elv);
         select_models_content_dl = (DrawerLayout) view.findViewById(R.id.select_models_content_dl);
+        index_on_right_view = (IndexOnRight) view.findViewById(R.id.index_on_right_view);
         new SelectModelsTask(getActivity(), select_models_brand_elv, new SelectModelsTask.CallBack() {
 
             @Override
@@ -74,6 +77,23 @@ public class SelectModelsFragment extends android.app.Fragment {
                 carDetailIntent.putExtra("serialId", serialId);
                 startActivity(carDetailIntent);
                 return true;
+            }
+        });
+        index_on_right_view.setOnTouchingLetterChangedListener(new IndexOnRight.OnTouchingLetterChangedListener() {
+
+            @Override
+            public void OnTouchingLetterChanged(String string) {
+                int position = -1;
+                if ("热".equals(string)) {
+                    select_models_brand_elv.setSelectedGroup(0);
+                } else {
+                    for (String s : selectModelsList) {
+                        if (s.equals(string)) {
+                            position = selectModelsList.indexOf(s);
+                            select_models_brand_elv.setSelectedGroup(position);
+                        }
+                    }
+                }
             }
         });
         return view;
