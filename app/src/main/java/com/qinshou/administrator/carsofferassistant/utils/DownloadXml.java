@@ -12,7 +12,7 @@ import okhttp3.Response;
  */
 
 public class DownloadXml {
-    public static InputStream downloadSelectModels(String url) {
+    public static InputStream downloadInputStream(String url) {
         try {
             OkHttpClient okHttpClient = new OkHttpClient();
             Request request = new Request.Builder().url(url).build();

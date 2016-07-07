@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.qinshou.administrator.carsofferassistant.R;
-import com.qinshou.administrator.carsofferassistant.bean.Brand;
+import com.qinshou.administrator.carsofferassistant.bean.ModelsSeries;
 
 import java.util.List;
 import java.util.Map;
@@ -18,35 +18,35 @@ import java.util.Map;
 /**
  * Created by 禽兽先生 on 2016.07.06
  */
-public class SelectModelsAdapter extends BaseExpandableListAdapter {
+public class BrandDetailAdapter extends BaseExpandableListAdapter {
     private Context context;
-    private Map<String, List<Brand>> map;
-    private List<String> brandAcronyms;
+    private Map<String, List<ModelsSeries>> map;
+    private List<String> seriesName;
 
-    public SelectModelsAdapter(Context context, Map<String, List<Brand>> map, List<String> brandAcronyms) {
+    public BrandDetailAdapter(Context context, Map<String, List<ModelsSeries>> map, List<String> seriesName) {
         this.context = context;
         this.map = map;
-        this.brandAcronyms = brandAcronyms;
+        this.seriesName = seriesName;
     }
 
     @Override
     public int getGroupCount() {
-        return brandAcronyms.size();
+        return seriesName.size();
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return map.get(brandAcronyms.get(groupPosition)).size();
+        return map.get(seriesName.get(groupPosition)).size();
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return brandAcronyms.get(groupPosition);
+        return seriesName.get(groupPosition);
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return map.get(brandAcronyms.get(groupPosition)).get(childPosition);
+        return map.get(seriesName.get(groupPosition)).get(childPosition);
     }
 
     @Override
@@ -62,13 +62,9 @@ public class SelectModelsAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.brand_acronym_layout, null);
-        TextView group_tv = (TextView) view.findViewById(R.id.brand_acronym_tv);
-        if (brandAcronyms.get(groupPosition).equals("hot")) {
-            group_tv.setText("热门车型");
-        } else {
-            group_tv.setText(brandAcronyms.get(groupPosition));
-        }
+        View view = inflater.inflate(R.layout.series_name_layout, null);
+        TextView group_tv = (TextView) view.findViewById(R.id.series_name_tv);
+        group_tv.setText(seriesName.get(groupPosition));
         return view;
 
     }
@@ -76,17 +72,19 @@ public class SelectModelsAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.brand_layout, null);
-        ImageView car_brand_iv = (ImageView) view.findViewById(R.id.brand_iv);
-        TextView car_brand_tv = (TextView) view.findViewById(R.id.brand_tv);
-        Glide.with(context).load(map.get(brandAcronyms.get(groupPosition)).get(childPosition).getPic()).into(car_brand_iv);
-        car_brand_tv.setText(map.get(brandAcronyms.get(groupPosition)).get(childPosition).getBsName());
+        View view = inflater.inflate(R.layout.series_layout, null);
+        ImageView series_iv = (ImageView) view.findViewById(R.id.series_iv);
+        TextView series_name_tv = (TextView) view.findViewById(R.id.series_name_tv);
+        TextView series_prices_tv = (TextView) view.findViewById(R.id.series_prices_tv);
+        Glide.with(context).load(map.get(seriesName.get(groupPosition)).get(childPosition).getPic()).into(series_iv);
+        series_name_tv.setText(map.get(seriesName.get(groupPosition)).get(childPosition).getCsShowName());
+        series_prices_tv.setText(map.get(seriesName.get(groupPosition)).get(childPosition).getPrice_range() + "万");
         return view;
     }
 
     @Override
     public boolean hasStableIds() {
-        return false;
+        return true;
     }
 
     @Override

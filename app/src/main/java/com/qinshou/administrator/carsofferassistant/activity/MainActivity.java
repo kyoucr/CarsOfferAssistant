@@ -2,10 +2,8 @@ package com.qinshou.administrator.carsofferassistant.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Toast;
 
 import com.qinshou.administrator.carsofferassistant.R;
 import com.qinshou.administrator.carsofferassistant.fragment.IndependentCarFragment;
@@ -17,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private ViewPager content_vp;
     private List<Fragment> fragments;
     private SelectModelsFragment selectModelsFragment;
     private IndependentCarFragment independentCarFragment;
@@ -39,19 +36,15 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.select_models_bt:
                 getFragmentManager().beginTransaction().replace(R.id.content_fm, selectModelsFragment).commit();
-                Toast.makeText(MainActivity.this, "选择车型", Toast.LENGTH_LONG).show();
                 break;
             case R.id.independent_car_bt:
                 getFragmentManager().beginTransaction().replace(R.id.content_fm, independentCarFragment).commit();
-                Toast.makeText(MainActivity.this, "自主选车", Toast.LENGTH_LONG).show();
                 break;
             case R.id.price_reduction_zone_bt:
                 getFragmentManager().beginTransaction().replace(R.id.content_fm, priceReductionZoneFragment).commit();
-                Toast.makeText(MainActivity.this, "降价专区", Toast.LENGTH_LONG).show();
                 break;
             case R.id.my_garage_bt:
                 getFragmentManager().beginTransaction().replace(R.id.content_fm, myGarageFragment).commit();
-                Toast.makeText(MainActivity.this, "我的车库", Toast.LENGTH_LONG).show();
                 break;
         }
     }
