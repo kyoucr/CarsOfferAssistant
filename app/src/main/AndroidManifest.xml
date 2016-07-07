@@ -10,19 +10,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.LoadingActivity"
             android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".activity.MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
             android:name=".activity.CarDetailActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity android:name=".depreciatefiled.activity.SelectCityActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity
+            android:name=".depreciatefiled.activity.SelectCityActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name=".activity.AppointmentActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+
     </application>
 
 </manifest>

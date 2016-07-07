@@ -1,6 +1,7 @@
 package com.qinshou.administrator.carsofferassistant.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.qinshou.administrator.carsofferassistant.R;
+import com.qinshou.administrator.carsofferassistant.activity.AppointmentActivity;
 import com.qinshou.administrator.carsofferassistant.bean.Car;
 
 import java.util.List;
@@ -112,6 +113,7 @@ public class CarDetailAdapter extends BaseExpandableListAdapter implements Butto
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(context, "点了!", Toast.LENGTH_LONG).show();
+        Intent appointmentIntent = new Intent(context, AppointmentActivity.class);
+        context.startActivity(appointmentIntent);
     }
 }
