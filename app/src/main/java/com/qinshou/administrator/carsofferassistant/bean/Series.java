@@ -52,13 +52,4 @@ public class Series {
         this.pic = pic;
     }
 
-    @Override
-    public String toString() {
-        return "Series{" +
-                "id=" + id +
-                ", price_range='" + price_range + '\'' +
-                ", name='" + name + '\'' +
-                ", pic='" + pic + '\'' +
-                '}';
-    }
 }

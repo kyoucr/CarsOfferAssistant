@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CarsOfferAssistant</string>
+    <string name="app_name">高仿汽车报价助手</string>
     <string name="select_models">选择车型</string>
     <string name="independent_car">自主选车</string>
     <string name="price_reduction_zone">降价专区</string>

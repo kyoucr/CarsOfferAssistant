@@ -1,44 +1,70 @@
 package com.qinshou.administrator.carsofferassistant.bean;
 
 /**
- * Created by 禽兽先生 on 2016.
+ * Created by 禽兽先生 on 2016. .
  */
-
 public class Car {
-    private String bsID;
-    private String bsName;
-    private String pic;
+    private String id;
+    private String name;
+    private String power;
+    private String carYear;
+    private String gearBox;
+    private String price;
+    private String carReferPrice;
 
-    public String getBsID() {
-        return bsID;
+    public String getId() {
+        return id;
     }
 
-    public void setBsID(String bsID) {
-        this.bsID = bsID;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getBsName() {
-        return bsName;
+    public String getName() {
+        return name;
     }
 
-    public void setBsName(String bsName) {
-        this.bsName = bsName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPic() {
-        return pic;
+    public String getPower() {
+        return power;
     }
 
-    public void setPic(String pic) {
-        this.pic = pic;
+    public void setPower(String power) {
+        this.power = power;
     }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "bsID='" + bsID + '\'' +
-                ", bsName='" + bsName + '\'' +
-                ", pic='" + pic + '\'' +
-                '}';
+    public String getCarYear() {
+        return carYear;
+    }
+
+    public void setCarYear(String carYear) {
+        this.carYear = carYear;
+    }
+
+    public String getGearBox() {
+        return gearBox;
+    }
+
+    public void setGearBox(String gearBox) {
+        this.gearBox = gearBox;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getCarReferPrice() {
+        return carReferPrice;
+    }
+
+    public void setCarReferPrice(String carReferPrice) {
+        this.carReferPrice = carReferPrice;
     }
 }
