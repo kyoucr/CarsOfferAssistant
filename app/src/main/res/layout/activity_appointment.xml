@@ -34,9 +34,113 @@
         android:textColor="#5E5E5E"
         android:textSize="15sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/customer_name_ll"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="姓名:"
-        android:textColor="#5E5E5E" />
+        android:layout_below="@id/appointment_car_iv"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:textColor="#5E5E5E">
+
+        <TextView
+            android:id="@+id/customer_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓名："
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/customer_name_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入姓名"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/customer_phone_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/customer_name_ll"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:textColor="#5E5E5E">
+
+        <TextView
+            android:id="@+id/customer_phone_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手机："
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/customer_phone_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入电话号码"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/customer_gender_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/customer_phone_ll"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:textColor="#5E5E5E">
+
+        <TextView
+            android:id="@+id/customer_gender_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="性别："
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="男" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="女" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/customer_city_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/customer_gender_ll"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:textColor="#5E5E5E">
+
+        <TextView
+            android:id="@+id/customer_city_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="城市："
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/customer_city_sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/spiiner_title"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
 </RelativeLayout>

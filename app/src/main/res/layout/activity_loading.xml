@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/loading"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="550dp"
+        android:background="@null"
+        android:onClick="start"
+        android:text="开始选车"
+        android:textColor="#00CC00"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+</LinearLayout>
