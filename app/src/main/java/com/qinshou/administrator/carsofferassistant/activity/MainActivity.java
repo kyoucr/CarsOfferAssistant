@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.qinshou.administrator.carsofferassistant.R;
-import com.qinshou.administrator.carsofferassistant.depreciatefiled.fragment.DepreciatefiledMainFragment;
 import com.qinshou.administrator.carsofferassistant.fragment.IndependentCarFragment;
 import com.qinshou.administrator.carsofferassistant.fragment.MyGarageFragment;
 import com.qinshou.administrator.carsofferassistant.fragment.PriceReductionZoneFragment;
@@ -42,15 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 getFragmentManager().beginTransaction().replace(R.id.content_fm, independentCarFragment).commit();
                 break;
             case R.id.price_reduction_zone_bt:
-                //getFragmentManager().beginTransaction().replace(R.id.content_fm, priceReductionZoneFragment).commit();
-                android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-                android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-                DepreciatefiledMainFragment fragment = new DepreciatefiledMainFragment();
-
-                transaction.replace(R.id.content_fm,fragment);
-                transaction.commit();
-
+                getFragmentManager().beginTransaction().replace(R.id.content_fm, priceReductionZoneFragment).commit();
                 break;
             case R.id.my_garage_bt:
                 getFragmentManager().beginTransaction().replace(R.id.content_fm, myGarageFragment).commit();

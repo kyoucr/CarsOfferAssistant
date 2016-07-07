@@ -1,11 +1,14 @@
 package com.qinshou.administrator.carsofferassistant.adapter;
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.qinshou.administrator.carsofferassistant.R;
 import com.qinshou.administrator.carsofferassistant.bean.Car;
@@ -16,7 +19,7 @@ import java.util.Map;
 /**
  * Created by 禽兽先生 on 2016.07.06
  */
-public class CarDetailAdapter extends BaseExpandableListAdapter {
+public class CarDetailAdapter extends BaseExpandableListAdapter implements Button.OnClickListener {
     private Context context;
     private Map<String, List<Car>> map;
     private List<String> displacements;
@@ -76,11 +79,17 @@ public class CarDetailAdapter extends BaseExpandableListAdapter {
         TextView gearBox_tv = (TextView) view.findViewById(R.id.gearBox_tv);
         TextView power_tv = (TextView) view.findViewById(R.id.power_tv);
         TextView carReferPrice_tv = (TextView) view.findViewById(R.id.carReferPrice_tv);
+        Button free_test_drive_bt = (Button) view.findViewById(R.id.free_test_drive_bt);
+        Button group_to_buy_bt = (Button) view.findViewById(R.id.group_to_buy_bt);
+        Button consult_floor_price_bt = (Button) view.findViewById(R.id.consult_floor_price_bt);
         name_tv.setText(map.get(displacements.get(groupPosition)).get(childPosition).getName());
-        price_tv.setText(map.get(displacements.get(groupPosition)).get(childPosition).getPrice()+"万起");
+        price_tv.setText(map.get(displacements.get(groupPosition)).get(childPosition).getPrice() + "万起");
         gearBox_tv.setText(map.get(displacements.get(groupPosition)).get(childPosition).getGearBox());
         power_tv.setText(map.get(displacements.get(groupPosition)).get(childPosition).getPower());
-        carReferPrice_tv.setText("指导价\t"+map.get(displacements.get(groupPosition)).get(childPosition).getCarReferPrice()+"万");
+        carReferPrice_tv.setText("指导价\t" + map.get(displacements.get(groupPosition)).get(childPosition).getCarReferPrice() + "万");
+        free_test_drive_bt.setOnClickListener(this);
+        group_to_buy_bt.setOnClickListener(this);
+        consult_floor_price_bt.setOnClickListener(this);
         return view;
     }
 
@@ -92,5 +101,17 @@ public class CarDetailAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
+    }
+
+    @Override
+    public void unregisterDataSetObserver(DataSetObserver observer) {
+        if (observer != null) {
+            super.unregisterDataSetObserver(observer);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(context, "点了!", Toast.LENGTH_LONG).show();
     }
 }

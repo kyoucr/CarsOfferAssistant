@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <!-- 线的颜色 -->
+    <color name="view_line">#999999</color>
+    <!-- 索引栏的颜色 -->
+    <color name="index_on_right_bg_color">#262935</color>
 </resources>
