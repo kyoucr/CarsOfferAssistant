@@ -1,8 +1,11 @@
 package com.qinshou.administrator.carsofferassistant.inter;
 
+import android.graphics.Bitmap;
+
 import com.qinshou.administrator.carsofferassistant.bean.Series;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zyj on 2016/7/6.
@@ -10,4 +13,6 @@ import java.util.List;
 
 public interface IndependenceDataCallback {
     void callBack(List<Series> seriesList);
+
+    void imageCallBack(Map<String,Object> map, Bitmap bitmap);
 }
