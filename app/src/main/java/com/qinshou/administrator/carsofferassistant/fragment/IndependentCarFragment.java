@@ -78,6 +78,7 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 if (isOver && scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                    new IndependenceAsyncTask(IndependentCarFragment.this, dialog).execute(MessageFormat.format(Urls.CAR_AUTO_SELECT,String.valueOf(++pageIndex)));
                     //minPrice={0}&maxPrice={1}&compartment={2}&country=(3)&pageIndex={4}
                     new IndependenceAsyncTask(IndependentCarFragment.this, dialog)
                             .execute(MessageFormat.format(Urls.CAR_AUTO_SELECT, String.valueOf(minPrice), String.valueOf(maxPrice), String.valueOf(compartment), String.valueOf(country), String.valueOf(++pageIndex)));
@@ -156,23 +157,35 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
         //3.适配器
 //        Context context, List<? extends Map<String, ?>> data,
 //        @LayoutRes int resource, String[] from, @IdRes int[] to
-
+        List<Map<String, Object>> dataSource = new LinkedList<>();
         for (int i = 0; i < seriesList.size(); i++) {
             Map<String, Object> map = new LinkedHashMap();
-            map.put("iv_self_log_id", seriesList.get(i).getPic());
+            map.put("iv_self_log_id", R.drawable.default_car);
             map.put("tv_self_car_name_id", seriesList.get(i).getName());
             map.put("tv_self_car_price_range_id", seriesList.get(i).getPrice_range());
             map.put("iv_self_right_icon_id", R.mipmap.icon_arrow_right);
 
             dataSource.add(map);
         }
-
+        MyAdapter myAdapter = new MyAdapter(dataSource, getActivity(), seriesList);
         //4.绑定适配器
         lv_car_list_id.setAdapter(myAdapter);
         //5.给ListView添加监听器
     }
 
     private final class MyAdapter extends BaseAdapter {
+        private List<Map<String, Object>> dataSource;
+        private Context context;
+        private List<Series> seriesList;
+
+        public MyAdapter() {
+        }
+
+        public MyAdapter(List<Map<String, Object>> dataSource, Context context, List<Series> seriesList) {
+            this.dataSource = dataSource;
+            this.context = context;
+            this.seriesList = seriesList;
+        }
 
         @Override
         public int getCount() {
@@ -194,7 +207,7 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
             ViewHolder vh = null;
             if (convertView == null) {
                 vh = new ViewHolder();
-                convertView = View.inflate(getActivity(), R.layout.inpedence_item, null);
+                convertView = View.inflate(context, R.layout.inpedence_item, null);
                 vh.iv_self_log_id = (ImageView) convertView.findViewById(R.id.iv_self_log_id);
                 vh.tv_self_car_name_id = (TextView) convertView.findViewById(R.id.tv_self_car_name_id);
                 vh.tv_self_car_price_range_id = (TextView) convertView.findViewById(R.id.tv_self_car_price_range_id);
@@ -209,21 +222,20 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
             vh.tv_self_car_price_range_id.setText(perItemDs.get("tv_self_car_price_range_id").toString());
             vh.iv_self_right_icon_id.setImageResource(R.mipmap.icon_arrow_right);
 
-            new IndependenceImageAsyncTask(vh.iv_self_log_id).execute(perItemDs.get("iv_self_log_id").toString());
+            new IndependenceImageAsyncTask(vh.iv_self_log_id).execute(seriesList.get(position).getPic());
             return convertView;
-        }
-        /**
-         * 控件实例复用类
-         */
-        private final class ViewHolder {
-            private ImageView iv_self_log_id;
-            private TextView tv_self_car_name_id;
-            private TextView tv_self_car_price_range_id;
-            private ImageView iv_self_right_icon_id;
         }
     }
 
-
+    /**
+     * 控件实例复用类
+     */
+    private final class ViewHolder {
+        private ImageView iv_self_log_id;
+        private TextView tv_self_car_name_id;
+        private TextView tv_self_car_price_range_id;
+        private ImageView iv_self_right_icon_id;
+    }
 
 
     @Override

@@ -16,7 +16,6 @@
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="1.8T 双离合 豪华型"
             android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -28,7 +27,6 @@
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="21.78万起"
             android:textColor="#FF0000"
             android:textSize="18sp" />
     </LinearLayout>
@@ -44,7 +42,6 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
             android:gravity="right"
-            android:text="7档双离合"
             android:textColor="#5E5E5E"
             android:textSize="18sp" />
 
@@ -54,7 +51,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="160马力"
             android:textColor="#5E5E5E"
             android:textSize="18sp" />
 
@@ -65,7 +61,6 @@
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="指导价26.88万"
             android:textColor="#5E5E5E"
             android:textSize="18sp" />
     </LinearLayout>
@@ -81,7 +76,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/button_style_1"
-            android:text="免费试驾"
+            android:text="@string/free_test_drive"
+            android:onClick="appointment"
             android:textColor="#00B2EE" />
 
         <Button
@@ -90,7 +86,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/button_style_1"
-            android:text="组团买车"
+            android:text="@string/group_to_buy"
+            android:onClick="appointment"
             android:textColor="#00B2EE" />
 
         <Button
@@ -99,7 +96,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/button_style_1"
-            android:text="咨询底价"
+            android:text="@string/consult_floor_price"
+            android:onClick="appointment"
             android:textColor="#00B2EE" />
     </LinearLayout>
 </LinearLayout>

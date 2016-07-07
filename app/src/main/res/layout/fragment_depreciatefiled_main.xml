@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 降价专区主页面fragment -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <!-- 导航栏 -->
+    <RadioGroup
+        android:padding="20dp"
+        android:id="@+id/rg_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:orientation="horizontal">
+        <!-- 降幅最大 -->
+        <RadioButton
+            android:id="@+id/rb_jiangfuzuida_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/depreciatefiled_tabhost_selector"
+            android:button="@null"
+            android:gravity="center_horizontal"
+            android:text="@string/car_price_biggest"
+            android:textColor="@color/tab_color_selector" />
+
+        <!-- 最新发布 -->
+
+        <RadioButton
+            android:id="@+id/rb_zuixinfabu_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/depreciatefiled_tabhost_selector"
+            android:button="@null"
+            android:gravity="center_horizontal"
+            android:text="@string/car_price_new_public"
+            android:textColor="@color/tab_color_selector" />
+
+        <!-- 价格最高 -->
+        <RadioButton
+            android:id="@+id/rb_jiagezuigao_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/depreciatefiled_tabhost_selector"
+            android:button="@null"
+            android:gravity="center_horizontal"
+            android:text="@string/car_price_expensive"
+            android:textColor="@color/tab_color_selector" />
+        <!-- 价格最低 -->
+        <RadioButton
+            android:id="@+id/rb_jiagezuidi_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/depreciatefiled_tabhost_selector"
+            android:button="@null"
+            android:gravity="center_horizontal"
+            android:text="@string/car_price_cheapest"
+            android:textColor="@color/tab_color_selector" />
+
+    </RadioGroup>
+
+    <!-- 主要内容展示区 -->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

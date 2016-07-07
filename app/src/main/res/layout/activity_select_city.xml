@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <!--搜索城市 -->
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:completionThreshold="1"
+        android:drawableLeft="@mipmap/search_input_symbol"
+        android:lines="1"
+        android:queryHint="@string/city_search_default_hint"
+        android:textColorHint="#ffc8d5e1"
+        android:textSize="15.0sp" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="back"
+        android:text="点我返回" />
+
+
+</LinearLayout>

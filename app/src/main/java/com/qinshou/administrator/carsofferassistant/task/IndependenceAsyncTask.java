@@ -1,5 +1,6 @@
 package com.qinshou.administrator.carsofferassistant.task;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -19,21 +20,29 @@ import java.util.List;
  * Created by zyj on 2016/7/6.
  */
 
-public class IndependenceAsyncTask extends AsyncTask<String, Void, InputStream> {
+public class IndependenceAsyncTask extends AsyncTask<String, Void, List<Series>> {
     private IndependenceDataCallback result;
+    private ProgressDialog dialog;
 
-    public IndependenceAsyncTask(IndependenceDataCallback result) {
+    public IndependenceAsyncTask(IndependenceDataCallback result,ProgressDialog dialog) {
         this.result = result;
+        this.dialog = dialog;
     }
 
     @Override
-    protected InputStream doInBackground(String... params) {
+    protected void onPreExecute() {
+        dialog.show();
+    }
+
+    @Override
+    protected List<Series> doInBackground(String... params) {
         HttpURLConnection connection = null;
         try {
             URL url = new URL(params[0]);
             connection = (HttpURLConnection) url.openConnection();
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                return connection.getInputStream();
+                InputStream is = connection.getInputStream();
+                return XMLParserIndependenceUtil.parserIndependence(is);
             }
 
         } catch (MalformedURLException e) {
@@ -49,8 +58,8 @@ public class IndependenceAsyncTask extends AsyncTask<String, Void, InputStream> 
     }
 
     @Override
-    protected void onPostExecute(InputStream is) {
-        List<Series> seriesList = XMLParserIndependenceUtil.parserIndependence(is);
+    protected void onPostExecute(List<Series> seriesList) {
         result.callBack(seriesList);
+        dialog.dismiss();
     }
 }
