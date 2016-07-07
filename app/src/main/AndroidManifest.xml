@@ -21,6 +21,8 @@
         <activity
             android:name=".activity.CarDetailActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity android:name=".depreciatefiled.activity.SelectCityActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
     </application>
 
 </manifest>

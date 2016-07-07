@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.qinshou.administrator.carsofferassistant.inter.IndependenceDataCallba
 import com.qinshou.administrator.carsofferassistant.task.IndependenceAsyncTask;
 import com.qinshou.administrator.carsofferassistant.task.IndependenceImageAsyncTask;
 
+import java.text.MessageFormat;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -70,7 +72,7 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 if (isOver && scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-                    new IndependenceAsyncTask(IndependentCarFragment.this, dialog).execute(Urls.CAR_AUTO_SELECT+(++pageIndex));
+                    new IndependenceAsyncTask(IndependentCarFragment.this, dialog).execute(MessageFormat.format(Urls.CAR_AUTO_SELECT,String.valueOf(++pageIndex)));
                 }
             }
 
@@ -100,8 +102,43 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
         sp_price_range_id.setOnItemSelectedListener(listener);
         sp_car_style_id.setOnItemSelectedListener(listener);
         sp_brand_place_id.setOnItemSelectedListener(listener);
-
+        new IndependenceAsyncTask(IndependentCarFragment.this, dialog).execute(MessageFormat.format(Urls.CAR_AUTO_SELECT,String.valueOf(pageIndex)));
         super.onActivityCreated(savedInstanceState);
+    }
+
+    /**
+     * 下拉列表监听器
+     */
+    private final class MyOnItemSelectedListener implements AdapterView.OnItemSelectedListener {
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//            new IndependenceAsyncTask(IndependentCarFragment.this, dialog).execute(MessageFormat.format(Urls.CAR_AUTO_SELECT,String.valueOf(pageIndex)));//Urls.CAR_AUTO_SELECT+pageIndex
+            String minPrice="";
+            String carStyleStr="";
+            String brandPlace="";
+            switch (parent.getId()){
+                case R.id.sp_price_range_id:
+
+                    break;
+                case R.id.sp_car_style_id:
+                    Log.i("Click",parent.toString());
+                    Log.i("Click",view.toString());
+                    Log.i("Click","点中了车型区间");
+                    break;
+                case R.id.sp_brand_place_id:
+                    Log.i("Click",parent.toString());
+                    Log.i("Click",view.toString());
+                    Log.i("Click","点中了产地区间");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+        }
     }
 
     @Override
@@ -199,18 +236,4 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
     }
 
 
-    /**
-     * 下拉列表监听器
-     */
-    private final class MyOnItemSelectedListener implements AdapterView.OnItemSelectedListener {
-
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            new IndependenceAsyncTask(IndependentCarFragment.this, dialog).execute(Urls.CAR_AUTO_SELECT+pageIndex);
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-        }
-    }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- 选择城市-->
+    <item
+        android:id="@+id/menu_city_select_id"
+        android:orderInCategory="101"
+        android:title="@string/choose_city"
+        app:showAsAction="always|withText" />
+
+
+    <!-- 全部车型 -->
+    <item
+        android:id="@+id/menu_cartype_select_id"
+        android:orderInCategory="102"
+        android:title="@string/car_types"
+        app:showAsAction="always|withText" />
+
+</menu>

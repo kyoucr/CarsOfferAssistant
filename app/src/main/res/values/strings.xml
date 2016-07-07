@@ -4,4 +4,17 @@
     <string name="independent_car">自主选车</string>
     <string name="price_reduction_zone">降价专区</string>
     <string name="my_garage">我的车库</string>
+
+    <string name="choose_city">北京</string>
+    <string name="car_types">全部车型</string>
+    <string name="city_search_default_hint">搜索城市</string>
+    <string name="car_price_biggest">降幅最大</string>
+    <string name="car_price_new_public">最新发布</string>
+    <string name="car_price_expensive">价格最高</string>
+    <string name="car_price_cheapest">价格最低</string>
+    <string name="quotes_reduce_price">降价专区</string>
+
+
+
+
 </resources>
