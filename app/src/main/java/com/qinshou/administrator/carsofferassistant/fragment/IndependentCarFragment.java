@@ -1,13 +1,14 @@
 package com.qinshou.administrator.carsofferassistant.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
@@ -26,6 +27,7 @@ import com.qinshou.administrator.carsofferassistant.task.IndependenceImageAsyncT
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -39,6 +41,10 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
     private Spinner sp_car_style_id;
     private Spinner sp_price_range_id;
     private ListView lv_car_list_id;
+    private ProgressDialog dialog;
+    private int pageIndex = 0;// 页码计数器（初始值是第一页）
+
+    private boolean isOver;//当前所在页数据是否加载完毕。
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,22 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
         sp_brand_place_id = (Spinner) view.findViewById(R.id.sp_brand_place_id);
 
         lv_car_list_id = (ListView) view.findViewById(R.id.lv_car_list_id);
+        dialog = new ProgressDialog(getActivity());//进度条
+        dialog.setMessage("数据加载中...");
+        lv_car_list_id.setOnScrollListener(new AbsListView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (isOver && scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                    new IndependenceAsyncTask(IndependentCarFragment.this, dialog).execute(Urls.CAR_AUTO_SELECT+(++pageIndex));
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                isOver = firstVisibleItem + visibleItemCount == totalItemCount;
+            }
+        });
         return view;
     }
 
@@ -92,7 +114,7 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
 //        @LayoutRes int resource, String[] from, @IdRes int[] to
         List<Map<String, Object>> dataSource = new LinkedList<>();
         for (int i = 0; i < seriesList.size(); i++) {
-            Map<String,Object> map = new LinkedHashMap();
+            Map<String, Object> map = new LinkedHashMap();
             map.put("iv_self_log_id", R.drawable.default_car);
             map.put("tv_self_car_name_id", seriesList.get(i).getName());
             map.put("tv_self_car_price_range_id", seriesList.get(i).getPrice_range());
@@ -100,7 +122,7 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
 
             dataSource.add(map);
         }
-        MyAdapter myAdapter = new MyAdapter(dataSource,getActivity(),seriesList);
+        MyAdapter myAdapter = new MyAdapter(dataSource, getActivity(), seriesList);
         //4.绑定适配器
         lv_car_list_id.setAdapter(myAdapter);
         //5.给ListView添加监听器
@@ -138,7 +160,7 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder vh = null;
-            if (convertView == null){
+            if (convertView == null) {
                 vh = new ViewHolder();
                 convertView = View.inflate(context, R.layout.inpedence_item, null);
                 vh.iv_self_log_id = (ImageView) convertView.findViewById(R.id.iv_self_log_id);
@@ -146,11 +168,11 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
                 vh.tv_self_car_price_range_id = (TextView) convertView.findViewById(R.id.tv_self_car_price_range_id);
                 vh.iv_self_right_icon_id = (ImageView) convertView.findViewById(R.id.iv_self_right_icon_id);
                 convertView.setTag(vh);
-            }else {
+            } else {
                 vh = (ViewHolder) convertView.getTag();
             }
             Map<String, Object> perItemDs = dataSource.get(position);
-            vh.iv_self_log_id.setImageResource(R.mipmap.ic_launcher);
+            vh.iv_self_log_id.setImageResource(R.drawable.default_car);
             vh.tv_self_car_name_id.setText(perItemDs.get("tv_self_car_name_id").toString());
             vh.tv_self_car_price_range_id.setText(perItemDs.get("tv_self_car_price_range_id").toString());
             vh.iv_self_right_icon_id.setImageResource(R.mipmap.icon_arrow_right);
@@ -159,6 +181,7 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
             return convertView;
         }
     }
+
     /**
      * 控件实例复用类
      */
@@ -168,7 +191,6 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
         private TextView tv_self_car_price_range_id;
         private ImageView iv_self_right_icon_id;
     }
-
 
 
     @Override
@@ -184,7 +206,7 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            new IndependenceAsyncTask(IndependentCarFragment.this).execute(Urls.CAR_AUTO_SELECT);
+            new IndependenceAsyncTask(IndependentCarFragment.this, dialog).execute(Urls.CAR_AUTO_SELECT+pageIndex);
         }
 
         @Override
