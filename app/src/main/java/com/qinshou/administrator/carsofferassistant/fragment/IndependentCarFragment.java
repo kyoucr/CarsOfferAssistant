@@ -93,7 +93,7 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
         List<Map<String, Object>> dataSource = new LinkedList<>();
         for (int i = 0; i < seriesList.size(); i++) {
             Map<String,Object> map = new LinkedHashMap();
-            map.put("iv_self_log_id", R.mipmap.ic_launcher);
+            map.put("iv_self_log_id", R.drawable.default_car);
             map.put("tv_self_car_name_id", seriesList.get(i).getName());
             map.put("tv_self_car_price_range_id", seriesList.get(i).getPrice_range());
             map.put("iv_self_right_icon_id", R.mipmap.icon_arrow_right);
