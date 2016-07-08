@@ -83,6 +83,7 @@ public class SelectModelsFragment extends android.app.Fragment {
 
             @Override
             public void OnTouchingLetterChanged(String string) {
+                select_models_content_dl.closeDrawer(GravityCompat.START);
                 int position = -1;
                 if ("热".equals(string)) {
                     select_models_brand_elv.setSelectedGroup(0);

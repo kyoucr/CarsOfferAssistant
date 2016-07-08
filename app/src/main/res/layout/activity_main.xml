@@ -35,8 +35,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
-            android:drawableTop="@drawable/select_models_selected"
+            android:background="@drawable/select_models_bt"
             android:onClick="chooseFragment"
             android:text="@string/select_models" />
 
@@ -45,8 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
-            android:drawableTop="@drawable/independent_car_normal"
+            android:background="@drawable/independent_car_bt"
             android:onClick="chooseFragment"
             android:text="@string/independent_car" />
 
@@ -55,8 +53,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
-            android:drawableTop="@drawable/price_reduction_zone_normal"
+            android:background="@drawable/price_reduction_bt"
             android:onClick="chooseFragment"
             android:text="@string/price_reduction_zone" />
 
@@ -65,8 +62,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
-            android:drawableTop="@drawable/my_garage_normal"
+            android:background="@drawable/my_garage_bt"
             android:onClick="chooseFragment"
             android:text="@string/my_garage" />
 
