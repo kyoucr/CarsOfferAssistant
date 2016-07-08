@@ -1,0 +1,1957 @@
+<info
+    detail=""
+    error="0"
+    hasUpdate="1"
+    timeservice="224ms"
+    timestamp="1422339088"
+    type="car_city" >
+
+    <province name="北京" >
+
+        <city
+            name="北京"
+            code="201"
+            py="beijing" />
+    </province>
+
+    <province name="上海" >
+
+        <city
+            name="上海"
+            code="2401"
+            py="shanghai" />
+    </province>
+
+    <province name="广东" >
+
+        <city
+            name="广州"
+            code="501"
+            py="guangzhou" />
+
+        <city
+            name="深圳"
+            code="502"
+            py="shenzhen" />
+    </province>
+
+    <province name="安徽" >
+
+        <city
+            name="合肥"
+            code="101"
+            py="hefei" />
+
+        <city
+            name="安庆"
+            code="102"
+            py="anqing" />
+
+        <city
+            name="蚌埠"
+            code="103"
+            py="bengbu" />
+
+        <city
+            name="巢湖"
+            code="104"
+            py="chaohu" />
+
+        <city
+            name="池州"
+            code="105"
+            py="chizhou" />
+
+        <city
+            name="阜阳"
+            code="106"
+            py="fy" />
+
+        <city
+            name="淮北"
+            code="107"
+            py="huaibei" />
+
+        <city
+            name="淮南"
+            code="108"
+            py="huainan" />
+
+        <city
+            name="六安"
+            code="109"
+            py="luan" />
+
+        <city
+            name="马鞍山"
+            code="110"
+            py="maanshan" />
+
+        <city
+            name="铜陵"
+            code="113"
+            py="tongling" />
+
+        <city
+            name="芜湖"
+            code="114"
+            py="wuhu" />
+
+        <city
+            name="宣城"
+            code="115"
+            py="xuancheng" />
+
+        <city
+            name="滁州"
+            code="116"
+            py="chuzhou" />
+
+        <city
+            name="黄山"
+            code="118"
+            py="huangshan" />
+
+        <city
+            name="宿州"
+            code="120"
+            py="sz" />
+
+        <city
+            name="亳州"
+            code="125"
+            py="bozhou" />
+    </province>
+
+    <province name="福建" >
+
+        <city
+            name="福州"
+            code="301"
+            py="fuzhou" />
+
+        <city
+            name="厦门"
+            code="302"
+            py="xiamen" />
+
+        <city
+            name="龙岩"
+            code="303"
+            py="longyan" />
+
+        <city
+            name="漳州"
+            code="305"
+            py="zhangzhou" />
+
+        <city
+            name="莆田"
+            code="306"
+            py="putian" />
+
+        <city
+            name="泉州"
+            code="307"
+            py="quanzhou" />
+
+        <city
+            name="南平"
+            code="314"
+            py="nanping" />
+
+        <city
+            name="宁德"
+            code="315"
+            py="ningde" />
+
+        <city
+            name="三明"
+            code="318"
+            py="sanming" />
+    </province>
+
+    <province name="甘肃" >
+
+        <city
+            name="兰州"
+            code="401"
+            py="lanzhou" />
+
+        <city
+            name="定西"
+            code="402"
+            py="dingxi" />
+
+        <city
+            name="平凉"
+            code="405"
+            py="pingliang" />
+
+        <city
+            name="临夏"
+            code="407"
+            py="linxia" />
+
+        <city
+            name="酒泉"
+            code="409"
+            py="jiuquan" />
+
+        <city
+            name="张掖"
+            code="410"
+            py="zhangye" />
+
+        <city
+            name="庆阳"
+            code="411"
+            py="qingyang" />
+
+        <city
+            name="武威"
+            code="412"
+            py="wuwei" />
+
+        <city
+            name="天水"
+            code="415"
+            py="tianshui" />
+
+        <city
+            name="嘉峪关"
+            code="416"
+            py="jiayuguan" />
+
+        <city
+            name="金昌"
+            code="417"
+            py="jc" />
+
+        <city
+            name="白银"
+            code="418"
+            py="baiyin" />
+
+        <city
+            name="陇南"
+            code="421"
+            py="longnan" />
+
+        <city
+            name="甘南"
+            code="422"
+            py="gannanzangzuzizhizhou" />
+
+        <city
+            name="临夏回族自治州"
+            code="622900"
+            py="linxiahuizuzizhizhou" />
+    </province>
+
+    <province name="广东" >
+
+        <city
+            name="珠海"
+            code="503"
+            py="zhuhai" />
+
+        <city
+            name="东莞"
+            code="504"
+            py="dongguan" />
+
+        <city
+            name="中山"
+            code="505"
+            py="zhongshan" />
+
+        <city
+            name="汕头"
+            code="507"
+            py="shantou" />
+
+        <city
+            name="潮州"
+            code="510"
+            py="chaozhou" />
+
+        <city
+            name="韶关"
+            code="511"
+            py="shaoguan" />
+
+        <city
+            name="湛江"
+            code="513"
+            py="zhanjiang" />
+
+        <city
+            name="肇庆"
+            code="514"
+            py="zhaoqing" />
+
+        <city
+            name="茂名"
+            code="515"
+            py="maoming" />
+
+        <city
+            name="梅州"
+            code="516"
+            py="meizhou" />
+
+        <city
+            name="佛山"
+            code="518"
+            py="foshan" />
+
+        <city
+            name="惠州"
+            code="520"
+            py="huizhou" />
+
+        <city
+            name="江门"
+            code="521"
+            py="jiangmen" />
+
+        <city
+            name="揭阳"
+            code="522"
+            py="jieyang" />
+
+        <city
+            name="清远"
+            code="524"
+            py="qingyuan" />
+
+        <city
+            name="云浮"
+            code="528"
+            py="yunfu" />
+
+        <city
+            name="阳江"
+            code="532"
+            py="yangjiang" />
+
+        <city
+            name="河源"
+            code="535"
+            py="heyuan" />
+
+        <city
+            name="汕尾"
+            code="552"
+            py="shanwei" />
+    </province>
+
+    <province name="广西" >
+
+        <city
+            name="南宁"
+            code="601"
+            py="nanning" />
+
+        <city
+            name="柳州"
+            code="602"
+            py="liuzhou" />
+
+        <city
+            name="桂林"
+            code="603"
+            py="guilin" />
+
+        <city
+            name="北海"
+            code="604"
+            py="beihai" />
+
+        <city
+            name="百色"
+            code="605"
+            py="baise" />
+
+        <city
+            name="贺州"
+            code="606"
+            py="hezhou" />
+
+        <city
+            name="河池"
+            code="607"
+            py="hechi" />
+
+        <city
+            name="贵港"
+            code="608"
+            py="guigang" />
+
+        <city
+            name="玉林"
+            code="610"
+            py="yulin" />
+
+        <city
+            name="钦州"
+            code="612"
+            py="qinzhou" />
+
+        <city
+            name="梧州"
+            code="613"
+            py="wuzhou" />
+
+        <city
+            name="防城港"
+            code="615"
+            py="fangchenggang" />
+
+        <city
+            name="来宾"
+            code="619"
+            py="laibin" />
+
+        <city
+            name="崇左"
+            code="621"
+            py="chongzuo" />
+    </province>
+
+    <province name="贵州" >
+
+        <city
+            name="贵阳"
+            code="701"
+            py="guiyang" />
+
+        <city
+            name="遵义"
+            code="702"
+            py="zunyi" />
+
+        <city
+            name="安顺"
+            code="705"
+            py="anshun" />
+
+        <city
+            name="毕节"
+            code="706"
+            py="bijie" />
+
+        <city
+            name="六盘水"
+            code="708"
+            py="liupanshui" />
+
+        <city
+            name="铜仁"
+            code="710"
+            py="tongren" />
+
+        <city
+            name="黔东南"
+            code="714"
+            py="qiandongnanmiaozudongzuzizhizhou" />
+
+        <city
+            name="黔南"
+            code="715"
+            py="qiannanbuyizumiaozuzizhizhou" />
+
+        <city
+            name="毕节地区"
+            code="717"
+            py="bijiediqu" />
+
+        <city
+            name="黔西南"
+            code="718"
+            py="qianxinanbuyizumiaozuzizhizhou" />
+
+        <city
+            name="铜仁地区"
+            code="719"
+            py="tongrendiqu" />
+    </province>
+
+    <province name="海南" >
+
+        <city
+            name="海口"
+            code="801"
+            py="haikou" />
+
+        <city
+            name="三亚"
+            code="803"
+            py="sanya" />
+
+        <city
+            name="琼北"
+            code="810"
+            py="qiongbeidiqu" />
+
+        <city
+            name="琼南"
+            code="811"
+            py="qiongnandiqu" />
+
+        <city
+            name="省直辖县级行政区划"
+            code="469000"
+            py="shengzhixiaxianjixingzhengquhua" />
+    </province>
+
+    <province name="河北" >
+
+        <city
+            name="石家庄"
+            code="901"
+            py="shijiazhuang" />
+
+        <city
+            name="唐山"
+            code="902"
+            py="tangshan" />
+
+        <city
+            name="邢台"
+            code="903"
+            py="xingtai" />
+
+        <city
+            name="秦皇岛"
+            code="905"
+            py="qinhuangdao" />
+
+        <city
+            name="廊坊"
+            code="906"
+            py="langfang" />
+
+        <city
+            name="邯郸"
+            code="907"
+            py="handan" />
+
+        <city
+            name="衡水"
+            code="908"
+            py="hengshui" />
+
+        <city
+            name="沧州"
+            code="909"
+            py="cangzhou" />
+
+        <city
+            name="保定"
+            code="910"
+            py="baoding" />
+
+        <city
+            name="张家口"
+            code="911"
+            py="zhangjiakou" />
+
+        <city
+            name="承德"
+            code="912"
+            py="chengde" />
+    </province>
+
+    <province name="河南" >
+
+        <city
+            name="郑州"
+            code="1001"
+            py="zhengzhou" />
+
+        <city
+            name="洛阳"
+            code="1002"
+            py="luoyang" />
+
+        <city
+            name="周口"
+            code="1003"
+            py="zhoukou" />
+
+        <city
+            name="信阳"
+            code="1004"
+            py="xinyang" />
+
+        <city
+            name="新乡"
+            code="1005"
+            py="xinxiang" />
+
+        <city
+            name="商丘"
+            code="1006"
+            py="shangqiu" />
+
+        <city
+            name="三门峡"
+            code="1007"
+            py="sanmenxia" />
+
+        <city
+            name="濮阳"
+            code="1008"
+            py="puyang" />
+
+        <city
+            name="南阳"
+            code="1009"
+            py="nanyang" />
+
+        <city
+            name="漯河"
+            code="1010"
+            py="luohe" />
+
+        <city
+            name="焦作"
+            code="1011"
+            py="jiaozuo" />
+
+        <city
+            name="开封"
+            code="1013"
+            py="kaifeng" />
+
+        <city
+            name="安阳"
+            code="1014"
+            py="anyang" />
+
+        <city
+            name="鹤壁"
+            code="1016"
+            py="hebi" />
+
+        <city
+            name="平顶山"
+            code="1018"
+            py="pingdingshan" />
+
+        <city
+            name="济源"
+            code="1019"
+            py="jiyuan" />
+
+        <city
+            name="驻马店"
+            code="1021"
+            py="zhumadian" />
+
+        <city
+            name="许昌"
+            code="1023"
+            py="xuchang" />
+
+        <city
+            name="省直辖县级行政区划"
+            code="419000"
+            py="shengzhixiaxianjixingzhengquhua" />
+    </province>
+
+    <province name="黑龙江" >
+
+        <city
+            name="哈尔滨"
+            code="1101"
+            py="haerbin" />
+
+        <city
+            name="大庆"
+            code="1102"
+            py="daqing" />
+
+        <city
+            name="齐市"
+            code="1103"
+            py="qiqihaer" />
+
+        <city
+            name="鹤岗"
+            code="1104"
+            py="hegang" />
+
+        <city
+            name="佳木斯"
+            code="1106"
+            py="jiamusi" />
+
+        <city
+            name="鸡西"
+            code="1107"
+            py="jixi" />
+
+        <city
+            name="牡丹江"
+            code="1108"
+            py="mudanjiang" />
+
+        <city
+            name="七台河"
+            code="1109"
+            py="qitaihe" />
+
+        <city
+            name="伊春"
+            code="1112"
+            py="yc" />
+
+        <city
+            name="黑河"
+            code="1113"
+            py="heihe" />
+
+        <city
+            name="双鸭山"
+            code="1123"
+            py="shuangyashan" />
+
+        <city
+            name="绥化"
+            code="1131"
+            py="suihua" />
+
+        <city
+            name="兴安"
+            code="1136"
+            py="daxinganlingdiqu" />
+    </province>
+
+    <province name="湖北" >
+
+        <city
+            name="武汉"
+            code="1201"
+            py="wuhan" />
+
+        <city
+            name="十堰"
+            code="1202"
+            py="shiyan" />
+
+        <city
+            name="襄阳"
+            code="1203"
+            py="xiangyang" />
+
+        <city
+            name="随州"
+            code="1204"
+            py="suizhou" />
+
+        <city
+            name="仙桃"
+            code="1205"
+            py="xiantao" />
+
+        <city
+            name="宜昌"
+            code="1207"
+            py="yichang" />
+
+        <city
+            name="黄石"
+            code="1208"
+            py="huangshi" />
+
+        <city
+            name="荆门"
+            code="1209"
+            py="jingmen" />
+
+        <city
+            name="荆州"
+            code="1210"
+            py="jingzhou" />
+
+        <city
+            name="恩施"
+            code="1215"
+            py="enshi" />
+
+        <city
+            name="鄂州"
+            code="1216"
+            py="ezhou" />
+
+        <city
+            name="咸宁"
+            code="1217"
+            py="xianning" />
+
+        <city
+            name="潜江"
+            code="1219"
+            py="qianjiang" />
+
+        <city
+            name="孝感"
+            code="1229"
+            py="xiaogan" />
+
+        <city
+            name="黄冈"
+            code="1236"
+            py="huanggang" />
+
+        <city
+            name="恩施土家族苗族自治州"
+            code="422800"
+            py="enshitujiazumiaozuzizhizhou" />
+
+        <city
+            name="省直辖县级行政区划"
+            code="429000"
+            py="shengzhixiaxianjixingzhengquhua" />
+    </province>
+
+    <province name="湖南" >
+
+        <city
+            name="长沙"
+            code="1301"
+            py="changsha" />
+
+        <city
+            name="郴州"
+            code="1302"
+            py="chenzhou" />
+
+        <city
+            name="常德"
+            code="1303"
+            py="changde" />
+
+        <city
+            name="衡阳"
+            code="1304"
+            py="hengyang" />
+
+        <city
+            name="怀化"
+            code="1305"
+            py="huaihua" />
+
+        <city
+            name="娄底"
+            code="1306"
+            py="loudi" />
+
+        <city
+            name="株洲"
+            code="1307"
+            py="zhuzhou" />
+
+        <city
+            name="岳阳"
+            code="1308"
+            py="yueyang" />
+
+        <city
+            name="湘潭"
+            code="1309"
+            py="xiangtan" />
+
+        <city
+            name="邵阳"
+            code="1310"
+            py="shaoyang" />
+
+        <city
+            name="永州"
+            code="1312"
+            py="yongzhou" />
+
+        <city
+            name="益阳"
+            code="1313"
+            py="yiyang" />
+
+        <city
+            name="张家界"
+            code="1315"
+            py="zhangjiajie" />
+
+        <city
+            name="湘西"
+            code="1333"
+            py="xiangxitujiazumiaozuzizhizhou" />
+    </province>
+
+    <province name="吉林" >
+
+        <city
+            name="长春"
+            code="1401"
+            py="changchun" />
+
+        <city
+            name="吉林"
+            code="1402"
+            py="jilin" />
+
+        <city
+            name="通化"
+            code="1403"
+            py="tonghua" />
+
+        <city
+            name="辽源"
+            code="1405"
+            py="liaoyuan" />
+
+        <city
+            name="白山"
+            code="1406"
+            py="baishan" />
+
+        <city
+            name="白城"
+            code="1412"
+            py="baicheng" />
+
+        <city
+            name="松原"
+            code="1425"
+            py="songyuan" />
+
+        <city
+            name="延边"
+            code="1428"
+            py="yanbianchaoxianzuzizhizhou" />
+
+        <city
+            name="四平"
+            code="1616"
+            py="siping" />
+    </province>
+
+    <province name="江苏" >
+
+        <city
+            name="南京"
+            code="1501"
+            py="nanjing" />
+
+        <city
+            name="苏州"
+            code="1502"
+            py="suzhou" />
+
+        <city
+            name="无锡"
+            code="1503"
+            py="wuxi" />
+
+        <city
+            name="常熟"
+            code="1504"
+            py="changshu" />
+
+        <city
+            name="常州"
+            code="1505"
+            py="changzhou" />
+
+        <city
+            name="淮安"
+            code="1507"
+            py="huaian" />
+
+        <city
+            name="江阴"
+            code="1508"
+            py="jiangyin" />
+
+        <city
+            name="昆山"
+            code="1509"
+            py="kunshan" />
+
+        <city
+            name="连云港"
+            code="1510"
+            py="lianyungang" />
+
+        <city
+            name="南通"
+            code="1511"
+            py="nantong" />
+
+        <city
+            name="盐城"
+            code="1512"
+            py="yancheng" />
+
+        <city
+            name="扬州"
+            code="1513"
+            py="yangzhou" />
+
+        <city
+            name="张家港"
+            code="1514"
+            py="zhangjiagang" />
+
+        <city
+            name="镇江"
+            code="1515"
+            py="zhenjiang" />
+
+        <city
+            name="泰州"
+            code="1517"
+            py="taizhou" />
+
+        <city
+            name="徐州"
+            code="1518"
+            py="xuzhou" />
+
+        <city
+            name="宿迁"
+            code="1520"
+            py="suqian" />
+
+        <city
+            name="太仓"
+            code="1521"
+            py="taicang" />
+    </province>
+
+    <province name="江西" >
+
+        <city
+            name="南昌"
+            code="1601"
+            py="nanchang" />
+
+        <city
+            name="上饶"
+            code="1602"
+            py="shangrao" />
+
+        <city
+            name="萍乡"
+            code="1603"
+            py="pingxiang" />
+
+        <city
+            name="新余"
+            code="1604"
+            py="xinyu" />
+
+        <city
+            name="宜春"
+            code="1605"
+            py="yichun" />
+
+        <city
+            name="九江"
+            code="1606"
+            py="jiujiang" />
+
+        <city
+            name="赣州"
+            code="1607"
+            py="ganzhou" />
+
+        <city
+            name="吉安"
+            code="1609"
+            py="jian" />
+
+        <city
+            name="景德镇"
+            code="1612"
+            py="jingdezhen" />
+
+        <city
+            name="抚州"
+            code="1613"
+            py="jxfz" />
+
+        <city
+            name="鹰潭"
+            code="1615"
+            py="yingtan" />
+    </province>
+
+    <province name="辽宁" >
+
+        <city
+            name="沈阳"
+            code="1701"
+            py="shenyang" />
+
+        <city
+            name="丹东"
+            code="1702"
+            py="dandong" />
+
+        <city
+            name="抚顺"
+            code="1703"
+            py="fushun" />
+
+        <city
+            name="阜新"
+            code="1704"
+            py="fuxin" />
+
+        <city
+            name="葫芦岛"
+            code="1705"
+            py="huludao" />
+
+        <city
+            name="朝阳"
+            code="1707"
+            py="chaoyang" />
+
+        <city
+            name="大连"
+            code="1708"
+            py="dalian" />
+
+        <city
+            name="本溪"
+            code="1709"
+            py="benxi" />
+
+        <city
+            name="鞍山"
+            code="1710"
+            py="anshan" />
+
+        <city
+            name="锦州"
+            code="1711"
+            py="jz" />
+
+        <city
+            name="辽阳"
+            code="1713"
+            py="liaoyang" />
+
+        <city
+            name="营口"
+            code="1714"
+            py="yingkou" />
+
+        <city
+            name="盘锦"
+            code="1716"
+            py="panjin" />
+
+        <city
+            name="铁岭"
+            code="1717"
+            py="tieling" />
+    </province>
+
+    <province name="内蒙古" >
+
+        <city
+            name="呼市"
+            code="1801"
+            py="huhehaote" />
+
+        <city
+            name="包头"
+            code="1802"
+            py="baotou" />
+
+        <city
+            name="赤峰"
+            code="1803"
+            py="chifeng" />
+
+        <city
+            name="通辽"
+            code="1804"
+            py="tongliao" />
+
+        <city
+            name="乌海"
+            code="1805"
+            py="wuhai" />
+
+        <city
+            name="鄂市"
+            code="1808"
+            py="eerduosi" />
+
+        <city
+            name="呼盟"
+            code="1812"
+            py="hulunbeier" />
+
+        <city
+            name="兴安"
+            code="1814"
+            py="xinganmeng" />
+
+        <city
+            name="巴盟"
+            code="1824"
+            py="bayannaoer" />
+
+        <city
+            name="乌盟"
+            code="1825"
+            py="wulanchabu" />
+
+        <city
+            name="锡盟"
+            code="1829"
+            py="xilinguolemeng" />
+
+        <city
+            name="阿拉善"
+            code="1830"
+            py="alashanmeng" />
+    </province>
+
+    <province name="宁夏" >
+
+        <city
+            name="银川"
+            code="1901"
+            py="yinchuan" />
+
+        <city
+            name="吴忠"
+            code="1902"
+            py="wuzhong" />
+
+        <city
+            name="固原"
+            code="1903"
+            py="guyuan" />
+
+        <city
+            name="石嘴山"
+            code="1905"
+            py="shizuishan" />
+
+        <city
+            name="中卫"
+            code="1907"
+            py="zhongwei" />
+    </province>
+
+    <province name="青海" >
+
+        <city
+            name="西宁"
+            code="2001"
+            py="xining" />
+
+        <city
+            name="海北"
+            code="2023"
+            py="haibeicangzuzizhizhou" />
+
+        <city
+            name="黄南"
+            code="2024"
+            py="huangnancangzuzizhizhou" />
+
+        <city
+            name="果洛"
+            code="2025"
+            py="guoluocangzuzizhizhou" />
+
+        <city
+            name="玉树"
+            code="2026"
+            py="yushucangzuzizhizhou" />
+
+        <city
+            name="海西"
+            code="2027"
+            py="haiximengguzucangzuzizhizhou" />
+
+        <city
+            name="海东"
+            code="2029"
+            py="haidongdiqu" />
+
+        <city
+            name="海南"
+            code="2030"
+            py="hainanzangzuzizhizhou" />
+    </province>
+
+    <province name="山东" >
+
+        <city
+            name="德州"
+            code="1015"
+            py="dezhou" />
+
+        <city
+            name="济南"
+            code="2101"
+            py="jinan" />
+
+        <city
+            name="青岛"
+            code="2102"
+            py="qingdao" />
+
+        <city
+            name="烟台"
+            code="2103"
+            py="yantai" />
+
+        <city
+            name="威海"
+            code="2104"
+            py="weihai" />
+
+        <city
+            name="潍坊"
+            code="2105"
+            py="weifang" />
+
+        <city
+            name="泰安"
+            code="2106"
+            py="taian" />
+
+        <city
+            name="枣庄"
+            code="2107"
+            py="zaozhuang" />
+
+        <city
+            name="淄博"
+            code="2109"
+            py="zibo" />
+
+        <city
+            name="东营"
+            code="2110"
+            py="dongying" />
+
+        <city
+            name="菏泽"
+            code="2112"
+            py="heze" />
+
+        <city
+            name="滨州"
+            code="2113"
+            py="binzhou" />
+
+        <city
+            name="聊城"
+            code="2114"
+            py="liaocheng" />
+
+        <city
+            name="临沂"
+            code="2117"
+            py="linyi" />
+
+        <city
+            name="济宁"
+            code="2118"
+            py="jining" />
+
+        <city
+            name="日照"
+            code="2120"
+            py="rizhao" />
+
+        <city
+            name="烟威"
+            code="2126"
+            py="yanwei" />
+
+        <city
+            name="莱芜"
+            code="2132"
+            py="laiwu" />
+    </province>
+
+    <province name="山西" >
+
+        <city
+            name="太原"
+            code="2201"
+            py="taiyuan" />
+
+        <city
+            name="大同"
+            code="2202"
+            py="datong" />
+
+        <city
+            name="晋城"
+            code="2203"
+            py="jincheng" />
+
+        <city
+            name="晋中"
+            code="2204"
+            py="jinzhong" />
+
+        <city
+            name="临汾"
+            code="2205"
+            py="linfen" />
+
+        <city
+            name="长治"
+            code="2206"
+            py="changzhi" />
+
+        <city
+            name="运城"
+            code="2207"
+            py="yuncheng" />
+
+        <city
+            name="忻州"
+            code="2210"
+            py="xinzhou" />
+
+        <city
+            name="阳泉"
+            code="2218"
+            py="yangquan" />
+
+        <city
+            name="朔州"
+            code="2219"
+            py="shuozhou" />
+
+        <city
+            name="吕梁"
+            code="2227"
+            py="lvliang" />
+    </province>
+
+    <province name="陕西" >
+
+        <city
+            name="西安"
+            code="2301"
+            py="xian" />
+
+        <city
+            name="咸阳"
+            code="2302"
+            py="xianyang" />
+
+        <city
+            name="渭南"
+            code="2303"
+            py="weinan" />
+
+        <city
+            name="榆林"
+            code="2304"
+            py="yl" />
+
+        <city
+            name="宝鸡"
+            code="2305"
+            py="baoji" />
+
+        <city
+            name="安康"
+            code="2306"
+            py="ankang" />
+
+        <city
+            name="汉中"
+            code="2307"
+            py="hanzhong" />
+
+        <city
+            name="延安"
+            code="2308"
+            py="yanan" />
+
+        <city
+            name="铜川"
+            code="2310"
+            py="tongchuan" />
+
+        <city
+            name="商洛"
+            code="2313"
+            py="shangluo" />
+    </province>
+
+    <province name="四川" >
+
+        <city
+            name="成都"
+            code="2501"
+            py="chengdu" />
+
+        <city
+            name="绵阳"
+            code="2502"
+            py="mianyang" />
+
+        <city
+            name="遂宁"
+            code="2503"
+            py="suining" />
+
+        <city
+            name="攀枝花"
+            code="2504"
+            py="panzhihua" />
+
+        <city
+            name="宜宾"
+            code="2506"
+            py="yibin" />
+
+        <city
+            name="雅安"
+            code="2507"
+            py="yaan" />
+
+        <city
+            name="自贡"
+            code="2508"
+            py="zigong" />
+
+        <city
+            name="资阳"
+            code="2509"
+            py="ziyang" />
+
+        <city
+            name="广元"
+            code="2510"
+            py="guangyuan" />
+
+        <city
+            name="德阳"
+            code="2511"
+            py="deyang" />
+
+        <city
+            name="乐山"
+            code="2512"
+            py="leshan" />
+
+        <city
+            name="南充"
+            code="2513"
+            py="nanchong" />
+
+        <city
+            name="眉山"
+            code="2514"
+            py="meishan" />
+
+        <city
+            name="巴中"
+            code="2516"
+            py="bazhong" />
+
+        <city
+            name="泸州"
+            code="2517"
+            py="luzhou" />
+
+        <city
+            name="内江"
+            code="2519"
+            py="neijiang" />
+
+        <city
+            name="广安"
+            code="2530"
+            py="guangan" />
+
+        <city
+            name="达州"
+            code="2532"
+            py="dazhou" />
+
+        <city
+            name="阿坝"
+            code="2535"
+            py="abacangzuqiangzuzizhizhou" />
+
+        <city
+            name="甘孜"
+            code="2536"
+            py="ganzicangzuzizhizhou" />
+
+        <city
+            name="凉山"
+            code="2537"
+            py="liangshanyizuzizhizhou" />
+    </province>
+
+    <province name="天津" >
+
+        <city
+            name="天津"
+            code="2601"
+            py="tianjin" />
+    </province>
+
+    <province name="西藏" >
+
+        <city
+            name="拉萨"
+            code="2701"
+            py="lasa" />
+
+        <city
+            name="日喀则"
+            code="2703"
+            py="rikaze" />
+
+        <city
+            name="山南"
+            code="2704"
+            py="shannan" />
+
+        <city
+            name="那曲"
+            code="2705"
+            py="naqudiqu" />
+
+        <city
+            name="阿里"
+            code="2707"
+            py="alidiqu" />
+
+        <city
+            name="山南地区"
+            code="2708"
+            py="shannandiqu" />
+
+        <city
+            name="昌都"
+            code="2709"
+            py="changdudiqu" />
+
+        <city
+            name="林芝"
+            code="2710"
+            py="linzhidiqu" />
+    </province>
+
+    <province name="新疆" >
+
+        <city
+            name="乌市"
+            code="2801"
+            py="wulumuqi" />
+
+        <city
+            name="喀什"
+            code="2802"
+            py="kashi" />
+
+        <city
+            name="克市"
+            code="2803"
+            py="kelamayi" />
+
+        <city
+            name="哈密"
+            code="2806"
+            py="hami" />
+
+        <city
+            name="吐鲁番"
+            code="2807"
+            py="tulufan" />
+
+        <city
+            name="塔城"
+            code="2812"
+            py="tacheng" />
+
+        <city
+            name="昌吉"
+            code="2813"
+            py="changji" />
+
+        <city
+            name="阿勒泰"
+            code="2815"
+            py="aletai" />
+
+        <city
+            name="阿克苏"
+            code="2817"
+            py="akesu" />
+
+        <city
+            name="和田"
+            code="2818"
+            py="hetian" />
+
+        <city
+            name="博州"
+            code="2821"
+            py="boertalamengguzizhizhou" />
+
+        <city
+            name="巴州"
+            code="2822"
+            py="bayinguolengmengguzizhizhou" />
+
+        <city
+            name="伊犁"
+            code="2823"
+            py="yilihasakezizhizhou" />
+
+        <city
+            name="喀什地区"
+            code="2828"
+            py="kashidiqu" />
+
+        <city
+            name="阿克苏地区"
+            code="2829"
+            py="akesudiqu" />
+
+        <city
+            name="和田地区"
+            code="2830"
+            py="hetiandiqu" />
+
+        <city
+            name="塔城地区"
+            code="2831"
+            py="tachengdiqu" />
+
+        <city
+            name="吐鲁番地区"
+            code="2832"
+            py="tulufandiqu" />
+
+        <city
+            name="哈密地区"
+            code="2833"
+            py="hamidiqu" />
+
+        <city
+            name="阿勒泰地区"
+            code="2834"
+            py="aletaidiqu" />
+
+        <city
+            name="克州"
+            code="2835"
+            py="xinjiangkezhou" />
+
+        <city
+            name="昌吉回族自治州"
+            code="652300"
+            py="changjihuizuzizhizhou" />
+
+        <city
+            name="自治区直辖县级行政区划"
+            code="659000"
+            py="zizhiquzhixiaxianjixingzhengquhua" />
+    </province>
+
+    <province name="云南" >
+
+        <city
+            name="昆明"
+            code="2901"
+            py="kunming" />
+
+        <city
+            name="玉溪"
+            code="2902"
+            py="yuxi" />
+
+        <city
+            name="曲靖"
+            code="2903"
+            py="qujing" />
+
+        <city
+            name="大理"
+            code="2904"
+            py="dali" />
+
+        <city
+            name="保山"
+            code="2907"
+            py="baoshan" />
+
+        <city
+            name="楚雄"
+            code="2908"
+            py="chuxiong" />
+
+        <city
+            name="临沧"
+            code="2911"
+            py="lincang" />
+
+        <city
+            name="文山"
+            code="2914"
+            py="wenshan" />
+
+        <city
+            name="版纳"
+            code="2915"
+            py="xishuangbanna" />
+
+        <city
+            name="昭通"
+            code="2918"
+            py="zhaotong" />
+
+        <city
+            name="丽江"
+            code="2922"
+            py="lijiang" />
+
+        <city
+            name="红河"
+            code="2923"
+            py="honghehanizuyizuzizhizhou" />
+
+        <city
+            name="德宏"
+            code="2925"
+            py="dehongdaizujingpozuzizhizhou" />
+
+        <city
+            name="怒江"
+            code="2927"
+            py="nujianglisuzuzizhizhou" />
+
+        <city
+            name="迪庆"
+            code="2928"
+            py="diqingcangzuzizhizhou" />
+
+        <city
+            name="普洱"
+            code="2929"
+            py="puer" />
+
+        <city
+            name="楚雄彝族自治州"
+            code="532300"
+            py="chuxiongyizuzizhizhou" />
+
+        <city
+            name="大理白族自治州"
+            code="532900"
+            py="dalibaizuzizhizhou" />
+    </province>
+
+    <province name="浙江" >
+
+        <city
+            name="杭州"
+            code="3001"
+            py="hangzhou" />
+
+        <city
+            name="宁波"
+            code="3002"
+            py="ningbo" />
+
+        <city
+            name="温州"
+            code="3003"
+            py="wenzhou" />
+
+        <city
+            name="嘉兴"
+            code="3005"
+            py="jiaxing" />
+
+        <city
+            name="金华"
+            code="3006"
+            py="jinhua" />
+
+        <city
+            name="丽水"
+            code="3009"
+            py="lishui" />
+
+        <city
+            name="湖州"
+            code="3011"
+            py="huzhou" />
+
+        <city
+            name="衢州"
+            code="3012"
+            py="quzhou" />
+
+        <city
+            name="台州"
+            code="3015"
+            py="tz" />
+
+        <city
+            name="绍兴"
+            code="3016"
+            py="shaoxing" />
+
+        <city
+            name="舟山"
+            code="3020"
+            py="zhoushan" />
+
+        <city
+            name="余慈"
+            code="339000"
+            py="yuci" />
+
+        <city
+            name="乐清地区"
+            code="339100"
+            py="yueqing" />
+    </province>
+
+    <province name="重庆" >
+
+        <city
+            name="重庆"
+            code="3101"
+            py="chongqing" />
+
+        <city
+            name="万州"
+            code="500101"
+            py="wanzhou" />
+    </province>
+
+    <province name="日喀则" />
+
+</info>
