@@ -43,7 +43,7 @@ public class MyDefaultHandler extends DefaultHandler {
             String attrValue = attributes.getValue(index);
 
             if ("id".equals(attrName)) {
-                series.setId(Integer.parseInt(attrValue));
+                series.setId(attrValue);
             } else if ("price_range".equals(attrName)) {
                 series.setPrice_range(attrValue);
             } else if ("name".equals(attrName)) {
