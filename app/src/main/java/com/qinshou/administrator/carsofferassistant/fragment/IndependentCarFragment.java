@@ -2,10 +2,10 @@ package com.qinshou.administrator.carsofferassistant.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,23 +19,30 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.qinshou.administrator.carsofferassistant.R;
+import com.qinshou.administrator.carsofferassistant.activity.CarDetailActivity;
 import com.qinshou.administrator.carsofferassistant.bean.Series;
 import com.qinshou.administrator.carsofferassistant.constant.Urls;
 import com.qinshou.administrator.carsofferassistant.inter.IndependenceDataCallback;
 import com.qinshou.administrator.carsofferassistant.task.IndependenceAsyncTask;
 import com.qinshou.administrator.carsofferassistant.task.IndependenceImageAsyncTask;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.text.MessageFormat;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 /**
  *
  */
-public class IndependentCarFragment extends android.app.Fragment implements IndependenceDataCallback {
+public class IndependentCarFragment extends android.support.v4.app.Fragment implements IndependenceDataCallback {
     private String[] prices;//价格区间
     private String[] compartments;//车型
     private String[] countries;//成产地
@@ -44,9 +51,17 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
     private Spinner sp_price_range_id;
     private ListView lv_car_list_id;
     private ProgressDialog dialog;
+    private int minPrice = 0;
+    private int maxPrice = 5;
+    private int compartment = 1;
+    private int country = 1;
     private int pageIndex = 0;// 页码计数器（初始值是第一页）
 
     private boolean isOver;//当前所在页数据是否加载完毕。
+    private List<Map<String, Object>> dataSource;
+    private MyAdapter myAdapter;
+    private List<Series> detailUserSeriesList;
+    //    File searchCondition = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +69,7 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
         prices = resources.getStringArray(R.array.c_price);
         compartments = resources.getStringArray(R.array.c_compartment);
         countries = resources.getStringArray(R.array.c_country);
+        detailUserSeriesList = new LinkedList<>();
         super.onCreate(savedInstanceState);
     }
 
@@ -67,12 +83,22 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
         lv_car_list_id = (ListView) view.findViewById(R.id.lv_car_list_id);
         dialog = new ProgressDialog(getActivity());//进度条
         dialog.setMessage("数据加载中...");
+        //思路：
+        //1.数据源
+        dataSource = new LinkedList<>();
+        //2.适配器
+        myAdapter = new MyAdapter();
+        //3.绑定适配器
+        lv_car_list_id.setAdapter(myAdapter);
+        //4.设置监听器
         lv_car_list_id.setOnScrollListener(new AbsListView.OnScrollListener() {
 
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 if (isOver && scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-                    new IndependenceAsyncTask(IndependentCarFragment.this, dialog).execute(MessageFormat.format(Urls.CAR_AUTO_SELECT,String.valueOf(++pageIndex)));
+                    //minPrice={0}&maxPrice={1}&compartment={2}&country=(3)&pageIndex={4}
+                    ++pageIndex;
+                    RecordAndDownload();
                 }
             }
 
@@ -81,14 +107,21 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
                 isOver = firstVisibleItem + visibleItemCount == totalItemCount;
             }
         });
+        lv_car_list_id.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), CarDetailActivity.class);
+                intent.putExtra("serialId",detailUserSeriesList.get(position).getId());
+                intent.putExtra("URL_Flg",true);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        //思路：
-        //1.数据源
-        //2.适配器
+
         ArrayAdapter<String> adapterPrice = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, prices);
         ArrayAdapter<String> adapterCompartments = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, compartments);
         ArrayAdapter<String> adapterCountries = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, countries);
@@ -102,8 +135,17 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
         sp_price_range_id.setOnItemSelectedListener(listener);
         sp_car_style_id.setOnItemSelectedListener(listener);
         sp_brand_place_id.setOnItemSelectedListener(listener);
-        new IndependenceAsyncTask(IndependentCarFragment.this, dialog).execute(MessageFormat.format(Urls.CAR_AUTO_SELECT,String.valueOf(pageIndex)));
+
         super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onDestroy() {
+        File searchCondition = new File(getActivity().getFilesDir(), "searchCondition.txt");
+        if (searchCondition.exists()) {
+            searchCondition.delete();
+        }
+        super.onDestroy();
     }
 
     /**
@@ -113,31 +155,90 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//            new IndependenceAsyncTask(IndependentCarFragment.this, dialog).execute(MessageFormat.format(Urls.CAR_AUTO_SELECT,String.valueOf(pageIndex)));//Urls.CAR_AUTO_SELECT+pageIndex
-            String minPrice="";
-            String carStyleStr="";
-            String brandPlace="";
-            switch (parent.getId()){
+            switch (parent.getId()) {
                 case R.id.sp_price_range_id:
-
+                    choosePriceRange(position);
                     break;
                 case R.id.sp_car_style_id:
-                    Log.i("Click",parent.toString());
-                    Log.i("Click",view.toString());
-                    Log.i("Click","点中了车型区间");
+                    compartment = position + 1;
                     break;
                 case R.id.sp_brand_place_id:
-                    Log.i("Click",parent.toString());
-                    Log.i("Click",view.toString());
-                    Log.i("Click","点中了产地区间");
+                    country = position + 1;
                     break;
                 default:
                     break;
             }
+            RecordAndDownload();
         }
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
+        }
+    }
+
+    /**
+     * 每次点击下拉列表，读取配置文件。若是同一个选项则不需重新下载数据。若是不同的选项，则需重新下载数据。
+     */
+    private void RecordAndDownload() {
+       File searchCondition = new File(getActivity().getFilesDir(), "searchCondition.txt");
+        if (!searchCondition.exists()) {
+            try {
+                searchCondition.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        BufferedReader reader = null;
+        BufferedWriter writer = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(getActivity().openFileInput("searchCondition.txt")));
+            String content = null;
+            StringBuffer buffer = new StringBuffer();
+            // String temp = reader.readLine();
+            if ((content = reader.readLine()) != null) { //1.配置文件存在数据，数据发生改变，从网络重新下载数据。
+                String[] splits = content.split("##");
+                if (splits.length >= 5 && (Integer.parseInt(splits[0]) != minPrice || Integer.parseInt(splits[1]) != maxPrice ||
+                        Integer.parseInt(splits[2]) != compartment ||
+                        Integer.parseInt(splits[3]) != country || Integer.parseInt(splits[4]) != pageIndex)) {
+                    buffer.append(minPrice).append("##").append(maxPrice)
+                            .append("##").append(compartment).append("##")
+                            .append(country).append("##").append(pageIndex);//1##2#3##4##5
+                    writer = new BufferedWriter(new OutputStreamWriter(getActivity().openFileOutput("searchCondition.txt",Context.MODE_PRIVATE)));   //new BufferedWriter(new OutputStreamWriter(new FileOutputStream(searchCondition)));.
+                    writer.write(buffer.toString());
+                    writer.flush();
+                    pageIndex = 0;
+                    dataSource.clear();
+                }
+            } else {//2.配置文件不存在，直接从网络下载数据。
+                writer = new BufferedWriter(new OutputStreamWriter(getActivity().openFileOutput("searchCondition.txt",Context.MODE_PRIVATE)));
+                buffer.append(minPrice).append("##").append(maxPrice)
+                        .append("##").append(compartment).append("##")
+                        .append(country).append("##").append(pageIndex);
+                writer.write(buffer.toString());
+                writer.flush();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            new IndependenceAsyncTask(IndependentCarFragment.this, dialog)
+                    .execute(MessageFormat.format(Urls.CAR_AUTO_SELECT, String.valueOf(minPrice), String.valueOf(maxPrice),
+                            String.valueOf(compartment), String.valueOf(country), String.valueOf(pageIndex)));
         }
     }
 
@@ -149,35 +250,23 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
         //3.适配器
 //        Context context, List<? extends Map<String, ?>> data,
 //        @LayoutRes int resource, String[] from, @IdRes int[] to
-        List<Map<String, Object>> dataSource = new LinkedList<>();
+        detailUserSeriesList = seriesList;
+
         for (int i = 0; i < seriesList.size(); i++) {
             Map<String, Object> map = new LinkedHashMap();
-            map.put("iv_self_log_id", R.drawable.default_car);
+            map.put("iv_self_log_id", seriesList.get(i).getPic());
             map.put("tv_self_car_name_id", seriesList.get(i).getName());
             map.put("tv_self_car_price_range_id", seriesList.get(i).getPrice_range());
             map.put("iv_self_right_icon_id", R.mipmap.icon_arrow_right);
 
             dataSource.add(map);
         }
-        MyAdapter myAdapter = new MyAdapter(dataSource, getActivity(), seriesList);
+        myAdapter.notifyDataSetChanged();
         //4.绑定适配器
-        lv_car_list_id.setAdapter(myAdapter);
         //5.给ListView添加监听器
     }
 
     private final class MyAdapter extends BaseAdapter {
-        private List<Map<String, Object>> dataSource;
-        private Context context;
-        private List<Series> seriesList;
-
-        public MyAdapter() {
-        }
-
-        public MyAdapter(List<Map<String, Object>> dataSource, Context context, List<Series> seriesList) {
-            this.dataSource = dataSource;
-            this.context = context;
-            this.seriesList = seriesList;
-        }
 
         @Override
         public int getCount() {
@@ -199,7 +288,7 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
             ViewHolder vh = null;
             if (convertView == null) {
                 vh = new ViewHolder();
-                convertView = View.inflate(context, R.layout.inpedence_item, null);
+                convertView = View.inflate(getActivity(), R.layout.inpedence_item, null);
                 vh.iv_self_log_id = (ImageView) convertView.findViewById(R.id.iv_self_log_id);
                 vh.tv_self_car_name_id = (TextView) convertView.findViewById(R.id.tv_self_car_name_id);
                 vh.tv_self_car_price_range_id = (TextView) convertView.findViewById(R.id.tv_self_car_price_range_id);
@@ -214,7 +303,7 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
             vh.tv_self_car_price_range_id.setText(perItemDs.get("tv_self_car_price_range_id").toString());
             vh.iv_self_right_icon_id.setImageResource(R.mipmap.icon_arrow_right);
 
-            new IndependenceImageAsyncTask(vh.iv_self_log_id).execute(seriesList.get(position).getPic());
+            new IndependenceImageAsyncTask(vh.iv_self_log_id).execute(dataSource.get(position).get("iv_self_log_id").toString());
             return convertView;
         }
     }
@@ -235,5 +324,48 @@ public class IndependentCarFragment extends android.app.Fragment implements Inde
 //        map.put("iv_self_log_id",bitmap);
     }
 
+    /**
+     * 选择价格区间
+     *
+     * @param pos
+     */
+    private void choosePriceRange(int pos) {
+        switch (pos) {
+            case 0:
+                minPrice = 0;
+                maxPrice = 5;
+                break;
+            case 1:
+                minPrice = 5;
+                maxPrice = 10;
+                break;
+            case 2:
+                minPrice = 10;
+                maxPrice = 18;
+                break;
+            case 3:
+                minPrice = 18;
+                maxPrice = 25;
+                break;
+            case 4:
+                minPrice = 25;
+                maxPrice = 40;
+                break;
+            case 5:
+                minPrice = 40;
+                maxPrice = 60;
+                break;
+            case 6:
+                minPrice = 60;
+                maxPrice = 100;
+                break;
+            case 7:
+                minPrice = 100;
+                maxPrice = -1;
+                break;
+            default:
+                break;
+        }
+    }
 
 }

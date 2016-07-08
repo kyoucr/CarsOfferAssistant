@@ -5,7 +5,7 @@ package com.qinshou.administrator.carsofferassistant.bean;
  */
 
 public class Series {
-    private int id;
+    private String id;
     private String price_range;//价格区间
     private String name;//车型
     private String pic;//车的图片地址
@@ -13,18 +13,18 @@ public class Series {
     public Series() {
     }
 
-    public Series(int id, String price_range, String name, String pic) {
+    public Series(String id, String price_range, String name, String pic) {
         this.id = id;
         this.price_range = price_range;
         this.name = name;
         this.pic = pic;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
