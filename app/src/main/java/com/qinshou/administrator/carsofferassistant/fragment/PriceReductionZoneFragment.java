@@ -1,6 +1,8 @@
 package com.qinshou.administrator.carsofferassistant.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -39,6 +41,15 @@ public class PriceReductionZoneFragment extends Fragment {
 
     private List<TabDetalFragment> fragments;
 
+    private String cityName;        // 城市名字
+    private String carType;         // 车型
+
+    private SharedPreferences.Editor cityNameEditor;    // 城市名字偏好写入编辑器
+    private SharedPreferences.Editor carTypeEditor; // 车型偏好写入编辑器
+
+    private MenuItem cityNameMenuItem;  // 城市菜单选项
+    private MenuItem carTypeMenuItem;   // 车型菜单选项
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);    // 设置fragment的onCreateOptionsMenu菜单生效
@@ -64,17 +75,27 @@ public class PriceReductionZoneFragment extends Fragment {
         activity.setSupportActionBar(toolbar);
         ActionBar actionBar = activity.getSupportActionBar();
 
-
-
         //actionBar.setTitle("降价专区");
         actionBar.setTitle(R.string.quotes_reduce_price);
         aboutViewPager();
         aboutRadioGroup();
-
-        ((RadioButton) mRadioGroup.getChildAt(0)).setChecked(true);
-
+        getMySharedPreferences();
         super.onActivityCreated(savedInstanceState);
 
+    }
+
+    /**
+     * 获取偏好设置，用来显示用户选择过的城市、车型
+     */
+    private void getMySharedPreferences(){
+        SharedPreferences sharedCityName = getActivity().getSharedPreferences("SelectCity", Context.MODE_PRIVATE);
+        SharedPreferences shareCarType = getActivity().getSharedPreferences("SelectCarType", Context.MODE_PRIVATE);
+
+        cityNameEditor = sharedCityName.edit();
+        carTypeEditor = shareCarType.edit();
+
+        cityName = sharedCityName.getString("cityName","北京");
+        carType = shareCarType.getString("carType","全部车型");
     }
 
     /**
@@ -89,7 +110,6 @@ public class PriceReductionZoneFragment extends Fragment {
             argument.putString("tabName", ((RadioButton) mRadioGroup.getChildAt(i)).getText().toString());
             fragment.setArguments(argument);
             fragments.add(fragment);
-
         }
 
         // mViewPager.setAdapter(new MyViewPagerAdapter(getActivity().getSupportFragmentManager()));
@@ -135,6 +155,7 @@ public class PriceReductionZoneFragment extends Fragment {
      * 关于单选按钮的一些操作
      */
     private void aboutRadioGroup() {
+        ((RadioButton) mRadioGroup.getChildAt(0)).setChecked(true);
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -160,7 +181,22 @@ public class PriceReductionZoneFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
         inflater.inflate(R.menu.deprecritafiled_main_menu,menu);
+        for(int i=0;i<menu.size();i++){
+            MenuItem item = menu.getItem(i);
+            switch(item.getItemId()){
+                case R.id.menu_city_select_id:  // 城市菜单选项
+                    item.setTitle(cityName);
+                    cityNameMenuItem = item;
+                    break;
+                case R.id.menu_cartype_select_id:   // 车型选项
+                    item.setTitle(carType);
+                    carTypeMenuItem = item;
+                    break;
+            }
+        }
+
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -194,10 +230,16 @@ public class PriceReductionZoneFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 101 && resultCode == 202){
-            String str = data.getStringExtra("values");
-            Toast.makeText(getContext(),"返回值是："+str,Toast.LENGTH_SHORT).show();
+            String cityName = data.getStringExtra("values");
+            //Toast.makeText(getContext(),"返回值是："+str,Toast.LENGTH_SHORT).show();
+            if(cityName!=null && cityName.length()>0){
+                cityNameEditor.putString("cityName",cityName);
+                cityNameEditor.commit();
+                cityNameMenuItem.setTitle(cityName);
+            }
         }
 
+        // carTypeMenuItem
         super.onActivityResult(requestCode, resultCode, data);
     }
 }
