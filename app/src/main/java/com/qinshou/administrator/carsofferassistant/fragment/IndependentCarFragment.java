@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,13 +30,12 @@ import java.text.MessageFormat;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 /**
  *
  */
-public class IndependentCarFragment extends android.app.Fragment implements IndependenceDataCallback {
+public class IndependentCarFragment extends Fragment implements IndependenceDataCallback {
     private String[] prices;//价格区间
     private String[] compartments;//车型
     private String[] countries;//成产地
