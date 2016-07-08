@@ -6,9 +6,9 @@ package com.qinshou.administrator.carsofferassistant.depreciatefiled.bean;
  */
 
 public class CityBean {
-    private String cityName;    // 城市名
-    private String cityCode;  // 城市编号
-    private String cityPY;  // 城市名拼音
+    private String cityName;      // 城市名
+    private String cityCode;     // 城市编号
+    private String cityPY;      // 城市名拼音
 
     public CityBean() {
     }
