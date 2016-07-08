@@ -33,6 +33,9 @@ public class CarDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cardetail);
         Intent intent = getIntent();
         serialId = intent.getStringExtra("serialId");
+        if (intent.getBooleanExtra("URL_Flg", false)) {
+            carDetailUrl = Urls.BEFORE_SERIALID_KEY;
+        }
         init();
         new CarDetailTask(this, car_detail_elv, null).execute(carDetailUrl + serialId);
         new Thread() {
