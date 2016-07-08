@@ -3,6 +3,7 @@ package com.qinshou.administrator.carsofferassistant.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
@@ -26,7 +27,7 @@ import java.util.Map;
  * Created by 禽兽先生 on 2016.07.05
  */
 
-public class SelectModelsFragment extends android.app.Fragment {
+public class SelectModelsFragment extends Fragment {
     private String selectModelsUrl = Urls.SELECT_MODELS;
     private String brandDetailUrl = Urls.BEFORE_MASTERID;
     private ExpandableListView select_models_brand_elv;

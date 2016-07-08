@@ -6,14 +6,14 @@ package com.qinshou.administrator.carsofferassistant.depreciatefiled.bean;
  */
 
 public class CityBean {
-    private String cityName;    // 城市名
-    private int cityCode;  // 城市编号
-    private String cityPY;  // 城市名拼音
+    private String cityName;      // 城市名
+    private String cityCode;     // 城市编号
+    private String cityPY;      // 城市名拼音
 
     public CityBean() {
     }
 
-    public CityBean(String cityName, int cityCode, String cityPY) {
+    public CityBean(String cityName, String cityCode, String cityPY) {
         this.cityName = cityName;
         this.cityCode = cityCode;
         this.cityPY = cityPY;
@@ -27,11 +27,11 @@ public class CityBean {
         this.cityName = cityName;
     }
 
-    public int getCityCode() {
+    public String getCityCode() {
         return cityCode;
     }
 
-    public void setCityCode(int cityCode) {
+    public void setCityCode(String cityCode) {
         this.cityCode = cityCode;
     }
 
