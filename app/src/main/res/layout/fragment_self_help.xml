@@ -35,6 +35,12 @@
         android:id="@+id/lv_car_list_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/tv_emptyp_id"
+        android:text="暂未找到相应车型!"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>
