@@ -1,5 +1,6 @@
 package com.qinshou.administrator.carsofferassistant.utils;
 
+import com.qinshou.administrator.carsofferassistant.bean.DetailImageDefaultHandler;
 import com.qinshou.administrator.carsofferassistant.bean.MyDefaultHandler;
 import com.qinshou.administrator.carsofferassistant.bean.Series;
 
@@ -18,6 +19,12 @@ import javax.xml.parsers.SAXParserFactory;
  */
 
 public class XMLParserIndependenceUtil {
+    /**
+     * 解析自助选车列表
+     *
+     * @param is
+     * @return
+     */
     public static List<Series> parserIndependence(InputStream is) {
         // 步骤：
         // ①解析器工厂实例的构建
@@ -38,5 +45,30 @@ public class XMLParserIndependenceUtil {
             e.printStackTrace();
         }
         return handler.getSeriesList();
+    }
+
+    /**
+     * 解析汽车图片详细图片
+     *
+     * @return
+     */
+    public static List<String> parseDetailImage(InputStream is) {
+        // 步骤：
+        // ①解析器工厂实例的构建
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        // ③解析
+        DetailImageDefaultHandler defaultHandler = new DetailImageDefaultHandler();
+        try {
+            // ②解析器
+            SAXParser parser = factory.newSAXParser();
+
+            parser.parse(is, defaultHandler);
+
+        } catch (ParserConfigurationException | SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return defaultHandler.getImagesUrls();
     }
 }
