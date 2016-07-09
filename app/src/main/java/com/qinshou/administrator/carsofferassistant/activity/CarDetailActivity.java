@@ -3,10 +3,15 @@ package com.qinshou.administrator.carsofferassistant.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.qinshou.administrator.carsofferassistant.R;
@@ -65,4 +70,17 @@ public class CarDetailActivity extends AppCompatActivity {
         level_tv = (TextView) findViewById(R.id.level_tv);
         displacement_tv = (TextView) findViewById(R.id.displacement_tv);
     }
+
+    /**
+     * 点击图片显示详细图片
+     *
+     * @param view
+     */
+    public void showDetailImage(View view) {
+        Intent intent = new Intent(this,DetailImageShowActivity.class);
+        intent.putExtra("detailImageURL",Urls.GRID_IMAGE+serialId);
+        startActivity(intent);
+    }
+
+
 }
