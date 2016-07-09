@@ -9,6 +9,7 @@
         <!--让系统自带的ActionBar失效-->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="actionMenuTextColor">#FFFFFF</item>
     </style>
 
 </resources>

@@ -36,8 +36,8 @@ import java.util.List;
 
 public class PriceReductionZoneFragment extends Fragment {
 
-    private ViewPager mViewPager;
-    private RadioGroup mRadioGroup;
+    private ViewPager mViewPager;       // ViewPager控件
+    private RadioGroup mRadioGroup;     // 顶部选项栏按钮group控件
 
     private List<TabDetalFragment> fragments;
 
@@ -45,10 +45,7 @@ public class PriceReductionZoneFragment extends Fragment {
     private String carType;         // 车型
 
     private SharedPreferences.Editor cityNameEditor;    // 城市名字偏好写入编辑器
-    private SharedPreferences.Editor carTypeEditor; // 车型偏好写入编辑器
-
-    private MenuItem cityNameMenuItem;  // 城市菜单选项
-    private MenuItem carTypeMenuItem;   // 车型菜单选项
+    private SharedPreferences.Editor carTypeEditor;     // 车型偏好写入编辑器
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,8 +55,7 @@ public class PriceReductionZoneFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // View view = inflater.inflate( R.layout.fragment_depreciatefiled_main,null);
-        // 上述方法不好，不推荐使用
+        // View view = inflater.inflate( R.layout.fragment_depreciatefiled_main,null); // 方法不好，不推荐使用
 
         View view = inflater.inflate(R.layout.fragment_depreciatefiled_main, container, false);// 推荐使用这种方法加载布局文件，能够继承布局文件的参数信息
 
@@ -81,7 +77,6 @@ public class PriceReductionZoneFragment extends Fragment {
         aboutRadioGroup();
         getMySharedPreferences();
         super.onActivityCreated(savedInstanceState);
-
     }
 
     /**
@@ -179,24 +174,37 @@ public class PriceReductionZoneFragment extends Fragment {
         });
     }
 
+    /**
+     * 获取从activity返回的用户选择的城市或者车型的信息
+     * @param requestCode   请求码
+     * @param resultCode    返回码
+     * @param data          返回数据
+     */
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.clear();
-        inflater.inflate(R.menu.deprecritafiled_main_menu,menu);
-        for(int i=0;i<menu.size();i++){
-            MenuItem item = menu.getItem(i);
-            switch(item.getItemId()){
-                case R.id.menu_city_select_id:  // 城市菜单选项
-                    item.setTitle(cityName);
-                    cityNameMenuItem = item;
-                    break;
-                case R.id.menu_cartype_select_id:   // 车型选项
-                    item.setTitle(carType);
-                    carTypeMenuItem = item;
-                    break;
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 101 && resultCode == 202){
+            String resultCityName = data.getStringExtra("cityName");
+            //Toast.makeText(getContext(),"返回值是："+str,Toast.LENGTH_SHORT).show();
+            if(cityName!=null && cityName.length()>0){
+                cityNameEditor.putString("cityName",resultCityName).commit();// 将用户选择的城市名保存到本地
+                this.cityName = resultCityName;
             }
         }
 
+        //carType
+        getActivity().invalidateOptionsMenu();      // 通知菜单刷新，回调onPrepareOptionsMenu()函数
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    /**
+     * 初始化菜单
+     * @param menu
+     * @param inflater
+     */
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();       // 清除掉以前的菜单
+        inflater.inflate(R.menu.deprecritafiled_main_menu,menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -212,7 +220,6 @@ public class PriceReductionZoneFragment extends Fragment {
             case R.id.menu_city_select_id:  // 选择城市菜单选项
                 Intent intent = new Intent(getActivity(),SelectCityActivity.class);
                 startActivityForResult(intent,101);
-                // Toast.makeText(getContext(),item.getTitle(),Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_cartype_select_id:   // 选择车型选项
                 Toast.makeText(getContext(),item.getTitle(),Toast.LENGTH_SHORT).show();
@@ -222,24 +229,22 @@ public class PriceReductionZoneFragment extends Fragment {
     }
 
     /**
-     * 获取从activity返回的用户选择的城市或者车型的信息
-     * @param requestCode   请求码
-     * @param resultCode    返回码
-     * @param data          返回数据
+     * 刷新菜单，每次选择完城市、车型后，刷新菜单
+     * @param menu
      */
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == 101 && resultCode == 202){
-            String cityName = data.getStringExtra("values");
-            //Toast.makeText(getContext(),"返回值是："+str,Toast.LENGTH_SHORT).show();
-            if(cityName!=null && cityName.length()>0){
-                cityNameEditor.putString("cityName",cityName);
-                cityNameEditor.commit();
-                cityNameMenuItem.setTitle(cityName);
+    public void onPrepareOptionsMenu(Menu menu) {
+        for(int i=0;i<menu.size();i++){
+            MenuItem item = menu.getItem(i);
+            switch(item.getItemId()){
+                case R.id.menu_city_select_id:  // 城市菜单选项
+                    item.setTitle(cityName);
+                    break;
+                case R.id.menu_cartype_select_id:   // 车型选项
+                    item.setTitle(carType);
+                    break;
             }
         }
-
-        // carTypeMenuItem
-        super.onActivityResult(requestCode, resultCode, data);
+        super.onPrepareOptionsMenu(menu);
     }
 }
