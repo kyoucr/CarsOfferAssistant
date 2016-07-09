@@ -81,6 +81,8 @@ public class IndependentCarFragment extends android.support.v4.app.Fragment impl
         sp_brand_place_id = (Spinner) view.findViewById(R.id.sp_brand_place_id);
 
         lv_car_list_id = (ListView) view.findViewById(R.id.lv_car_list_id);
+        TextView tv_emptyp_id = (TextView) view.findViewById(R.id.tv_emptyp_id);
+        lv_car_list_id.setEmptyView(tv_emptyp_id);
         dialog = new ProgressDialog(getActivity());//进度条
         dialog.setMessage("数据加载中...");
         //思路：
