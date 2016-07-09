@@ -196,15 +196,13 @@ public class IndependentCarFragment extends android.support.v4.app.Fragment impl
             reader = new BufferedReader(new InputStreamReader(getActivity().openFileInput("searchCondition.txt")));
             String content = null;
             StringBuffer buffer = new StringBuffer();
-            // String temp = reader.readLine();
             if ((content = reader.readLine()) != null) { //1.配置文件存在数据，数据发生改变，从网络重新下载数据。
                 String[] splits = content.split("##");
-                if (splits.length >= 5 && (Integer.parseInt(splits[0]) != minPrice || Integer.parseInt(splits[1]) != maxPrice ||
+                if (splits.length == 4 && (Integer.parseInt(splits[0]) != minPrice || Integer.parseInt(splits[1]) != maxPrice ||
                         Integer.parseInt(splits[2]) != compartment ||
-                        Integer.parseInt(splits[3]) != country || Integer.parseInt(splits[4]) != pageIndex)) {
+                        Integer.parseInt(splits[3]) != country)) {
                     buffer.append(minPrice).append("##").append(maxPrice)
-                            .append("##").append(compartment).append("##")
-                            .append(country).append("##").append(pageIndex);//1##2#3##4##5
+                            .append("##").append(compartment).append("##").append(country);//1##2#3##4
                     writer = new BufferedWriter(new OutputStreamWriter(getActivity().openFileOutput("searchCondition.txt",Context.MODE_PRIVATE)));   //new BufferedWriter(new OutputStreamWriter(new FileOutputStream(searchCondition)));.
                     writer.write(buffer.toString());
                     writer.flush();
@@ -214,8 +212,7 @@ public class IndependentCarFragment extends android.support.v4.app.Fragment impl
             } else {//2.配置文件不存在，直接从网络下载数据。
                 writer = new BufferedWriter(new OutputStreamWriter(getActivity().openFileOutput("searchCondition.txt",Context.MODE_PRIVATE)));
                 buffer.append(minPrice).append("##").append(maxPrice)
-                        .append("##").append(compartment).append("##")
-                        .append(country).append("##").append(pageIndex);
+                        .append("##").append(compartment).append("##").append(country);
                 writer.write(buffer.toString());
                 writer.flush();
             }
@@ -250,22 +247,20 @@ public class IndependentCarFragment extends android.support.v4.app.Fragment impl
         //1.找到界面上控件的实例
         //2.数据源，并把数据源设置到控件中。
         //3.适配器
-//        Context context, List<? extends Map<String, ?>> data,
-//        @LayoutRes int resource, String[] from, @IdRes int[] to
-        detailUserSeriesList = seriesList;
-
-        for (int i = 0; i < seriesList.size(); i++) {
-            Map<String, Object> map = new LinkedHashMap();
-            map.put("iv_self_log_id", seriesList.get(i).getPic());
-            map.put("tv_self_car_name_id", seriesList.get(i).getName());
-            map.put("tv_self_car_price_range_id", seriesList.get(i).getPrice_range());
-            map.put("iv_self_right_icon_id", R.mipmap.icon_arrow_right);
-
-            dataSource.add(map);
+        if (seriesList != null && seriesList.size() > 0){
+            detailUserSeriesList = seriesList;
+            for (int i = 0; i < seriesList.size(); i++) {
+                Map<String, Object> map = new LinkedHashMap();
+                map.put("iv_self_log_id", seriesList.get(i).getPic());
+                map.put("tv_self_car_name_id", seriesList.get(i).getName());
+                map.put("tv_self_car_price_range_id", seriesList.get(i).getPrice_range());
+                map.put("iv_self_right_icon_id", R.mipmap.icon_arrow_right);
+                dataSource.add(map);
+            }
+            myAdapter.notifyDataSetChanged();
+            //4.绑定适配器
+            //5.给ListView添加监听器
         }
-        myAdapter.notifyDataSetChanged();
-        //4.绑定适配器
-        //5.给ListView添加监听器
     }
 
     private final class MyAdapter extends BaseAdapter {
@@ -320,11 +315,6 @@ public class IndependentCarFragment extends android.support.v4.app.Fragment impl
         private ImageView iv_self_right_icon_id;
     }
 
-
-    @Override
-    public void imageCallBack(Map<String, Object> map, Bitmap bitmap) {
-//        map.put("iv_self_log_id",bitmap);
-    }
 
     /**
      * 选择价格区间
