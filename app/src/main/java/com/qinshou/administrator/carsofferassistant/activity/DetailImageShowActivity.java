@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.qinshou.administrator.carsofferassistant.R;
 import com.qinshou.administrator.carsofferassistant.adapter.MyDetailImageAdapter;
@@ -59,11 +60,12 @@ public class DetailImageShowActivity extends AppCompatActivity implements ImageS
                 Map<String, Object> map = new LinkedHashMap<>();
                 map.put("iv_default_detail_image_id", R.drawable.default_car);
                 dataSource.add(map);
-                new DetailCarImageUrlAsyncTask(dataSource, i, adapter).execute(result.get(i));
+                new DetailCarImageUrlAsyncTask(dataSource, i, adapter,this).execute(result.get(i));
             }
             adapter.notifyDataSetChanged();
         }else {
-            onBackPressed();//没有图片则不显示界面
+           finish();//没有图片则不显示界面
+            Toast.makeText(this,"该车没有图片可供查看。",Toast.LENGTH_LONG).show();
         }
     }
 }
