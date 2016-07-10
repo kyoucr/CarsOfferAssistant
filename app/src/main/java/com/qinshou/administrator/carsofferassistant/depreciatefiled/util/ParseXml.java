@@ -25,7 +25,7 @@ public class ParseXml {
 	/**
 	 * 解析城市
 	 * @param is	从网络获取城市的信息流
-	 * @return		返回城市信息列表类
+	 * @return		返回城市信息列表CitiesListInfoBean类
      */
 	public static CitiesListInfoBean parseCities(InputStream is){
 		CitiesListInfoBean infos = null;
@@ -121,7 +121,7 @@ public class ParseXml {
 	/**
 	 * 解析城市
 	 * @param is	从网络获取销售汽车的信息流
-	 * @return		返回类
+	 * @return		返回DealerListBean类
 	 */
 	public static DealerListBean parseDealers(InputStream is){
 		DealerListBean dealerListBean = null;
