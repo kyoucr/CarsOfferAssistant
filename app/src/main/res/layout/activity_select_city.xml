@@ -39,6 +39,40 @@
         android:textSize="15.0sp" />
     <!--ffc8d5e1-->
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F2F5F8"
+        android:text="GPS定位城市"
+        android:textColor="#BEC9D2" />
+
+    <LinearLayout
+        android:id="@+id/ll_gps_city_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="gpsCity"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_gps_city_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="gpsCity"
+            android:text="正在定位城市..."
+            android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/btn_gps_city_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="gpsCity"
+            android:visibility="gone"
+            android:text="重试"  />
+
+    </LinearLayout>
+
+
     <!-- 显示城市 -->
     <ExpandableListView
         android:id="@+id/elv_cities_id"
