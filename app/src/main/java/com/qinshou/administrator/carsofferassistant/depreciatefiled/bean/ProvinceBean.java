@@ -1,5 +1,6 @@
 package com.qinshou.administrator.carsofferassistant.depreciatefiled.bean;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class ProvinceBean {
     private String provinceName;    // 省份名字
-    private List<CityBean> cities;  // 省份所包含的城市
+    private List<CityBean> cities = new LinkedList<>();  // 省份所包含的城市
 
     public ProvinceBean() {
     }
