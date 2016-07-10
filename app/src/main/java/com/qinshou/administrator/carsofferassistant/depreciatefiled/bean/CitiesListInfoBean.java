@@ -1,5 +1,6 @@
 package com.qinshou.administrator.carsofferassistant.depreciatefiled.bean;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ public class CitiesListInfoBean {
     private int hasUpdate;      // 更新版本
     private String timeserivse; // 获取延时
     private String timestamp;   // 时间标记
-    private List<ProvinceBean> provices;    // 省份集合
+    private List<ProvinceBean> provices = new LinkedList<>();    // 省份集合
 
     public CitiesListInfoBean() {
     }
