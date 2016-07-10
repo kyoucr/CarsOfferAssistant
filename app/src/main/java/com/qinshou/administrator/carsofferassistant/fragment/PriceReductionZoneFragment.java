@@ -43,6 +43,7 @@ public class PriceReductionZoneFragment extends Fragment {
 
     private String cityName;        // 城市名字
     private String carType;         // 车型
+    private int carSeriesId;        // 车型编号
 
     private SharedPreferences.Editor cityNameEditor;    // 城市名字偏好写入编辑器
     private SharedPreferences.Editor carTypeEditor;     // 车型偏好写入编辑器
@@ -102,7 +103,11 @@ public class PriceReductionZoneFragment extends Fragment {
             TabDetalFragment fragment = new TabDetalFragment();
 
             Bundle argument = new Bundle();
-            argument.putString("tabName", ((RadioButton) mRadioGroup.getChildAt(i)).getText().toString());
+
+            argument.putString("cityName",cityName);
+            argument.putInt("carSeriesId",carSeriesId);
+            argument.putInt("selectType",i+1);
+
             fragment.setArguments(argument);
             fragments.add(fragment);
         }
