@@ -41,7 +41,7 @@ public class ExpandableListAdapterForCitiesList extends BaseExpandableListAdapte
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return infos.getProvices().get(groupPosition).getCities().get(childPosition);
+        return infos.getProvices().get(groupPosition).getCities().get(childPosition).getcityName();
     }
 
     @Override
@@ -56,7 +56,7 @@ public class ExpandableListAdapterForCitiesList extends BaseExpandableListAdapte
 
     @Override
     public boolean hasStableIds() {
-        return true;
+        return false;
     }
 
     @Override
@@ -71,7 +71,6 @@ public class ExpandableListAdapterForCitiesList extends BaseExpandableListAdapte
             gvh = (GroupViewHolder) convertView.getTag();
         }
         gvh.elv_tv_group_id.setText(infos.getProvices().get(groupPosition).getProvinceName());
-
 
         return convertView;
     }
@@ -89,14 +88,13 @@ public class ExpandableListAdapterForCitiesList extends BaseExpandableListAdapte
         }
         svh.elv_tv_son_id.setText(infos.getProvices().get(groupPosition).getCities().get(childPosition).getcityName());
 
-        return null;
+        return convertView;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
     }
-
 
     private final class GroupViewHolder{
         private TextView elv_tv_group_id;
