@@ -54,7 +54,7 @@
                     android:textColor="#A4A4A4" />
                 <!-- 降价 -->
                 <TextView
-                    android:id="@+id/@+id/tv_reduce_id"
+                    android:id="@+id/tv_reduce_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@mipmap/down_price"
