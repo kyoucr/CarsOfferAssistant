@@ -52,6 +52,9 @@
         <activity
             android:name=".activity.DetailImageShowActivity"
             android:label="图集" />
+        <activity
+            android:name=".depreciatefiled.activity.ReducePriceDetailActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
 
         <!-- 集成百度的定位服务 -->
         <service
