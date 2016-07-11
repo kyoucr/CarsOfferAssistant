@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.qinshou.administrator.carsofferassistant.R;
 import com.qinshou.administrator.carsofferassistant.activity.CarDetailActivity;
@@ -73,10 +74,23 @@ public class SelectModelsFragment extends Fragment {
         brand_detail_elv.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+
                 String serialId = brandDetailMap.get(brandDetailList.get(groupPosition)).get(childPosition).getCsID();
-                Intent carDetailIntent = new Intent(getActivity(), CarDetailActivity.class);
-                carDetailIntent.putExtra("serialId", serialId);
-                startActivity(carDetailIntent);
+                String csShowName = brandDetailMap.get(brandDetailList.get(groupPosition)).get(childPosition).getCsShowName();
+                Intent intent = getActivity().getIntent();
+                int requestCode = intent.getIntExtra("requestCode", 0);
+                if(requestCode == 503){
+                    Toast.makeText(getActivity(),"获取到了503",Toast.LENGTH_SHORT).show();
+                    intent.putExtra("serialId", serialId);
+                    intent.putExtra("csShowName", csShowName);
+                    getActivity().setResult(505,intent);
+                    getActivity().finish();
+                }else{
+                    Intent carDetailIntent = new Intent(getActivity(), CarDetailActivity.class);
+                    carDetailIntent.putExtra("serialId", serialId);
+                    startActivity(carDetailIntent);
+                }
+
                 return true;
             }
         });
