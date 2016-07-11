@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_gpsdealer_address"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.qinshou.administrator.carsofferassistant.depreciatefiled.activity.GPSDealerAddressActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/select_city_tb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:title="@null"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:titleTextColor="#FFFFFF">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="经销商地址"
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+    </android.support.v7.widget.Toolbar>
+
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/mv_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true" />
+
+</LinearLayout>
