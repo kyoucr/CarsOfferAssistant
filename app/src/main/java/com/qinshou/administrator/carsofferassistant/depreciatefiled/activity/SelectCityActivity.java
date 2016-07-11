@@ -2,6 +2,7 @@ package com.qinshou.administrator.carsofferassistant.depreciatefiled.activity;
 
 import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -57,9 +58,6 @@ public class SelectCityActivity extends AppCompatActivity implements DownloadCit
     private Button btn_gps_city_id;    // 重试按钮
     private TextView tv_gps_city_id;    // 定位城市显示文本
 
-//    public SelectCityActivity() {
-//    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +79,6 @@ public class SelectCityActivity extends AppCompatActivity implements DownloadCit
 
         new DownLoadCitiesAsyncTask(this).execute(Urls.CITY_lIST_SELECT);   // 开启异步任务下载数据源
 
-        startLocationService();      // 启动定位服务
     }
 
     /**
@@ -99,7 +96,7 @@ public class SelectCityActivity extends AppCompatActivity implements DownloadCit
                     String cityName = ((TextView) view).getText().toString();
                     backTheCallActivity(cityName);
                 } else {
-                    backTheCallActivity("");
+                   finish();
                 }
             }
         });
@@ -208,6 +205,8 @@ public class SelectCityActivity extends AppCompatActivity implements DownloadCit
         elv_cities_id.setAdapter(adapter);  // ExpandableListView控件的notifyDataSetChanged()方法不能使用，重新绑定适配器
         expandEveryItem();                  // 展开每一个选项
         updateAutoCompleteTextView();       //  更新自动填充框的数据源
+        findViewById(R.id.ll_gps_city_id).setVisibility(View.VISIBLE);  // 使定位城市控件可见
+        startLocationService();      // 启动定位服务
     }
 
     /**
@@ -234,7 +233,7 @@ public class SelectCityActivity extends AppCompatActivity implements DownloadCit
             case R.id.ll_gps_city_id:
             case R.id.tv_gps_city_id:
                 String cityName = tv_gps_city_id.getText().toString();
-                if(!TextUtils.isEmpty(cityName)){
+                if(!TextUtils.isEmpty(cityName) && !"正在定位城市...".equals(cityName) && !"定位失败，请检查您的网络".equals(cityName)){
                     backTheCallActivity(cityName);
                 }
                 break;
@@ -272,7 +271,6 @@ public class SelectCityActivity extends AppCompatActivity implements DownloadCit
         client.registerLocationListener(listener);
     }
 
-
     /**
      * BDLocationListener接口的实现类
      */
@@ -304,4 +302,10 @@ public class SelectCityActivity extends AppCompatActivity implements DownloadCit
         }
     }
 
+//    @Override
+//    protected void onDestroy() {
+//        unregisterReceiver(receiver);  // 取消注册广播接收者
+//        client.unRegisterLocationListener(listener); // 取消定位监听
+//        super.onDestroy();
+//    }
 }
