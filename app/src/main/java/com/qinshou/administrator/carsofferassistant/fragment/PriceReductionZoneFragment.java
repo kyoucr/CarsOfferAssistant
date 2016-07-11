@@ -53,20 +53,14 @@ public class PriceReductionZoneFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.i("good", "onCreate()执行");
-        Log.i("good", "onCreate()中-> getChildFragmentManager()=null?" + (getChildFragmentManager() == null));
         setHasOptionsMenu(true);    // 设置fragment的onCreateOptionsMenu菜单生效
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i("good", "onCreateView()执行");
-        Log.i("good", "onCreateView()中-> getChildFragmentManager()=null?" + (getChildFragmentManager() == null));
-        // View view = inflater.inflate( R.layout.fragment_depreciatefiled_main,null); // 方法不好，不推荐使用
 
         View view = inflater.inflate(R.layout.fragment_depreciatefiled_main, container, false);// 推荐使用这种方法加载布局文件，能够继承布局文件的参数信息
-
         mViewPager = (ViewPager) view.findViewById(R.id.vp_id);
         mRadioGroup = (RadioGroup) view.findViewById(R.id.rg_id);
         return view;
@@ -74,41 +68,18 @@ public class PriceReductionZoneFragment extends Fragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        Log.i("good", "onActivityCreated()执行");
-        Log.i("good", "onActivityCreated()中-> getChildFragmentManager()=null?" + (getChildFragmentManager() == null));
         AppCompatActivity activity = ((AppCompatActivity) getActivity());
         Toolbar toolbar = (Toolbar) activity.findViewById(R.id.main_tb);
         activity.setSupportActionBar(toolbar);
         ActionBar actionBar = activity.getSupportActionBar();
 
-        //actionBar.setTitle("降价专区");
+        getMySharedPreferences();
         actionBar.setTitle(R.string.quotes_reduce_price);
         aboutViewPager();
         aboutRadioGroup();
-        getMySharedPreferences();
         super.onActivityCreated(savedInstanceState);
     }
 
-    @Override
-    public void onStart() {
-        Log.i("good", "onstart()执行");
-        Log.i("good", "onstart()中-> getChildFragmentManager()=null?" + (getChildFragmentManager() == null));
-        super.onStart();
-    }
-
-    @Override
-    public void onDestroyView() {
-        Log.i("good", "onDestroyView()执行");
-        Log.i("good", "onDestroyView()中-> getChildFragmentManager()=null?" + (getChildFragmentManager() == null));
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onDestroy() {
-        Log.i("good", "onDestroy()执行");
-        Log.i("good", "onDestroy()中-> getChildFragmentManager()=null?" + (getChildFragmentManager() == null));
-        super.onDestroy();
-    }
 
     /**
      * 获取偏好设置，用来显示用户选择过的城市、车型
@@ -145,7 +116,6 @@ public class PriceReductionZoneFragment extends Fragment {
         }
 
         mViewPager.setAdapter(new MyViewPagerAdapter(getActivity().getSupportFragmentManager()));
-        //mViewPager.setAdapter(new MyViewPagerAdapter(getChildFragmentManager()));
         mViewPager.addOnPageChangeListener(new MyOnPageChangeListener());
 
     }
