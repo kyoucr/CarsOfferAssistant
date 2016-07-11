@@ -115,10 +115,6 @@ public class TabDetalFragment extends Fragment implements TestInterface {
 
     @Override
     public void textCallBack(DealerListBean dealerListBean) {
-        int total = dealerListBean.getTotal();
-        int currentPage = dealerListBean.getCurrentPage();
-        int totalPage = dealerListBean.getTotalPage();
-
         List<DealersBean> dealers = dealerListBean.getDealers();
         for (int i = 0; i < dealers.size(); i++) {
             dataSource.add(dealers.get(i));
