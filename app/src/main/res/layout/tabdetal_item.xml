@@ -108,13 +108,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="reduceZoneAction"
             android:text="免费试驾" />
 
         <Button
             android:id="@+id/btn_collection_buy_id"
             android:layout_width="0dp"
-            android:onClick="reduceZoneAction"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="组团买车" />
@@ -122,7 +120,6 @@
         <Button
             android:id="@+id/btn_ask_lowest_price_id"
             android:layout_width="0dp"
-            android:onClick="reduceZoneAction"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="咨询底价" />
