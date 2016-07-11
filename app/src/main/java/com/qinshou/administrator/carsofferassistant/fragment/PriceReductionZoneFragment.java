@@ -12,20 +12,17 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.qinshou.administrator.carsofferassistant.R;
-import com.qinshou.administrator.carsofferassistant.activity.MainActivity;
 import com.qinshou.administrator.carsofferassistant.depreciatefiled.activity.SelectCityActivity;
 import com.qinshou.administrator.carsofferassistant.depreciatefiled.fragment.TabDetalFragment;
 
@@ -46,23 +43,19 @@ public class PriceReductionZoneFragment extends Fragment {
 
     private String cityName;        // 城市名字
     private String carType;         // 车型
-    private String carSeriesId;        // 车型编号
+    private int carSeriesId;        // 车型编号
 
     private SharedPreferences.Editor cityNameEditor;    // 城市名字偏好写入编辑器
     private SharedPreferences.Editor carTypeEditor;     // 车型偏好写入编辑器
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.i("good", "onCreate()执行");
-        Log.i("good", "onCreate()中-> getChildFragmentManager()=null?" + (getChildFragmentManager() == null));
         setHasOptionsMenu(true);    // 设置fragment的onCreateOptionsMenu菜单生效
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i("good", "onCreateView()执行");
-        Log.i("good", "onCreateView()中-> getChildFragmentManager()=null?" + (getChildFragmentManager() == null));
         // View view = inflater.inflate( R.layout.fragment_depreciatefiled_main,null); // 方法不好，不推荐使用
 
         View view = inflater.inflate(R.layout.fragment_depreciatefiled_main, container, false);// 推荐使用这种方法加载布局文件，能够继承布局文件的参数信息
@@ -74,55 +67,31 @@ public class PriceReductionZoneFragment extends Fragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        Log.i("good", "onActivityCreated()执行");
-        Log.i("good", "onActivityCreated()中-> getChildFragmentManager()=null?" + (getChildFragmentManager() == null));
         AppCompatActivity activity = ((AppCompatActivity) getActivity());
-        Toolbar toolbar = (Toolbar) activity.findViewById(R.id.main_tb);
+        Toolbar toolbar = (Toolbar)activity.findViewById(R.id.main_tb);
         activity.setSupportActionBar(toolbar);
         ActionBar actionBar = activity.getSupportActionBar();
 
         //actionBar.setTitle("降价专区");
         actionBar.setTitle(R.string.quotes_reduce_price);
-        aboutViewPager();
-        aboutRadioGroup();
         getMySharedPreferences();
+        aboutRadioGroup();
+        aboutViewPager();
         super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
-    public void onStart() {
-        Log.i("good", "onstart()执行");
-        Log.i("good", "onstart()中-> getChildFragmentManager()=null?" + (getChildFragmentManager() == null));
-        super.onStart();
-    }
-
-    @Override
-    public void onDestroyView() {
-        Log.i("good", "onDestroyView()执行");
-        Log.i("good", "onDestroyView()中-> getChildFragmentManager()=null?" + (getChildFragmentManager() == null));
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onDestroy() {
-        Log.i("good", "onDestroy()执行");
-        Log.i("good", "onDestroy()中-> getChildFragmentManager()=null?" + (getChildFragmentManager() == null));
-        super.onDestroy();
     }
 
     /**
      * 获取偏好设置，用来显示用户选择过的城市、车型
      */
-    private void getMySharedPreferences() {
+    private void getMySharedPreferences(){
         SharedPreferences sharedCityName = getActivity().getSharedPreferences("SelectCity", Context.MODE_PRIVATE);
         SharedPreferences shareCarType = getActivity().getSharedPreferences("SelectCarType", Context.MODE_PRIVATE);
 
         cityNameEditor = sharedCityName.edit();
         carTypeEditor = shareCarType.edit();
 
-        cityName = sharedCityName.getString("cityName", "北京");
-        carSeriesId = shareCarType.getString("carSeriesId", "0");
-        carType = shareCarType.getString("carType", "全部车型");
+        cityName = sharedCityName.getString("cityName","北京");
+        carType = shareCarType.getString("carType","全部车型");
     }
 
     /**
@@ -130,22 +99,21 @@ public class PriceReductionZoneFragment extends Fragment {
      */
     private void aboutViewPager() {
         fragments = new LinkedList<TabDetalFragment>();
-        fragments.clear();
         for (int i = 0; i < mRadioGroup.getChildCount(); i++) {
             TabDetalFragment fragment = new TabDetalFragment();
 
             Bundle argument = new Bundle();
 
-            argument.putString("cityName", cityName);
-            argument.putString("carSeriesId", carSeriesId);
-            argument.putInt("selectType", i + 1);
+            argument.putString("cityName",cityName);
+            argument.putInt("carSeriesId",carSeriesId);
+            argument.putInt("selectType",i+1);
 
             fragment.setArguments(argument);
             fragments.add(fragment);
         }
 
-        mViewPager.setAdapter(new MyViewPagerAdapter(getActivity().getSupportFragmentManager()));
-        //mViewPager.setAdapter(new MyViewPagerAdapter(getChildFragmentManager()));
+        // mViewPager.setAdapter(new MyViewPagerAdapter(getActivity().getSupportFragmentManager()));
+        mViewPager.setAdapter(new MyViewPagerAdapter(getChildFragmentManager()));
         mViewPager.addOnPageChangeListener(new MyOnPageChangeListener());
 
     }
@@ -157,7 +125,7 @@ public class PriceReductionZoneFragment extends Fragment {
         @Override
         public void onPageSelected(int position) {
             //((RadioButton)mRadioGroup.getChildAt(position)).setChecked(true);
-            ((RadioButton) mRadioGroup.getChildAt(position % fragments.size())).setChecked(true);
+            ((RadioButton)mRadioGroup.getChildAt(position%fragments.size())).setChecked(true);
         }
     }
 
@@ -178,8 +146,8 @@ public class PriceReductionZoneFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            return fragments.get(position);
-            //  return fragments.get(position%fragments.size());
+            // return fragments.get(position);
+            return fragments.get(position%fragments.size());
         }
     }
 
@@ -192,7 +160,7 @@ public class PriceReductionZoneFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 int position = 0;
-                switch (checkedId) {
+                switch(checkedId){
                     case R.id.rb_jiangfuzuida_id:
                         position = 0;
                         break;
@@ -213,66 +181,53 @@ public class PriceReductionZoneFragment extends Fragment {
 
     /**
      * 获取从activity返回的用户选择的城市或者车型的信息
-     *
-     * @param requestCode 请求码
-     * @param resultCode  返回码
-     * @param data        返回数据
+     * @param requestCode   请求码
+     * @param resultCode    返回码
+     * @param data          返回数据
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 101 && resultCode == 202) {
+        if(requestCode == 101 && resultCode == 202){
             String resultCityName = data.getStringExtra("cityName");
             //Toast.makeText(getContext(),"返回值是："+str,Toast.LENGTH_SHORT).show();
-            if (cityName != null && cityName.length() > 0) {
-                cityNameEditor.putString("cityName", resultCityName).commit();// 将用户选择的城市名保存到本地
+            if(cityName!=null && cityName.length()>0){
+                cityNameEditor.putString("cityName",resultCityName).commit();// 将用户选择的城市名保存到本地
                 this.cityName = resultCityName;
             }
-        }else if(requestCode == 503 && resultCode == 505){
-            String serialId = data.getStringExtra("serialId");
-            String csShowName = data.getStringExtra("csShowName");
-           // Toast.makeText(getActivity(),"返回l  ："+serialId+csShowName,Toast.LENGTH_SHORT).show();
-            carType = csShowName;
-            carSeriesId = serialId;
-
-            carTypeEditor.putString("carSeriesId",carSeriesId).putString("carType",carType).commit();
-
         }
 
+        //carType
         getActivity().invalidateOptionsMenu();      // 通知菜单刷新，回调onPrepareOptionsMenu()函数
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     /**
      * 初始化菜单
-     *
      * @param menu
      * @param inflater
      */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();       // 清除掉以前的菜单
-        inflater.inflate(R.menu.deprecritafiled_main_menu, menu);
+        inflater.inflate(R.menu.deprecritafiled_main_menu,menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     /**
      * 根据点击的菜单选项，跳转到不同的activity获取相应的信息后返回
-     *
      * @param item
      * @return
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        switch(item.getItemId()){
 
             case R.id.menu_city_select_id:  // 选择城市菜单选项
-                Intent intent = new Intent(getActivity(), SelectCityActivity.class);
-                startActivityForResult(intent, 101);
+                Intent intent = new Intent(getActivity(),SelectCityActivity.class);
+                startActivityForResult(intent,101);
                 break;
             case R.id.menu_cartype_select_id:   // 选择车型选项
-                Intent intent2 = new Intent(getActivity(),MainActivity.class);
-                intent2.putExtra("requestCode",503);
-                startActivityForResult(intent2,503);
+                Toast.makeText(getContext(),item.getTitle(),Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -280,14 +235,13 @@ public class PriceReductionZoneFragment extends Fragment {
 
     /**
      * 刷新菜单，每次选择完城市、车型后，刷新菜单
-     *
      * @param menu
      */
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        for (int i = 0; i < menu.size(); i++) {
+        for(int i=0;i<menu.size();i++){
             MenuItem item = menu.getItem(i);
-            switch (item.getItemId()) {
+            switch(item.getItemId()){
                 case R.id.menu_city_select_id:  // 城市菜单选项
                     item.setTitle(cityName);
                     break;
