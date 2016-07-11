@@ -125,14 +125,11 @@ public class ParseXml {
 	 */
 	public static DealerListBean parseDealers(InputStream is){
 		DealerListBean dealerListBean = null;
-		InputStreamReader isr = null;
-
 		try {
 			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();// 解析器工厂实例的构建
 			XmlPullParser parser = factory.newPullParser();	// 解析器实例的构建
 
-			isr = new InputStreamReader(is);
-			parser.setInput(isr);
+			parser.setInput(is,"UTF-8");
 
 			DealersBean dealerBean = null;
 
@@ -224,16 +221,7 @@ public class ParseXml {
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
-			if(isr!=null){
-				try {
-					isr.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
 		}
 		return dealerListBean;
 	}
