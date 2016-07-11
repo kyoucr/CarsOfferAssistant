@@ -80,7 +80,6 @@ public class SelectModelsFragment extends Fragment {
                 Intent intent = getActivity().getIntent();
                 int requestCode = intent.getIntExtra("requestCode", 0);
                 if(requestCode == 503){
-                    Toast.makeText(getActivity(),"获取到了503",Toast.LENGTH_SHORT).show();
                     intent.putExtra("serialId", serialId);
                     intent.putExtra("csShowName", csShowName);
                     getActivity().setResult(505,intent);
