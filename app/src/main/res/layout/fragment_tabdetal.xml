@@ -5,12 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_tab_id"
+    <ListView
+        android:id="@+id/lv_reduce_price_detail_id"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="你好啊" />/
+        android:layout_height="match_parent"/>
+    <TextView
+        android:id="@+id/tv_emptyp_id"
+        android:text="暂无数据！"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>
