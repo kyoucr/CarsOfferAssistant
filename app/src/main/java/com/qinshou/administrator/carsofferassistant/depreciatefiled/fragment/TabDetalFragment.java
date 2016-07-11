@@ -1,22 +1,20 @@
 package com.qinshou.administrator.carsofferassistant.depreciatefiled.fragment;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qinshou.administrator.carsofferassistant.R;
+import com.qinshou.administrator.carsofferassistant.depreciatefiled.activity.ReducePriceDetailActivity;
 import com.qinshou.administrator.carsofferassistant.constant.Urls;
 import com.qinshou.administrator.carsofferassistant.depreciatefiled.adapter.ReduceZoneAdapter;
 import com.qinshou.administrator.carsofferassistant.depreciatefiled.bean.DealerListBean;
@@ -24,12 +22,9 @@ import com.qinshou.administrator.carsofferassistant.depreciatefiled.bean.Dealers
 import com.qinshou.administrator.carsofferassistant.depreciatefiled.inter.TestInterface;
 import com.qinshou.administrator.carsofferassistant.depreciatefiled.network.ReducePriceZoneAsyncTask;
 
-import org.w3c.dom.Text;
-
 import java.text.MessageFormat;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by yan on 2016/7/6.
@@ -45,6 +40,8 @@ public class TabDetalFragment extends Fragment implements TestInterface {
     private int selectType;
     private List<DealersBean> dataSource;
     private ReduceZoneAdapter adapter;
+    private boolean isOver;//当前所在页数据是否加载完毕。
+    private int pageIndex = 0;// 页码计数器（初始值是第一页）
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,19 +79,28 @@ public class TabDetalFragment extends Fragment implements TestInterface {
         lv_reduce_price_detail_id.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                DealersBean dealersBean = dataSource.get(position);
+                Intent intent = new Intent(getActivity(), ReducePriceDetailActivity.class);
+                intent.putExtra("carMessage",dealersBean);
+                startActivity(intent);
             }
         });
-//        String format = Urls.REDUCE_PRCE_ZONE_FIRST + cityName + MessageFormat.format(Urls.REDUCE_PRCE_ZONE_SECOND,
-//                String.valueOf(carSeriesId), String.valueOf(selectType), String.valueOf(0));
-//        String format = String.format(Urls.REDUCE_PRCE_ZONE,cityName,carSeriesId,selectType,0);
-//        format = "http://app.cheyooh.com/i.ashx?m=car_reduce_price&uid=dd122ac1318643b993baa7f52a61c245&location_cityid=3&ver=1.1.3&channel=P008%E8%B1%8C%E8%B1%86%E8%8D%9Av1.1.3&key=b5c2d857f489d912f438d8e7bc5ec75b&tagversion=va&appsku=andr_carprice&checkKey=baba4325da61583799415e34422ed5e4&pageEnter=3&cityName=%E5%8C%97%E4%BA%AC&carSeriesId=0&selectType=2&pageIndex=0";
-//        format = Urls.REDUCE_PRCE_ZONE_FIRST + java.net.URLEncoder.encode("北京")
-//                + Urls.REDUCE_PRCE_ZONE_SECOND + carSeriesId + Urls.REDUCE_PRCE_ZONE_THIRD + selectType + Urls.REDUCE_PRCE_ZONE_FOUR + 0;
-//        Log.i("URL:~~~~~~~~~~~~~=", format);
-//        REDUCE_PRCE_ZONE
+        lv_reduce_price_detail_id.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (isOver && scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                    new ReducePriceZoneAsyncTask(TabDetalFragment.this).execute(MessageFormat.format(Urls.REDUCE_PRCE_ZONE, java.net.URLEncoder.encode(cityName),
+                            carSeriesId, String.valueOf(selectType), String.valueOf(++pageIndex)));
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                isOver = firstVisibleItem + visibleItemCount == totalItemCount;
+            }
+        });
         new ReducePriceZoneAsyncTask(this).execute(MessageFormat.format(Urls.REDUCE_PRCE_ZONE, java.net.URLEncoder.encode(cityName),
-                carSeriesId, String.valueOf(selectType), String.valueOf(0)));
+                carSeriesId, String.valueOf(selectType), String.valueOf(pageIndex)));
         super.onActivityCreated(savedInstanceState);
     }
 
