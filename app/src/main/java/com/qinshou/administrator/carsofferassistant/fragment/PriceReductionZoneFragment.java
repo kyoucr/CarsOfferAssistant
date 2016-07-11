@@ -43,7 +43,7 @@ public class PriceReductionZoneFragment extends Fragment {
 
     private String cityName;        // 城市名字
     private String carType;         // 车型
-    private int carSeriesId;        // 车型编号
+    private String carSeriesId;        // 车型编号
 
     private SharedPreferences.Editor cityNameEditor;    // 城市名字偏好写入编辑器
     private SharedPreferences.Editor carTypeEditor;     // 车型偏好写入编辑器
@@ -56,8 +56,6 @@ public class PriceReductionZoneFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // View view = inflater.inflate( R.layout.fragment_depreciatefiled_main,null); // 方法不好，不推荐使用
-
         View view = inflater.inflate(R.layout.fragment_depreciatefiled_main, container, false);// 推荐使用这种方法加载布局文件，能够继承布局文件的参数信息
 
         mViewPager = (ViewPager) view.findViewById(R.id.vp_id);
@@ -72,7 +70,6 @@ public class PriceReductionZoneFragment extends Fragment {
         activity.setSupportActionBar(toolbar);
         ActionBar actionBar = activity.getSupportActionBar();
 
-        //actionBar.setTitle("降价专区");
         actionBar.setTitle(R.string.quotes_reduce_price);
         getMySharedPreferences();
         aboutRadioGroup();
@@ -105,14 +102,13 @@ public class PriceReductionZoneFragment extends Fragment {
             Bundle argument = new Bundle();
 
             argument.putString("cityName",cityName);
-            argument.putInt("carSeriesId",carSeriesId);
+            argument.putString("carSeriesId",carSeriesId);
             argument.putInt("selectType",i+1);
 
             fragment.setArguments(argument);
             fragments.add(fragment);
         }
 
-        // mViewPager.setAdapter(new MyViewPagerAdapter(getActivity().getSupportFragmentManager()));
         mViewPager.setAdapter(new MyViewPagerAdapter(getChildFragmentManager()));
         mViewPager.addOnPageChangeListener(new MyOnPageChangeListener());
 
@@ -124,7 +120,6 @@ public class PriceReductionZoneFragment extends Fragment {
     private final class MyOnPageChangeListener extends ViewPager.SimpleOnPageChangeListener {
         @Override
         public void onPageSelected(int position) {
-            //((RadioButton)mRadioGroup.getChildAt(position)).setChecked(true);
             ((RadioButton)mRadioGroup.getChildAt(position%fragments.size())).setChecked(true);
         }
     }
@@ -141,12 +136,10 @@ public class PriceReductionZoneFragment extends Fragment {
         @Override
         public int getCount() {
             return fragments.size();
-            //return Integer.MAX_VALUE;
         }
 
         @Override
         public Fragment getItem(int position) {
-            // return fragments.get(position);
             return fragments.get(position%fragments.size());
         }
     }
