@@ -31,8 +31,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import static com.qinshou.administrator.carsofferassistant.constant.Urls.REDUCE_PRCE_ZONE_FIRST;
-
 /**
  * Created by yan on 2016/7/6.
  * 用于展示每个tab下ViewPager的fragment。
@@ -87,13 +85,16 @@ public class TabDetalFragment extends Fragment implements TestInterface {
 
             }
         });
-        String format = Urls.REDUCE_PRCE_ZONE_FIRST + cityName + MessageFormat.format(Urls.REDUCE_PRCE_ZONE_SECOND,
-                String.valueOf(carSeriesId), String.valueOf(selectType), String.valueOf(0));
+//        String format = Urls.REDUCE_PRCE_ZONE_FIRST + cityName + MessageFormat.format(Urls.REDUCE_PRCE_ZONE_SECOND,
+//                String.valueOf(carSeriesId), String.valueOf(selectType), String.valueOf(0));
 //        String format = String.format(Urls.REDUCE_PRCE_ZONE,cityName,carSeriesId,selectType,0);
 //        format = "http://app.cheyooh.com/i.ashx?m=car_reduce_price&uid=dd122ac1318643b993baa7f52a61c245&location_cityid=3&ver=1.1.3&channel=P008%E8%B1%8C%E8%B1%86%E8%8D%9Av1.1.3&key=b5c2d857f489d912f438d8e7bc5ec75b&tagversion=va&appsku=andr_carprice&checkKey=baba4325da61583799415e34422ed5e4&pageEnter=3&cityName=%E5%8C%97%E4%BA%AC&carSeriesId=0&selectType=2&pageIndex=0";
-        format = Urls.REDUCE_PRCE_ZONE_FIRST + "北京" + Urls.REDUCE_PRCE_ZONE_SECOND + carSeriesId + Urls.REDUCE_PRCE_ZONE_THIRD + selectType + Urls.REDUCE_PRCE_ZONE_FOUR + 0;
-        Log.i("URL:~~~~~~~~~~~~~=", format);
-        new ReducePriceZoneAsyncTask(this).execute(format);
+//        format = Urls.REDUCE_PRCE_ZONE_FIRST + java.net.URLEncoder.encode("北京")
+//                + Urls.REDUCE_PRCE_ZONE_SECOND + carSeriesId + Urls.REDUCE_PRCE_ZONE_THIRD + selectType + Urls.REDUCE_PRCE_ZONE_FOUR + 0;
+//        Log.i("URL:~~~~~~~~~~~~~=", format);
+//        REDUCE_PRCE_ZONE
+        new ReducePriceZoneAsyncTask(this).execute(MessageFormat.format(Urls.REDUCE_PRCE_ZONE, java.net.URLEncoder.encode(cityName),
+                carSeriesId, String.valueOf(selectType), String.valueOf(0)));
         super.onActivityCreated(savedInstanceState);
     }
 
