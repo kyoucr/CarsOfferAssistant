@@ -85,14 +85,16 @@ public class TabDetalFragment extends Fragment implements TestInterface {
 
             }
         });
-        Log.i("good","cityName"+cityName);
-        Log.i("good","carSeriesId"+carSeriesId);
-        Log.i("good","selectType"+selectType);
-        String format = MessageFormat.format(Urls.REDUCE_PRCE_ZONE, cityName,
-                String.valueOf(carSeriesId), String.valueOf(selectType), "0");
-
-
-        new ReducePriceZoneAsyncTask(this).execute(format);
+//        String format = Urls.REDUCE_PRCE_ZONE_FIRST + cityName + MessageFormat.format(Urls.REDUCE_PRCE_ZONE_SECOND,
+//                String.valueOf(carSeriesId), String.valueOf(selectType), String.valueOf(0));
+//        String format = String.format(Urls.REDUCE_PRCE_ZONE,cityName,carSeriesId,selectType,0);
+//        format = "http://app.cheyooh.com/i.ashx?m=car_reduce_price&uid=dd122ac1318643b993baa7f52a61c245&location_cityid=3&ver=1.1.3&channel=P008%E8%B1%8C%E8%B1%86%E8%8D%9Av1.1.3&key=b5c2d857f489d912f438d8e7bc5ec75b&tagversion=va&appsku=andr_carprice&checkKey=baba4325da61583799415e34422ed5e4&pageEnter=3&cityName=%E5%8C%97%E4%BA%AC&carSeriesId=0&selectType=2&pageIndex=0";
+//        format = Urls.REDUCE_PRCE_ZONE_FIRST + java.net.URLEncoder.encode("北京")
+//                + Urls.REDUCE_PRCE_ZONE_SECOND + carSeriesId + Urls.REDUCE_PRCE_ZONE_THIRD + selectType + Urls.REDUCE_PRCE_ZONE_FOUR + 0;
+//        Log.i("URL:~~~~~~~~~~~~~=", format);
+//        REDUCE_PRCE_ZONE
+        new ReducePriceZoneAsyncTask(this).execute(MessageFormat.format(Urls.REDUCE_PRCE_ZONE, java.net.URLEncoder.encode(cityName),
+                carSeriesId, String.valueOf(selectType), String.valueOf(0)));
         super.onActivityCreated(savedInstanceState);
     }
 
@@ -102,7 +104,7 @@ public class TabDetalFragment extends Fragment implements TestInterface {
      * @param view
      */
     public void reduceZoneAction(View view) {
-        Toast.makeText(getActivity(),"点击Button事件！",Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "点击Button事件！", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -112,7 +114,7 @@ public class TabDetalFragment extends Fragment implements TestInterface {
         int totalPage = dealerListBean.getTotalPage();
 
         List<DealersBean> dealers = dealerListBean.getDealers();
-        for(int i=0;i<dealers.size();i++){
+        for (int i = 0; i < dealers.size(); i++) {
             dataSource.add(dealers.get(i));
         }
         adapter.notifyDataSetChanged();

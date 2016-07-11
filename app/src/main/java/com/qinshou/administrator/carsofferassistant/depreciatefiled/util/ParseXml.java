@@ -6,6 +6,8 @@ import com.qinshou.administrator.carsofferassistant.depreciatefiled.bean.DealerL
 import com.qinshou.administrator.carsofferassistant.depreciatefiled.bean.DealersBean;
 import com.qinshou.administrator.carsofferassistant.depreciatefiled.bean.ProvinceBean;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -125,12 +127,15 @@ public class ParseXml {
 	 */
 	public static DealerListBean parseDealers(InputStream is){
 		DealerListBean dealerListBean = null;
+//        InputStreamReader reader = null;
+        BufferedReader reader = null;
 		try {
 			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();// 解析器工厂实例的构建
 			XmlPullParser parser = factory.newPullParser();	// 解析器实例的构建
-
-			parser.setInput(is,"UTF-8");
-
+//            reader = new InputStreamReader(is);
+//			parser.setInput(is,"UTF-8");
+            reader = new BufferedReader(new InputStreamReader(is));
+			parser.setInput(reader);
 			DealersBean dealerBean = null;
 
 			String tagName = null;
@@ -222,8 +227,23 @@ public class ParseXml {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		return dealerListBean;
+		}finally {
+            if (reader != null){
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (is != null){
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return dealerListBean;
 	}
 
 
