@@ -279,7 +279,6 @@ public class PriceReductionZoneFragment extends Fragment {
     }
 
     public static PriceReductionZoneFragment newInstance() {
-
         Bundle args = new Bundle();
 
         PriceReductionZoneFragment fragment = new PriceReductionZoneFragment();
