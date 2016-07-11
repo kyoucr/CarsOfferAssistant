@@ -114,4 +114,9 @@ public class SelectModelsFragment extends Fragment {
         });
         return view;
     }
+    @Override
+    public void onPause() {
+        super.onPause();
+        select_models_content_dl.closeDrawer(GravityCompat.START);
+    }
 }
