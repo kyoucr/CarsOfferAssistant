@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_reduce_price_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.qinshou.administrator.carsofferassistant.depreciatefiled.activity.ReducePriceDetailActivity">
+
+    <TextView
+        android:id="@+id/tv_car_name_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="北京40 2.4L手动 4驱 穿越版 2014款"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/default_car" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_promote_price_id"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="12.68万"
+            android:textColor="#ff0000" />
+
+        <TextView
+            android:id="@+id/tv_old_price_id"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="14.68万" />
+
+        <TextView
+            android:id="@+id/tv_sale_range_id"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="售全国" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_ask_lowest_price_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#449df8"
+        android:text="咨询底价" />
+
+    <TextView
+        android:id="@+id/tv_reduce_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f1f1f1"
+        android:text="降价优惠信息" />
+
+    <ListView
+        android:id="@+id/lv_all_car_reduce_price_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/tv_emptyp_id"
+        android:text="暂无数据！"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
