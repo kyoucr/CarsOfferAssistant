@@ -278,14 +278,6 @@ public class PriceReductionZoneFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    public static PriceReductionZoneFragment newInstance() {
-        Bundle args = new Bundle();
-
-        PriceReductionZoneFragment fragment = new PriceReductionZoneFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     /**
      * 刷新菜单，每次选择完城市、车型后，刷新菜单
      *
