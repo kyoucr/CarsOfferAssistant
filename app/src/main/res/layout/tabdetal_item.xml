@@ -16,13 +16,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick=""
             android:scaleType="fitXY"
             android:src="@drawable/default_car" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:layout_weight="3"
             android:orientation="vertical">
 
@@ -33,7 +33,7 @@
                 android:layout_weight="1"
                 android:text="昂科威ENISION 20T 四驱精英型 2016款"
                 android:textColor="#000000"
-                android:textSize="18sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <RelativeLayout
@@ -48,26 +48,25 @@
                     android:layout_alignParentLeft="true"
                     android:text="23.79万"
                     android:textColor="#ff0000"
-                    android:textSize="18sp" />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/tv_vendor_price"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                   android:layout_centerInParent="true"
-                    android:layout_toRightOf="@+id/tv_now_price_id"
+                    android:layout_centerInParent="true"
                     android:text="24.99万"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/tv_reduce_price_id"
-                    android:layout_alignParentRight="true"
-                    android:text="1.2万"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:text="1.2万"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="10sp" />
 
             </RelativeLayout>
 
@@ -80,52 +79,81 @@
                     android:id="@+id/tv_sale_range_id"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="售本市"
-                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_alignParentTop="true"
+                    android:text="售本市"
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/tv_dealer_type_id"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="4S店 北京运通博雅"
-                    android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="4S店 北京运通博雅"
+                    android:textSize="10sp" />
             </RelativeLayout>
         </LinearLayout>
+
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="5dp"
+        android:background="#f1f1f1" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_gravity="center"
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Button
+        <TextView
             android:id="@+id/btn_free_drive_id"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="reduceZoneAction"
-            android:text="免费试驾" />
+            android:clickable="true"
+            android:gravity="center"
+            android:text="免费试驾"
+            android:textColor="#4da2fb"
+            android:textSize="16sp" />
 
-        <Button
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="#f1f1f1" />
+
+        <TextView
             android:id="@+id/btn_collection_buy_id"
             android:layout_width="0dp"
-            android:onClick="reduceZoneAction"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="组团买车" />
+            android:clickable="true"
+            android:gravity="center"
+            android:text="组团买车"
+            android:textColor="#4da2fb"
+            android:textSize="16sp" />
 
-        <Button
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="#f1f1f1" />
+
+        <TextView
             android:id="@+id/btn_ask_lowest_price_id"
             android:layout_width="0dp"
-            android:onClick="reduceZoneAction"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="咨询底价" />
+            android:clickable="true"
+            android:gravity="center"
+            android:text="咨询底价"
+            android:textColor="#4da2fb"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>

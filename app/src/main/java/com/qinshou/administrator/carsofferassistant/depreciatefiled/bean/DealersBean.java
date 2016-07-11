@@ -1,11 +1,13 @@
 package com.qinshou.administrator.carsofferassistant.depreciatefiled.bean;
 
+import java.io.Serializable;
+
 /**
  * 待售车辆类
  * @author 岩 7/10
  *
  */
-public class DealersBean {
+public class DealersBean implements Serializable{
 	
 	private String dealerType;		// 销售类型
 	private String csName;			// 车型名字
