@@ -32,9 +32,9 @@ public class GPSDealerAddress {
 
     /**
      * @param context           上下文实例，请使用getApplicationContext();
-     * @param countryTextView   要显示定位国家的国家的TextView
-     * @param cityTextView      要显示定位城市的城市的TextView
-     * @param addressTextView   要显示定位的地址的TextView
+     * @param countryTextView   要显示定位国家的国家的TextView，不获取，请传null
+     * @param cityTextView      要显示定位城市的城市的TextView，不获取，请传null
+     * @param addressTextView   要显示定位的地址的TextView，不获取，请传null
      */
     public GPSDealerAddress(Context context, TextView countryTextView, TextView cityTextView, TextView addressTextView){
         SDKInitializer.initialize(context);
