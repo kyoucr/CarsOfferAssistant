@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ public class TabDetalFragment extends Fragment implements TestInterface {
 
     private ListView lv_reduce_price_detail_id;
     private String cityName;
-    private int carSeriesId;
+    private String carSeriesId;
     private int selectType;
     private List<DealersBean> dataSource;
     private ReduceZoneAdapter adapter;
@@ -50,7 +51,7 @@ public class TabDetalFragment extends Fragment implements TestInterface {
 
         Bundle arguments = getArguments();
         cityName = arguments.getString("cityName");
-        carSeriesId = arguments.getInt("carSeriesId");
+        carSeriesId = arguments.getString("carSeriesId");
         selectType = arguments.getInt("selectType");
 
         super.onCreate(savedInstanceState);
@@ -84,8 +85,13 @@ public class TabDetalFragment extends Fragment implements TestInterface {
 
             }
         });
+        Log.i("good","cityName"+cityName);
+        Log.i("good","carSeriesId"+carSeriesId);
+        Log.i("good","selectType"+selectType);
         String format = MessageFormat.format(Urls.REDUCE_PRCE_ZONE, cityName,
                 String.valueOf(carSeriesId), String.valueOf(selectType), "0");
+
+
         new ReducePriceZoneAsyncTask(this).execute(format);
         super.onActivityCreated(savedInstanceState);
     }
