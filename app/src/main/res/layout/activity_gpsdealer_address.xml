@@ -6,6 +6,7 @@
     android:id="@+id/activity_gpsdealer_address"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.qinshou.administrator.carsofferassistant.depreciatefiled.activity.GPSDealerAddressActivity">
 
     <android.support.v7.widget.Toolbar
