@@ -1,11 +1,14 @@
 package com.qinshou.administrator.carsofferassistant.fragment;
 
+import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,6 +73,16 @@ public class IndependentCarFragment extends android.support.v4.app.Fragment impl
         compartments = resources.getStringArray(R.array.c_compartment);
         countries = resources.getStringArray(R.array.c_country);
         detailUserSeriesList = new LinkedList<>();
+
+
+
+        AppCompatActivity activity = ((AppCompatActivity) getActivity());
+        Toolbar toolbar = (Toolbar) activity.findViewById(R.id.main_tb);
+        activity.setSupportActionBar(toolbar);
+        android.support.v7.app.ActionBar actionBar = activity.getSupportActionBar();
+        actionBar.setTitle("自主选车");
+
+
         super.onCreate(savedInstanceState);
     }
 
