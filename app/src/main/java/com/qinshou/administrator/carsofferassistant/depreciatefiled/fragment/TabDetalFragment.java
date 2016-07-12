@@ -1,5 +1,6 @@
 package com.qinshou.administrator.carsofferassistant.depreciatefiled.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -42,6 +43,7 @@ public class TabDetalFragment extends Fragment implements TestInterface {
     private ReduceZoneAdapter adapter;
     private boolean isOver;//当前所在页数据是否加载完毕。
     private int pageIndex = 0;// 页码计数器（初始值是第一页）
+    private ProgressDialog dialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,8 @@ public class TabDetalFragment extends Fragment implements TestInterface {
         lv_reduce_price_detail_id = (ListView) view.findViewById(R.id.lv_reduce_price_detail_id);
         TextView tv_emptyp_id = (TextView) view.findViewById(R.id.tv_emptyp_id);
         lv_reduce_price_detail_id.setEmptyView(tv_emptyp_id);
+        dialog = new ProgressDialog(getActivity());
+        dialog.setTitle("数据加载中...");
         return view;
     }
 
@@ -89,7 +93,7 @@ public class TabDetalFragment extends Fragment implements TestInterface {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 if (isOver && scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-                    new ReducePriceZoneAsyncTask(TabDetalFragment.this).execute(MessageFormat.format(Urls.REDUCE_PRCE_ZONE, java.net.URLEncoder.encode(cityName),
+                    new ReducePriceZoneAsyncTask(TabDetalFragment.this,dialog).execute(MessageFormat.format(Urls.REDUCE_PRCE_ZONE, java.net.URLEncoder.encode(cityName),
                             carSeriesId, String.valueOf(selectType), String.valueOf(++pageIndex)));
                 }
             }
@@ -99,7 +103,7 @@ public class TabDetalFragment extends Fragment implements TestInterface {
                 isOver = firstVisibleItem + visibleItemCount == totalItemCount;
             }
         });
-        new ReducePriceZoneAsyncTask(this).execute(MessageFormat.format(Urls.REDUCE_PRCE_ZONE, java.net.URLEncoder.encode(cityName),
+        new ReducePriceZoneAsyncTask(this,dialog).execute(MessageFormat.format(Urls.REDUCE_PRCE_ZONE, java.net.URLEncoder.encode(cityName),
                 carSeriesId, String.valueOf(selectType), String.valueOf(pageIndex)));
         super.onActivityCreated(savedInstanceState);
     }
