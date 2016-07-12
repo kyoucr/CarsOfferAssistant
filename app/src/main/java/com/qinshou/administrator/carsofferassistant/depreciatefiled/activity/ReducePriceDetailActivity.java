@@ -91,8 +91,7 @@ public class ReducePriceDetailActivity extends AppCompatActivity implements Redu
                 Intent intent = new Intent(ReducePriceDetailActivity.this, AppointmentActivity.class);
                 intent.putExtra("car_name_string", reduceCar.getCsName());
                 intent.putExtra("car_name", carName);
-                intent.putExtra("car_picture_id", reduceCar.getCsPic());
-                intent.putExtra("PAGE_CHOICE_FLG",true);
+                intent.putExtra("car_picture", reduceCar.getCsPic());
                 startActivity(intent);
             }
         });
