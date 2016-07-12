@@ -56,6 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="请输入姓名"
+            android:inputType="textPersonName"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -81,6 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="请输入电话号码"
+            android:inputType="phone"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -102,17 +104,20 @@
             android:textSize="18sp" />
 
         <RadioGroup
+            android:id="@+id/rg_gender_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <RadioButton
+                android:id="@+id/rb_male_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="男" />
 
             <RadioButton
+                android:id="@+id/rb_female_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="女" />
@@ -143,4 +148,16 @@
             android:onClick="selectCity"
             android:text="点击选择城市" />
     </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#449dfb"
+        android:onClick="saveCustomerData"
+        android:text="提交"
+        android:textColor="#ffffff" />
 </RelativeLayout>
