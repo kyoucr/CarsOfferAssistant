@@ -112,12 +112,12 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <TextView
+        <Button
             android:id="@+id/btn_free_drive_id"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
+            android:focusable="false"
             android:gravity="center"
             android:text="免费试驾"
             android:textColor="#4da2fb"
@@ -128,12 +128,12 @@
             android:layout_height="match_parent"
             android:background="#f1f1f1" />
 
-        <TextView
+        <Button
             android:id="@+id/btn_collection_buy_id"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
+            android:focusable="false"
             android:gravity="center"
             android:text="组团买车"
             android:textColor="#4da2fb"
@@ -144,12 +144,12 @@
             android:layout_height="match_parent"
             android:background="#f1f1f1" />
 
-        <TextView
+        <Button
             android:id="@+id/btn_ask_lowest_price_id"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
+            android:focusable="false"
             android:gravity="center"
             android:text="咨询底价"
             android:textColor="#4da2fb"
