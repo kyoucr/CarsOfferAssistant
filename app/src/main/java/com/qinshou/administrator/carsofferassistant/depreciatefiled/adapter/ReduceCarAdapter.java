@@ -68,7 +68,10 @@ public class ReduceCarAdapter extends BaseAdapter {
             vh = (ViewHolder) convertView.getTag();
         }
         ReduceCar dealersBean = listCars.get(position);
-        vh.tv_car_name.setText(dealersBean.getCsName() + " " + dealersBean.getName() + " " + dealersBean.getCarYear() + "款");
+        final String car_name_string = dealersBean.getCsName() + " " + dealersBean.getName() + " " + dealersBean.getCarYear() + "款";
+        final String car_name = dealersBean.getCsName();
+        final String car_picture = dealersBean.getCsPic();
+        vh.tv_car_name.setText(car_name_string);
         vh.tv_now_price_id.setText(dealersBean.getPromotePrice());
         vh.tv_decreace_price_id.setText(dealersBean.getReduce());
         vh.tv_old_price_id.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
@@ -77,17 +80,15 @@ public class ReduceCarAdapter extends BaseAdapter {
         vh.btn_ask_lowest_price_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, AppointmentActivity.class));
+                Intent intent = new Intent(context, AppointmentActivity.class);
+                intent.putExtra("car_name", car_name_string);
+                intent.putExtra("car_name_string", car_name);
+                intent.putExtra("car_picture", car_picture);
+                context.startActivity(intent);
             }
         });
         return convertView;
     }
-
-//    @Override
-//    public void onClick(View v) {
-//        Intent appointmentIntent = new Intent(context, AppointmentActivity.class);
-//        context.startActivity(appointmentIntent);
-//    }
 
     private final class ViewHolder {
         TextView tv_car_name;
