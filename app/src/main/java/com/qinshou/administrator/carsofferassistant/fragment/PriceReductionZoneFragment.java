@@ -65,18 +65,23 @@ public class PriceReductionZoneFragment extends Fragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        AppCompatActivity activity = ((AppCompatActivity) getActivity());
-        Toolbar toolbar = (Toolbar) activity.findViewById(R.id.main_tb);
-        activity.setSupportActionBar(toolbar);
-        ActionBar actionBar = activity.getSupportActionBar();
-
         getMySharedPreferences();
-        actionBar.setTitle(R.string.quotes_reduce_price);
+        aboutActionBar();
         aboutViewPager();
         aboutRadioGroup();
         super.onActivityCreated(savedInstanceState);
     }
 
+    /**
+     * 关于ActionBar的操作
+     */
+    private void aboutActionBar(){
+        AppCompatActivity activity = ((AppCompatActivity) getActivity());
+        Toolbar toolbar = (Toolbar) activity.findViewById(R.id.main_tb);
+        activity.setSupportActionBar(toolbar);
+        ActionBar actionBar = activity.getSupportActionBar();
+        actionBar.setTitle(R.string.quotes_reduce_price);
+    }
 
     /**
      * 获取偏好设置，用来显示用户选择过的城市、车型
@@ -188,20 +193,21 @@ public class PriceReductionZoneFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 101 && resultCode == 202) {
             String resultCityName = data.getStringExtra("cityName");
-            //Toast.makeText(getContext(),"返回值是："+str,Toast.LENGTH_SHORT).show();
-            if (cityName != null && cityName.length() > 0) {
+            if (resultCityName != null && resultCityName.length() > 0) {
                 cityNameEditor.putString("cityName", resultCityName).commit();// 将用户选择的城市名保存到本地
                 this.cityName = resultCityName;
             }
         }else if(requestCode == 503 && resultCode == 505){
             String serialId = data.getStringExtra("serialId");
             String csShowName = data.getStringExtra("csShowName");
-           // Toast.makeText(getActivity(),"返回l  ："+serialId+csShowName,Toast.LENGTH_SHORT).show();
-            carType = csShowName;
-            carSeriesId = serialId;
-
-            carTypeEditor.putString("carSeriesId",carSeriesId).putString("carType",carType).commit();
-
+            if(serialId!=null && serialId.length()>0){
+                this.carType = csShowName;
+                carTypeEditor.putString("carSeriesId",carSeriesId).commit();
+            }
+            if(csShowName!=null && csShowName.length()>0){
+                this.carSeriesId = serialId;
+                carTypeEditor.putString("carType",carType).commit();
+            }
         }
         getActivity().invalidateOptionsMenu();      // 通知菜单刷新，回调onPrepareOptionsMenu()函数
         aboutViewPager();
