@@ -55,14 +55,12 @@ public class GPSDealerAddressActivity extends AppCompatActivity {
         map = mv_id.getMap();
         aboutActionBar();
 
-
         // ②给Baidumap添加OnMarkerClickListener监听器
         addMarkerListenerBaidumap();
 
-        // 3、在屏幕上添加一个默认的覆盖物（不是点击之后添加的，而是默认的）
-        //addMarkerToMap("天丰利", new LatLng(40.041020, 116.374500));
-        addMarkerToMap("天安门", new LatLng(39.913202, 116.404804));
+        addMarkerToMap("天安门", new LatLng(39.913202, 116.404804));     //在屏幕上添加一个默认的覆盖物（不是点击之后添加的，而是默认的）
 
+        startLocationService(); // 启动定位服务
 
     }
 
