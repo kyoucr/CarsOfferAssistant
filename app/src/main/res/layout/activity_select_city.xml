@@ -47,12 +47,12 @@
         android:textColor="#BEC9D2" />
 
     <LinearLayout
-        android:visibility="gone"
         android:id="@+id/ll_gps_city_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="gpsCity"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_gps_city_id"
@@ -68,11 +68,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="gpsCity"
-            android:visibility="gone"
-            android:text="重试"  />
+            android:text="重试"
+            android:visibility="gone" />
 
     </LinearLayout>
-
 
     <!-- 显示城市 -->
     <ExpandableListView
@@ -87,8 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:text="@string/loading_wait">
+        android:orientation="horizontal">
 
         <ProgressBar
             style="?android:attr/progressBarStyleSmall"
