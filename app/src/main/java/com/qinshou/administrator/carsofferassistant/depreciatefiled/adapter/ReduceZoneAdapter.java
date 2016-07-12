@@ -98,7 +98,11 @@ public class ReduceZoneAdapter extends BaseAdapter {
         vh.btn_free_drive_id.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, AppointmentActivity.class));
+                Intent intent = new Intent(context, AppointmentActivity.class);
+//                intent.putExtra("car_name", car_name_string);
+//                intent.putExtra("car_name_string", car_name);
+//                intent.putExtra("car_picture", car_picture);
+                context.startActivity(intent);
             }
         });
         vh.btn_collection_buy_id.setOnClickListener(new Button.OnClickListener() {
