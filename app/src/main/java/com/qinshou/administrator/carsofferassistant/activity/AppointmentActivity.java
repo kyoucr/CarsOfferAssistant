@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.qinshou.administrator.carsofferassistant.R;
 import com.qinshou.administrator.carsofferassistant.bean.Customer;
+import com.qinshou.administrator.carsofferassistant.depreciatefiled.activity.SelectCityActivity;
 import com.qinshou.administrator.carsofferassistant.utils.DBHelper;
 
 /**
@@ -74,5 +75,29 @@ public class AppointmentActivity extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(this, "提交失败！", Toast.LENGTH_LONG).show();
         }
+    }
+
+    /**
+     * 城市选择
+     * @param view
+     */
+    public void selectCity(View view) {
+        Intent intent = new Intent(this, SelectCityActivity.class);
+        startActivityForResult(intent, 101);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        TextView textView = (TextView) findViewById(R.id.show_city_tv);
+        if (requestCode == 101 && resultCode == 202) {
+            String resultCityName = data.getStringExtra("cityName");
+            if (resultCityName != null && resultCityName.length() > 0) {
+                textView.setText(resultCityName);
+            } else {
+                textView.setText("获取城市失败，点击重试...");
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
