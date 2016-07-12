@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.qinshou.administrator.carsofferassistant.R;
 import com.qinshou.administrator.carsofferassistant.fragment.IndependentCarFragment;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private IndependentCarFragment independentCarFragment;
     private PriceReductionZoneFragment priceReductionZoneFragment;
     private MyGarageFragment myGarageFragment;
-    private Button select_models_bt, independent_car_bt, price_reduction_zone_bt, my_garage_bt;
+    private TextView select_models_bt, independent_car_bt, price_reduction_zone_bt, my_garage_bt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +33,16 @@ public class MainActivity extends AppCompatActivity {
         independentCarFragment = new IndependentCarFragment();
         priceReductionZoneFragment = new PriceReductionZoneFragment();
         myGarageFragment = new MyGarageFragment();
-        select_models_bt = (Button) findViewById(R.id.select_models_bt);//选择车型按钮
-        independent_car_bt = (Button) findViewById(R.id.independent_car_bt);//自主选车按钮
-        price_reduction_zone_bt = (Button) findViewById(R.id.price_reduction_zone_bt);//降价专区按钮
-        my_garage_bt = (Button) findViewById(R.id.my_garage_bt);//我的车库按钮
+        select_models_bt = (TextView) findViewById(R.id.select_models_bt);//选择车型按钮
+        independent_car_bt = (TextView) findViewById(R.id.independent_car_bt);//自主选车按钮
+        price_reduction_zone_bt = (TextView) findViewById(R.id.price_reduction_zone_bt);//降价专区按钮
+        my_garage_bt = (TextView) findViewById(R.id.my_garage_bt);//我的车库按钮
         getSupportFragmentManager().beginTransaction().replace(R.id.content_fm, selectModelsFragment).commit();
+
+        select_models_bt.setEnabled(false);
+        independent_car_bt.setEnabled(true);
+        price_reduction_zone_bt.setEnabled(true);
+        my_garage_bt.setEnabled(true);
     }
 
     public void chooseFragment(View view) {
