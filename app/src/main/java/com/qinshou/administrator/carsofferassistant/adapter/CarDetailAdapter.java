@@ -87,8 +87,8 @@ public class CarDetailAdapter extends BaseExpandableListAdapter {
         Button group_to_buy_bt = (Button) view.findViewById(R.id.group_to_buy_bt);
         Button consult_floor_price_bt = (Button) view.findViewById(R.id.consult_floor_price_bt);
         //name:汽车名
-        final String name = map.get(displacements.get(groupPosition)).get(childPosition).getName();
-        name_tv.setText(name);
+        final String car_name = map.get(displacements.get(groupPosition)).get(childPosition).getName();
+        name_tv.setText(car_name);
         price_tv.setText(map.get(displacements.get(groupPosition)).get(childPosition).getPrice() + "万起");
         gearBox_tv.setText(map.get(displacements.get(groupPosition)).get(childPosition).getGearBox());
         power_tv.setText(map.get(displacements.get(groupPosition)).get(childPosition).getPower());
@@ -97,9 +97,9 @@ public class CarDetailAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, AppointmentActivity.class);
-                intent.putExtra("name", carIntro.getName());
-                intent.putExtra("pic", carIntro.getPic());//name
-                intent.putExtra("carName", name);
+                intent.putExtra("car_name_string", carIntro.getName());
+                intent.putExtra("car_name", car_name);
+                intent.putExtra("car_picture", carIntro.getPic());//name
                 context.startActivity(intent);
             }
         });
@@ -107,9 +107,9 @@ public class CarDetailAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, AppointmentActivity.class);
-                intent.putExtra("name", carIntro.getName());
-                intent.putExtra("pic", carIntro.getPic());//name
-                intent.putExtra("carName", name);
+                intent.putExtra("car_name_string", carIntro.getName());
+                intent.putExtra("car_picture", carIntro.getPic());//name
+                intent.putExtra("car_name", car_name);
                 context.startActivity(intent);
             }
         });
@@ -117,9 +117,9 @@ public class CarDetailAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, AppointmentActivity.class);
-                intent.putExtra("name", carIntro.getName());
-                intent.putExtra("pic", carIntro.getPic());//name
-                intent.putExtra("carName", name);
+                intent.putExtra("car_name_string", carIntro.getName());
+                intent.putExtra("car_picture", carIntro.getPic());//name
+                intent.putExtra("car_name", car_name);
                 context.startActivity(intent);
             }
         });
