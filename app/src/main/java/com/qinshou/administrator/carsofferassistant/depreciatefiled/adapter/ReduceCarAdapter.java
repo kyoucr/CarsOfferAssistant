@@ -28,7 +28,7 @@ import java.util.List;
  */
 
 public class ReduceCarAdapter extends BaseAdapter {
-    private  List<ReduceCar> listCars;
+    private List<ReduceCar> listCars;
     private Context context;
 
     public ReduceCarAdapter(List<ReduceCar> dataSource, Context context) {
@@ -68,12 +68,18 @@ public class ReduceCarAdapter extends BaseAdapter {
             vh = (ViewHolder) convertView.getTag();
         }
         ReduceCar dealersBean = listCars.get(position);
-        vh.tv_car_name.setText(dealersBean.getCsName()+" "+dealersBean.getName()+" "+dealersBean.getCarYear()+"款");
+        vh.tv_car_name.setText(dealersBean.getCsName() + " " + dealersBean.getName() + " " + dealersBean.getCarYear() + "款");
         vh.tv_now_price_id.setText(dealersBean.getPromotePrice());
         vh.tv_decreace_price_id.setText(dealersBean.getReduce());
         vh.tv_old_price_id.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         vh.tv_old_price_id.setText(dealersBean.getVendorPrice());
         vh.btn_ask_lowest_price_id.setText("咨询底价");
+        vh.btn_ask_lowest_price_id.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, AppointmentActivity.class));
+            }
+        });
         return convertView;
     }
 

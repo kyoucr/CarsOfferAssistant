@@ -5,6 +5,10 @@
     android:id="@+id/activity_reduce_price_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
     android:orientation="vertical"
     tools:context="com.qinshou.administrator.carsofferassistant.depreciatefiled.activity.ReducePriceDetailActivity">
 
@@ -12,8 +16,6 @@
         android:id="@+id/tv_car_name_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
         android:text="北京40 2.4L手动 4驱 穿越版 2014款"
         android:textStyle="bold" />
 
@@ -21,9 +23,6 @@
         android:id="@+id/iv_car_pic_id"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
         android:scaleType="fitXY"
         android:src="@drawable/default_car" />
 
@@ -45,13 +44,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="18.68万" />
+
         <TextView
             android:id="@+id/tv_decreace_price_id_price_id"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textColor="#43ea1b"
-            android:text="0.00万" />
+            android:text="0.00万"
+            android:textColor="#43ea1b" />
 
         <TextView
             android:id="@+id/tv_sale_range_id"
@@ -59,15 +59,16 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="售全国" />
+
         <TextView
             android:id="@+id/tv_day_left_id"
             android:layout_width="0dp"
-            android:background="@mipmap/declear_type_bg"
-            android:textColor="#ffffff"
-            android:gravity="center_horizontal"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="剩23天" />
+            android:background="@mipmap/declear_type_bg"
+            android:gravity="center_horizontal"
+            android:text="剩23天"
+            android:textColor="#ffffff" />
 
     </LinearLayout>
 
@@ -77,14 +78,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="#449df8"
+        android:onClick="jumpAction"
         android:text="咨询底价"
         android:textColor="#ffffff" />
 
     <TextView
-        android:layout_marginTop="10dp"
         android:id="@+id/tv_place_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="深圳奥迪"
         android:textSize="15sp"
         android:textStyle="bold" />
@@ -92,10 +94,10 @@
     <TextView
         android:id="@+id/tv_location_id"
         android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
         android:layout_height="wrap_content"
-        android:onClick="jumpAction"
+        android:layout_marginTop="5dp"
         android:drawableLeft="@mipmap/dealer_icon"
+        android:onClick="jumpAction"
         android:text="海淀区清河" />
 
 
@@ -110,7 +112,8 @@
     <ListView
         android:id="@+id/lv_all_car_reduce_price_id"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:dividerHeight="10dp" />
 
     <TextView
         android:id="@+id/tv_emptyp_id"
