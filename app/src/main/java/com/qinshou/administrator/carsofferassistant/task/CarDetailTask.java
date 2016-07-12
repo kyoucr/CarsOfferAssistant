@@ -7,6 +7,7 @@ import android.widget.ExpandableListView;
 
 import com.qinshou.administrator.carsofferassistant.adapter.CarDetailAdapter;
 import com.qinshou.administrator.carsofferassistant.bean.Car;
+import com.qinshou.administrator.carsofferassistant.bean.CarIntro;
 import com.qinshou.administrator.carsofferassistant.bean.ModelsSeries;
 import com.qinshou.administrator.carsofferassistant.utils.DownloadXml;
 import com.qinshou.administrator.carsofferassistant.utils.ParseXml;
@@ -24,11 +25,13 @@ public class CarDetailTask extends AsyncTask {
     private Context context;
     private ExpandableListView car_detail_elv;
     private CallBack callBack;
+    private CarIntro carIntro;
 
-    public CarDetailTask(Context context, ExpandableListView car_detail_elv, CallBack callBack) {
+    public CarDetailTask(Context context, ExpandableListView car_detail_elv, CallBack callBack,CarIntro carIntro) {
         this.context = context;
         this.car_detail_elv = car_detail_elv;
         this.callBack = callBack;
+        this.carIntro = carIntro;
     }
 
     @Override
@@ -42,8 +45,7 @@ public class CarDetailTask extends AsyncTask {
         super.onPostExecute(o);
         Map<String, List<Car>> map = (Map<String, List<Car>>) o;
         List<String> displacements = new ArrayList<String>(map.keySet());
-//        callBack.getBrandDetail(map, displacements );
-        CarDetailAdapter carDetailAdapter = new CarDetailAdapter(context, map, displacements);
+        CarDetailAdapter carDetailAdapter = new CarDetailAdapter(context, map, displacements,carIntro);
         car_detail_elv.setAdapter(carDetailAdapter);
         car_detail_elv.setGroupIndicator(null);
         car_detail_elv.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
