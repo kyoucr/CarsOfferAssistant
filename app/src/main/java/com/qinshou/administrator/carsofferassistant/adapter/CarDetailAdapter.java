@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.qinshou.administrator.carsofferassistant.R;
 import com.qinshou.administrator.carsofferassistant.activity.AppointmentActivity;
 import com.qinshou.administrator.carsofferassistant.bean.Car;
+import com.qinshou.administrator.carsofferassistant.bean.CarIntro;
 
 import java.util.List;
 import java.util.Map;
@@ -20,15 +21,17 @@ import java.util.Map;
 /**
  * Created by 禽兽先生 on 2016.07.06
  */
-public class CarDetailAdapter extends BaseExpandableListAdapter implements Button.OnClickListener {
+public class CarDetailAdapter extends BaseExpandableListAdapter {
     private Context context;
     private Map<String, List<Car>> map;
     private List<String> displacements;
+    private CarIntro carIntro;
 
-    public CarDetailAdapter(Context context, Map<String, List<Car>> map, List<String> displacements) {
+    public CarDetailAdapter(Context context, Map<String, List<Car>> map, List<String> displacements, CarIntro carIntro) {
         this.context = context;
         this.map = map;
         this.displacements = displacements;
+        this.carIntro = carIntro;
     }
 
     @Override
@@ -83,14 +86,43 @@ public class CarDetailAdapter extends BaseExpandableListAdapter implements Butto
         Button free_test_drive_bt = (Button) view.findViewById(R.id.free_test_drive_bt);
         Button group_to_buy_bt = (Button) view.findViewById(R.id.group_to_buy_bt);
         Button consult_floor_price_bt = (Button) view.findViewById(R.id.consult_floor_price_bt);
-        name_tv.setText(map.get(displacements.get(groupPosition)).get(childPosition).getName());
+        //name:汽车名
+        final String name = map.get(displacements.get(groupPosition)).get(childPosition).getName();
+        name_tv.setText(name);
         price_tv.setText(map.get(displacements.get(groupPosition)).get(childPosition).getPrice() + "万起");
         gearBox_tv.setText(map.get(displacements.get(groupPosition)).get(childPosition).getGearBox());
         power_tv.setText(map.get(displacements.get(groupPosition)).get(childPosition).getPower());
         carReferPrice_tv.setText("指导价\t" + map.get(displacements.get(groupPosition)).get(childPosition).getCarReferPrice() + "万");
-        free_test_drive_bt.setOnClickListener(this);
-        group_to_buy_bt.setOnClickListener(this);
-        consult_floor_price_bt.setOnClickListener(this);
+        free_test_drive_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, AppointmentActivity.class);
+                intent.putExtra("name", carIntro.getName());
+                intent.putExtra("pic", carIntro.getPic());//name
+                intent.putExtra("carName", name);
+                context.startActivity(intent);
+            }
+        });
+        group_to_buy_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, AppointmentActivity.class);
+                intent.putExtra("name", carIntro.getName());
+                intent.putExtra("pic", carIntro.getPic());//name
+                intent.putExtra("carName", name);
+                context.startActivity(intent);
+            }
+        });
+        consult_floor_price_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, AppointmentActivity.class);
+                intent.putExtra("name", carIntro.getName());
+                intent.putExtra("pic", carIntro.getPic());//name
+                intent.putExtra("carName", name);
+                context.startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -109,11 +141,5 @@ public class CarDetailAdapter extends BaseExpandableListAdapter implements Butto
         if (observer != null) {
             super.unregisterDataSetObserver(observer);
         }
-    }
-
-    @Override
-    public void onClick(View v) {
-        Intent appointmentIntent = new Intent(context, AppointmentActivity.class);
-        context.startActivity(appointmentIntent);
     }
 }
