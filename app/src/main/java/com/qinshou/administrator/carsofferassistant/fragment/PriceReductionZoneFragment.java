@@ -236,7 +236,6 @@ public class PriceReductionZoneFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-
             case R.id.menu_city_select_id:  // 选择城市菜单选项
                 Intent intent = new Intent(getActivity(), SelectCityActivity.class);
                 startActivityForResult(intent, 101);
