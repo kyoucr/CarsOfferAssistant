@@ -104,15 +104,6 @@ public class TabDetalFragment extends Fragment implements TestInterface {
         super.onActivityCreated(savedInstanceState);
     }
 
-    /**
-     * 按钮点击事件触发
-     *
-     * @param view
-     */
-    public void reduceZoneAction(View view) {
-        Toast.makeText(getActivity(), "点击Button事件！", Toast.LENGTH_LONG).show();
-    }
-
     @Override
     public void textCallBack(DealerListBean dealerListBean) {
         List<DealersBean> dealers = dealerListBean.getDealers();
