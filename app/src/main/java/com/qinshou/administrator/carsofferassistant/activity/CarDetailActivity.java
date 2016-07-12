@@ -13,7 +13,10 @@ import com.bumptech.glide.Glide;
 import com.qinshou.administrator.carsofferassistant.R;
 import com.qinshou.administrator.carsofferassistant.bean.CarIntro;
 import com.qinshou.administrator.carsofferassistant.constant.Urls;
+import com.qinshou.administrator.carsofferassistant.inter.DriveBuyAskCallback;
+import com.qinshou.administrator.carsofferassistant.inter.ImageShowCallback;
 import com.qinshou.administrator.carsofferassistant.task.CarDetailTask;
+import com.qinshou.administrator.carsofferassistant.task.DriveBuyAskAsyncTask;
 import com.qinshou.administrator.carsofferassistant.utils.DownloadXml;
 import com.qinshou.administrator.carsofferassistant.utils.ParseXml;
 
@@ -38,12 +41,15 @@ public class CarDetailActivity extends AppCompatActivity {
             carDetailUrl = Urls.BEFORE_SERIALID_KEY;
         }
         init();
-        new CarDetailTask(this, car_detail_elv, null).execute(carDetailUrl + serialId);
+
         new Thread() {
             @Override
             public void run() {
                 super.run();
                 carIntro = ParseXml.parseCarIntro(DownloadXml.downloadInputStream(carDetailUrl + serialId));
+                if (carIntro != null){
+                    new CarDetailTask(CarDetailActivity.this, car_detail_elv, null,carIntro).execute(carDetailUrl + serialId);
+                }
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -77,6 +83,4 @@ public class CarDetailActivity extends AppCompatActivity {
         intent.putExtra("detailImageURL",Urls.GRID_IMAGE+serialId);
         startActivity(intent);
     }
-
-
 }
