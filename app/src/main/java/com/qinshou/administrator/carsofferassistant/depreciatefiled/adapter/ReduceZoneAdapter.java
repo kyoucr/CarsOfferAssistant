@@ -73,9 +73,9 @@ public class ReduceZoneAdapter extends BaseAdapter {
             vh = (ViewHolder) convertView.getTag();
         }
         DealersBean dealersBean = dataSource.get(position);
-        String pic = dealersBean.getPic();
+        final String pic = dealersBean.getPic();
         String dealerType = dealersBean.getDealerType();
-        String csName = dealersBean.getCsName();
+        final String car_name = dealersBean.getCsName();
         String name = dealersBean.getName();
         String vendorPrice = dealersBean.getVendorPrice();
         String dealerName = dealersBean.getDealerName();
@@ -83,9 +83,11 @@ public class ReduceZoneAdapter extends BaseAdapter {
         String reduce = dealersBean.getReduce();
         String saleRange = dealersBean.getSaleRange();
         String promotePrice = dealersBean.getPromotePrice();
+        final String car_picture = dealersBean.getCsPic();
 
         Glide.with(context).load(pic).into(vh.iv_car_pic_id);
-        vh.tv_car_name.setText(csName + name + carYear + "款");
+        final String car_name_string = car_name + name + carYear + "款";
+        vh.tv_car_name.setText(car_name_string);
         vh.tv_now_price_id.setText(promotePrice + "万");
         vh.tv_vendor_price.setText(vendorPrice + "万");
         vh.tv_vendor_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
@@ -95,24 +97,20 @@ public class ReduceZoneAdapter extends BaseAdapter {
         vh.btn_free_drive_id.setText("免费试驾");
         vh.btn_collection_buy_id.setText("组团买车");
         vh.btn_ask_lowest_price_id.setText("咨询底价");
-        vh.btn_free_drive_id.setOnClickListener(new Button.OnClickListener() {
+
+        View.OnClickListener listener = new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, AppointmentActivity.class));
+                Intent intent = new Intent(context, AppointmentActivity.class);
+                intent.putExtra("car_name", car_name);
+                intent.putExtra("car_name_string", car_name_string);
+                intent.putExtra("car_picture", car_picture);
+                context.startActivity(intent);
             }
-        });
-        vh.btn_collection_buy_id.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                context.startActivity(new Intent(context, AppointmentActivity.class));
-            }
-        });
-        vh.btn_ask_lowest_price_id.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                context.startActivity(new Intent(context, AppointmentActivity.class));
-            }
-        });
+        };
+        vh.btn_free_drive_id.setOnClickListener(listener);
+        vh.btn_collection_buy_id.setOnClickListener(listener);
+        vh.btn_ask_lowest_price_id.setOnClickListener(listener);
         return convertView;
     }
 

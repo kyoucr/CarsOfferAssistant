@@ -93,7 +93,8 @@ public class CarDetailAdapter extends BaseExpandableListAdapter {
         gearBox_tv.setText(map.get(displacements.get(groupPosition)).get(childPosition).getGearBox());
         power_tv.setText(map.get(displacements.get(groupPosition)).get(childPosition).getPower());
         carReferPrice_tv.setText("指导价\t" + map.get(displacements.get(groupPosition)).get(childPosition).getCarReferPrice() + "万");
-        free_test_drive_bt.setOnClickListener(new View.OnClickListener() {
+
+        View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, AppointmentActivity.class);
@@ -102,27 +103,10 @@ public class CarDetailAdapter extends BaseExpandableListAdapter {
                 intent.putExtra("car_picture", carIntro.getPic());//name
                 context.startActivity(intent);
             }
-        });
-        group_to_buy_bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, AppointmentActivity.class);
-                intent.putExtra("car_name_string", carIntro.getName());
-                intent.putExtra("car_picture", carIntro.getPic());//name
-                intent.putExtra("car_name", car_name);
-                context.startActivity(intent);
-            }
-        });
-        consult_floor_price_bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, AppointmentActivity.class);
-                intent.putExtra("car_name_string", carIntro.getName());
-                intent.putExtra("car_picture", carIntro.getPic());//name
-                intent.putExtra("car_name", car_name);
-                context.startActivity(intent);
-            }
-        });
+        };
+        free_test_drive_bt.setOnClickListener(listener);
+        group_to_buy_bt.setOnClickListener(listener);
+        consult_floor_price_bt.setOnClickListener(listener);
         return view;
     }
 
