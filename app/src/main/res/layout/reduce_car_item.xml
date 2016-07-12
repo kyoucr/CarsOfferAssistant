@@ -1,13 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?><!-- 降价专区的每个条目的详细展示页面 -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_car_name"
-        android:text="北汽E系列三厢 1.5L 自动 乐享型 2013款"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_car_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="北汽E系列三厢 1.5L 自动 乐享型 2013款"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/rl_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_now_price_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="11.98万"
+                android:textColor="#ff0000" />
+
+            <TextView
+                android:id="@+id/tv_decreace_price_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@mipmap/down_price"
+                android:text="3.0万"
+                android:drawablePadding="0dp"
+                android:textColor="#43ea1b" />
+
+            <TextView
+                android:id="@+id/tv_old_price_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="14.98万" />
+        </LinearLayout>
 
 
-</RelativeLayout>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_ask_lowest_price_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#449dfb"
+        android:layout_toRightOf="@+id/rl_id"
+        android:onClick="askForLowestPrice"
+        android:text="咨询底价" />
+
+</LinearLayout>
+
