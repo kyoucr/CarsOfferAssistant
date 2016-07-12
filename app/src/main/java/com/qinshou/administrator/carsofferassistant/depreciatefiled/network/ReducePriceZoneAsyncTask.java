@@ -1,5 +1,6 @@
 package com.qinshou.administrator.carsofferassistant.depreciatefiled.network;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import com.qinshou.administrator.carsofferassistant.depreciatefiled.adapter.ReduceZoneAdapter;
@@ -28,9 +29,16 @@ import okhttp3.Response;
 
 public class ReducePriceZoneAsyncTask extends AsyncTask<String, Void, DealerListBean> {
     private TestInterface data;
+    private ProgressDialog dialog;
 
-    public ReducePriceZoneAsyncTask(TestInterface data) {
+    public ReducePriceZoneAsyncTask(TestInterface data, ProgressDialog dialog) {
         this.data = data;
+        this.dialog = dialog;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        dialog.show();
     }
 
     @Override
@@ -49,7 +57,7 @@ public class ReducePriceZoneAsyncTask extends AsyncTask<String, Void, DealerList
         try {
             URL url = new URL(params[0]);
             connection = (HttpURLConnection) url.openConnection();
-            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK){
+            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream inputStream = connection.getInputStream();
                 return ParseXml.parseDealers(inputStream);
             }
@@ -57,8 +65,8 @@ public class ReducePriceZoneAsyncTask extends AsyncTask<String, Void, DealerList
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if(connection != null){
+        } finally {
+            if (connection != null) {
                 connection.disconnect();
             }
         }
@@ -68,6 +76,7 @@ public class ReducePriceZoneAsyncTask extends AsyncTask<String, Void, DealerList
     @Override
     protected void onPostExecute(DealerListBean dealerListBean) {
         data.textCallBack(dealerListBean);
+        dialog.dismiss();
         super.onPostExecute(dealerListBean);
     }
 }
