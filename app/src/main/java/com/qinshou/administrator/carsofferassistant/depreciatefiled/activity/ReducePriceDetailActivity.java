@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,19 +22,8 @@ import com.qinshou.administrator.carsofferassistant.depreciatefiled.bean.ReduceC
 import com.qinshou.administrator.carsofferassistant.depreciatefiled.inter.ReduceCarDataCallBack;
 import com.qinshou.administrator.carsofferassistant.depreciatefiled.network.ReduceCarDetailAsyncTask;
 import com.qinshou.administrator.carsofferassistant.depreciatefiled.util.GPSDealerAddress;
-import com.qinshou.administrator.carsofferassistant.depreciatefiled.util.ReduceDetailParserUtil;
 
-import org.w3c.dom.Text;
-
-import java.io.InputStream;
-import java.io.Serializable;
-import java.text.MessageFormat;
-import java.util.LinkedList;
 import java.util.List;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class ReducePriceDetailActivity extends AppCompatActivity implements ReduceCarDataCallBack {
 
@@ -45,6 +35,7 @@ public class ReducePriceDetailActivity extends AppCompatActivity implements Redu
     private TextView tv_sale_range_id;
     private TextView tv_day_left_id;
     private ListView lv_all_car_reduce_price_id;
+    private Button btn_ask_lowest_price_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +52,8 @@ public class ReducePriceDetailActivity extends AppCompatActivity implements Redu
         tv_decreace_price_id_price_id = (TextView) findViewById(R.id.tv_decreace_price_id_price_id);
         tv_sale_range_id = (TextView) findViewById(R.id.tv_sale_range_id);
         tv_day_left_id = (TextView) findViewById(R.id.tv_day_left_id);
+
+        btn_ask_lowest_price_id = (Button) findViewById(R.id.btn_ask_lowest_price_id);
         TextView tv_location_id = (TextView) findViewById(R.id.tv_location_id);
 
         new GPSDealerAddress(getApplication(), null, null, tv_location_id);//GPS定位功能添加。
@@ -79,28 +72,30 @@ public class ReducePriceDetailActivity extends AppCompatActivity implements Redu
      * @param view
      */
     public void jumpAction(View view) {
-        switch (view.getId()) {
-            case R.id.tv_location_id:
-                startActivity(new Intent(this, GPSDealerAddressActivity.class));
-                break;
-            case R.id.btn_ask_lowest_price_id:
-                startActivity(new Intent(this, AppointmentActivity.class));
-                break;
-            default:break;
-        }
-
+        startActivity(new Intent(this, GPSDealerAddressActivity.class));
     }
 
-
     @Override
-    public void dataCallBack(ListReduceCar reduceCar) {
-        tv_car_name_id.setText(reduceCar.getCsName() + " " + reduceCar.getCarName() + " " + reduceCar.getCarYear() + "款");
+    public void dataCallBack(final ListReduceCar reduceCar) {
+        final String carName = reduceCar.getCsName() + " " + reduceCar.getCarName() + " " + reduceCar.getCarYear() + "款";
+        tv_car_name_id.setText(carName);
         Glide.with(this).load(reduceCar.getPic()).into(iv_car_pic_id);
         tv_promote_price_id.setText(reduceCar.getOriginal_price());
         tv_old_price_id.setText(reduceCar.getNew_price());
         tv_decreace_price_id_price_id.setText(reduceCar.getReduce());
         tv_sale_range_id.setText(reduceCar.getRange());
         tv_day_left_id.setText("剩" + reduceCar.getLast_day() + "天");
+        btn_ask_lowest_price_id.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ReducePriceDetailActivity.this, AppointmentActivity.class);
+                intent.putExtra("car_name_string", reduceCar.getCsName());
+                intent.putExtra("car_name", carName);
+                intent.putExtra("car_picture_id", reduceCar.getCsPic());
+                intent.putExtra("PAGE_CHOICE_FLG",true);
+                startActivity(intent);
+            }
+        });
 
         //2.数据源
 
