@@ -78,7 +78,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="#449df8"
-        android:onClick="jumpAction"
         android:text="咨询底价"
         android:textColor="#ffffff" />
 
