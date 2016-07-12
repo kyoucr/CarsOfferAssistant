@@ -1,15 +1,18 @@
 package com.qinshou.administrator.carsofferassistant.depreciatefiled.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.qinshou.administrator.carsofferassistant.R;
+import com.qinshou.administrator.carsofferassistant.activity.AppointmentActivity;
 import com.qinshou.administrator.carsofferassistant.depreciatefiled.bean.DealersBean;
 
 import java.util.List;
@@ -59,6 +62,11 @@ public class ReduceZoneAdapter extends BaseAdapter {
             vh.tv_reduce_price_id = (TextView) convertView.findViewById(R.id.tv_reduce_price_id);
             vh.tv_dealer_type_id = (TextView) convertView.findViewById(R.id.tv_dealer_type_id);
             vh.tv_sale_range_id = (TextView) convertView.findViewById(R.id.tv_sale_range_id);
+            vh.btn_free_drive_id = (Button) convertView.findViewById(R.id.btn_free_drive_id);
+            vh.btn_collection_buy_id = (Button) convertView.findViewById(R.id.btn_collection_buy_id);
+            vh.btn_ask_lowest_price_id = (Button) convertView.findViewById(R.id.btn_ask_lowest_price_id);
+
+
             convertView.setTag(vh);
 
         } else {
@@ -76,21 +84,38 @@ public class ReduceZoneAdapter extends BaseAdapter {
         String saleRange = dealersBean.getSaleRange();
         String promotePrice = dealersBean.getPromotePrice();
 
-        String id = dealersBean.getId();
-        String dealerId = dealersBean.getDealerId();
-        String carId = dealersBean.getCarId();
-        String csPic = dealersBean.getCsPic();
-
         Glide.with(context).load(pic).into(vh.iv_car_pic_id);
-        vh.tv_car_name.setText(csName+name+carYear+"款");
-        vh.tv_now_price_id.setText(promotePrice+"万");
-        vh.tv_vendor_price.setText(vendorPrice+"万");
+        vh.tv_car_name.setText(csName + name + carYear + "款");
+        vh.tv_now_price_id.setText(promotePrice + "万");
+        vh.tv_vendor_price.setText(vendorPrice + "万");
         vh.tv_vendor_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-        vh.tv_reduce_price_id.setText(reduce+"万");
-        vh.tv_dealer_type_id.setText(dealerType+" "+dealerName);
-        vh.tv_sale_range_id.setText("售"+saleRange);
+        vh.tv_reduce_price_id.setText(reduce + "万");
+        vh.tv_dealer_type_id.setText(dealerType + " " + dealerName);
+        vh.tv_sale_range_id.setText("售" + saleRange);
+        vh.btn_free_drive_id.setText("免费试驾");
+        vh.btn_collection_buy_id.setText("组团买车");
+        vh.btn_ask_lowest_price_id.setText("咨询底价");
+        vh.btn_free_drive_id.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, AppointmentActivity.class));
+            }
+        });
+        vh.btn_collection_buy_id.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, AppointmentActivity.class));
+            }
+        });
+        vh.btn_ask_lowest_price_id.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, AppointmentActivity.class));
+            }
+        });
         return convertView;
     }
+
     private final class ViewHolder {
         ImageView iv_car_pic_id;
         TextView tv_car_name;
@@ -99,6 +124,9 @@ public class ReduceZoneAdapter extends BaseAdapter {
         TextView tv_reduce_price_id;
         TextView tv_dealer_type_id;
         TextView tv_sale_range_id;
+        Button btn_free_drive_id;
+        Button btn_collection_buy_id;
+        Button btn_ask_lowest_price_id;
     }
 }
 
