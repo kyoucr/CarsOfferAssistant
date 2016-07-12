@@ -6,6 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,7 +92,6 @@ public class SelectModelsFragment extends Fragment {
                     carDetailIntent.putExtra("serialId", serialId);
                     startActivity(carDetailIntent);
                 }
-
                 return true;
             }
         });
@@ -111,11 +113,23 @@ public class SelectModelsFragment extends Fragment {
                 }
             }
         });
+        aboutActionBar();
         return view;
     }
     @Override
     public void onPause() {
         super.onPause();
         select_models_content_dl.closeDrawer(GravityCompat.START);
+    }
+
+    /**
+     * 关于ActionBar的操作
+     */
+    private void aboutActionBar(){
+        AppCompatActivity activity = ((AppCompatActivity) getActivity());
+        Toolbar toolbar = (Toolbar) activity.findViewById(R.id.main_tb);
+        activity.setSupportActionBar(toolbar);
+        ActionBar actionBar = activity.getSupportActionBar();
+        actionBar.setTitle("选择车型");
     }
 }
