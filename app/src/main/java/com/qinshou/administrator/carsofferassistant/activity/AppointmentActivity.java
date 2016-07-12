@@ -25,22 +25,12 @@ public class AppointmentActivity extends AppCompatActivity {
         TextView appointment_car_name_tv = (TextView) findViewById(R.id.appointment_car_name_tv);
 
         Intent intent = getIntent();
-        if (intent.getBooleanExtra("PAGE_CHOICE_FLG", false)) {
-            String car_name_string = intent.getStringExtra("car_name_string");
-            String car_name = intent.getStringExtra("car_name");
-            String car_picture_id = intent.getStringExtra("car_picture_id");
-            //2.将数据设置到控件中。
-            Glide.with(this).load(car_picture_id).into(appointment_car_iv);
-            appointment_serial_name_tv.setText(car_name_string);
-            appointment_car_name_tv.setText(car_name);
-        } else {
-            String pic = intent.getStringExtra("pic");
-            String name = intent.getStringExtra("name");
-            String carName = intent.getStringExtra("carName");
-            //2.将数据设置到控件中。
-            Glide.with(this).load(pic).into(appointment_car_iv);
-            appointment_serial_name_tv.setText(name);
-            appointment_car_name_tv.setText(carName);
-        }
+        String car_name_string = intent.getStringExtra("car_name_string");
+        String car_name = intent.getStringExtra("car_name");
+        String car_picture = intent.getStringExtra("car_picture");
+        //2.将数据设置到控件中。
+        Glide.with(this).load(car_picture).into(appointment_car_iv);
+        appointment_serial_name_tv.setText(car_name_string);
+        appointment_car_name_tv.setText(car_name);
     }
 }
