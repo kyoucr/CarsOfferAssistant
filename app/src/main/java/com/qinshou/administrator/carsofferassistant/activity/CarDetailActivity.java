@@ -13,10 +13,7 @@ import com.bumptech.glide.Glide;
 import com.qinshou.administrator.carsofferassistant.R;
 import com.qinshou.administrator.carsofferassistant.bean.CarIntro;
 import com.qinshou.administrator.carsofferassistant.constant.Urls;
-import com.qinshou.administrator.carsofferassistant.inter.DriveBuyAskCallback;
-import com.qinshou.administrator.carsofferassistant.inter.ImageShowCallback;
 import com.qinshou.administrator.carsofferassistant.task.CarDetailTask;
-import com.qinshou.administrator.carsofferassistant.task.DriveBuyAskAsyncTask;
 import com.qinshou.administrator.carsofferassistant.utils.DownloadXml;
 import com.qinshou.administrator.carsofferassistant.utils.ParseXml;
 
