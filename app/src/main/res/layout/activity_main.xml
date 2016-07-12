@@ -26,45 +26,57 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#cdcdcd"
+        android:layout_height="65dp"
+        android:background="#f1f1f1"
         android:orientation="horizontal">
 
-        <Button
+        <TextView
             android:id="@+id/select_models_bt"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/select_models_bt"
+            android:clickable="true"
+            android:drawableTop="@drawable/select_models_bt"
+            android:gravity="center_horizontal"
             android:onClick="chooseFragment"
-            android:text="@string/select_models" />
+            android:text="@string/select_models"
+            android:textColor="@color/car_type_words_selector" />
 
-        <Button
+        <TextView
             android:id="@+id/independent_car_bt"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/independent_car_bt"
+            android:clickable="true"
+            android:drawableTop="@drawable/independent_car_bt"
+            android:gravity="center_horizontal"
             android:onClick="chooseFragment"
-            android:text="@string/independent_car" />
+            android:text="@string/independent_car"
+            android:textColor="@color/car_type_words_selector" />
 
-        <Button
+        <TextView
             android:id="@+id/price_reduction_zone_bt"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/price_reduction_bt"
+            android:clickable="true"
+            android:drawableTop="@drawable/price_reduction_bt"
+            android:gravity="center_horizontal"
             android:onClick="chooseFragment"
-            android:text="@string/price_reduction_zone" />
+            android:text="@string/price_reduction_zone"
+            android:textColor="@color/car_type_words_selector" />
 
-        <Button
+        <TextView
             android:id="@+id/my_garage_bt"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/my_garage_bt"
+            android:clickable="true"
+            android:drawableTop="@drawable/my_garage_bt"
+            android:gravity="center_horizontal"
             android:onClick="chooseFragment"
-            android:text="@string/my_garage" />
+            android:text="@string/my_garage"
+            android:textColor="@color/car_type_words_selector" />
 
     </LinearLayout>
 </LinearLayout>
