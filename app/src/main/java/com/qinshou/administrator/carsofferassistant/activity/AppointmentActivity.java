@@ -40,6 +40,20 @@ public class AppointmentActivity extends AppCompatActivity {
         Glide.with(this).load(car_picture).into(appointment_car_iv);
         appointment_serial_name_tv.setText(car_name_string);
         appointment_car_name_tv.setText(car_name);
+
+        DBHelper helper = new DBHelper(this, "history.db", null, 1);//tb_history
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        try {
+            db.execSQL("insert into tb_history(url,name_string,name) values(?,?,?)",new Object[]{car_picture,car_name_string,car_name});
+//            Toast.makeText(this, "恭喜！插入记录成功！", Toast.LENGTH_SHORT).show();
+        } catch (SQLException e) {
+            e.printStackTrace();
+//            Toast.makeText(this, "Sorry！插入记录失败！555.。。。", Toast.LENGTH_SHORT)
+//                    .show();
+        }
+
+
     }
 
     /**
