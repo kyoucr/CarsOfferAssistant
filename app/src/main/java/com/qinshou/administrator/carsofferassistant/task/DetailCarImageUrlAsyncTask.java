@@ -38,16 +38,11 @@ import static android.content.Context.WINDOW_SERVICE;
  */
 
 public class DetailCarImageUrlAsyncTask extends AsyncTask<String, Void, Bitmap> {
-    private List<Map<String,Object>> dataSource;
-    private int position;
-    private MyDetailImageAdapter adapter;
+    private ImageView imageView;
     private Context context;
 
-
-    public DetailCarImageUrlAsyncTask(List<Map<String,Object>> dataSource,int position,MyDetailImageAdapter adapter,Context context) {
-        this.dataSource = dataSource;
-        this.position = position;
-        this.adapter = adapter;
+    public DetailCarImageUrlAsyncTask(ImageView imageView, Context context) {
+        this.imageView = imageView;
         this.context = context;
     }
 
@@ -61,9 +56,9 @@ public class DetailCarImageUrlAsyncTask extends AsyncTask<String, Void, Bitmap> 
                 InputStream is = connection.getInputStream();
 
                 String imageName = params[0].substring(params[0].lastIndexOf("/") + 1);
-                File downloadAfterFile = new File(context.getFilesDir(),imageName);
+                File downloadAfterFile = new File(context.getFilesDir(), imageName);
 
-                if (saveImageIntoSDStorge(is,downloadAfterFile)){//如果图片保存到SD卡上成功了。
+                if (saveImageIntoSDStorge(is, downloadAfterFile)) {//如果图片保存到SD卡上成功了。
                     Bitmap bitmap = collectImageSample(downloadAfterFile.getAbsolutePath());//进行二次采样。
                     downloadAfterFile.delete();//删除文件中的图片
                     return bitmap;
@@ -84,19 +79,18 @@ public class DetailCarImageUrlAsyncTask extends AsyncTask<String, Void, Bitmap> 
 
     @Override
     protected void onPostExecute(Bitmap bitmap) {
-        if (bitmap != null){
-            dataSource.get(position).put("iv_default_detail_image_id", bitmap);
-            adapter.notifyDataSetChanged();
-
+        if (bitmap != null) {
+            imageView.setImageBitmap(bitmap);
         }
     }
 
     /**
      * 把下载的图片保存到SD卡上
+     *
      * @param is
      * @param downloadAfterFile
      */
-    public boolean saveImageIntoSDStorge(InputStream is,File downloadAfterFile){
+    public boolean saveImageIntoSDStorge(InputStream is, File downloadAfterFile) {
         //存储图片并进行二次采样。
         FileOutputStream fos = null;
         try {
@@ -113,15 +107,15 @@ public class DetailCarImageUrlAsyncTask extends AsyncTask<String, Void, Bitmap> 
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if (fos != null){
+        } finally {
+            if (fos != null) {
                 try {
                     fos.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            if (is != null){
+            if (is != null) {
                 try {
                     is.close();
                 } catch (IOException e) {
@@ -129,14 +123,14 @@ public class DetailCarImageUrlAsyncTask extends AsyncTask<String, Void, Bitmap> 
                 }
             }
         }
-        if (downloadAfterFile.exists() && downloadAfterFile.length() > 0){
+        if (downloadAfterFile.exists() && downloadAfterFile.length() > 0) {
             return true;
         }
         return false;
 
     }
 
-    private Bitmap collectImageSample(String fileNmae){
+    private Bitmap collectImageSample(String fileNmae) {
         // 1、求得窗口的宽和高
         WindowManager windowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
@@ -146,7 +140,7 @@ public class DetailCarImageUrlAsyncTask extends AsyncTask<String, Void, Bitmap> 
         // 获得真实图片的宽和高（摘要信息）
         BitmapFactory.Options opts = new BitmapFactory.Options();
         opts.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(fileNmae,opts);// 采样
+        BitmapFactory.decodeFile(fileNmae, opts);// 采样
 
         int realHeight = opts.outHeight;
         int realWidth = opts.outWidth;
@@ -167,7 +161,7 @@ public class DetailCarImageUrlAsyncTask extends AsyncTask<String, Void, Bitmap> 
         Log.i("TAG", "图片真实的宽：" + realWidth + "，高" + realHeight + "；界面上图片控件的宽："
                 + width + "，高：" + height + "，采样后的缩放比：" + scale);
 
-        Bitmap bm = BitmapFactory.decodeFile(fileNmae,opts);
+        Bitmap bm = BitmapFactory.decodeFile(fileNmae, opts);
         return bm;
     }
 
