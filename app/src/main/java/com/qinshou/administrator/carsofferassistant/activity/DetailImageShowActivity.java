@@ -25,7 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class DetailImageShowActivity extends AppCompatActivity implements ImageShowCallback{
+public class DetailImageShowActivity extends AppCompatActivity implements ImageShowCallback {
 
     private List<Map<String, Object>> dataSource;
     private MyDetailImageAdapter adapter;
@@ -43,7 +43,7 @@ public class DetailImageShowActivity extends AppCompatActivity implements ImageS
         dataSource = new LinkedList<>();
 
         //3.适配器
-        adapter = new MyDetailImageAdapter(dataSource,this);
+        adapter = new MyDetailImageAdapter(dataSource, this);
 
         //4.绑定适配器
         gv_car_images.setAdapter(adapter);
@@ -59,13 +59,13 @@ public class DetailImageShowActivity extends AppCompatActivity implements ImageS
             for (int i = 0; i < result.size(); i++) {
                 Map<String, Object> map = new LinkedHashMap<>();
                 map.put("iv_default_detail_image_id", R.drawable.default_car);
+                map.put("picture_url",result.get(i));
                 dataSource.add(map);
-                new DetailCarImageUrlAsyncTask(dataSource, i, adapter,this).execute(result.get(i));
             }
             adapter.notifyDataSetChanged();
-        }else {
-           finish();//没有图片则不显示界面
-            Toast.makeText(this,"该车没有图片可供查看。",Toast.LENGTH_LONG).show();
+        } else {
+            finish();//没有图片则不显示界面
+            Toast.makeText(this, "该车没有图片可供查看。", Toast.LENGTH_LONG).show();
         }
     }
 }
