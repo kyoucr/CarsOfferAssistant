@@ -21,6 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table tb_customer(_id  integer primary key autoincrement,name varchar(50) not null, phone varchar(150) not null,gender varchar(4),city varchar(40))");// 书写建表语句
+        db.execSQL("create table tb_history(_id  integer primary key autoincrement,url varchar(150) not null, name_string varchar(150) not null,name varchar(50))");// 书写建表语句
     }
 
     @Override
