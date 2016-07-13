@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.qinshou.administrator.carsofferassistant.R;
 import com.qinshou.administrator.carsofferassistant.activity.DetailImageShowActivity;
+import com.qinshou.administrator.carsofferassistant.task.DetailCarImageUrlAsyncTask;
 
 import java.util.List;
 import java.util.Map;
@@ -54,12 +55,14 @@ public class MyDetailImageAdapter extends BaseAdapter {
         }
 
         Map<String,Object> map = dataSource.get(position);
-        Object detailImageId = map.get("iv_default_detail_image_id");
-        if (detailImageId instanceof Integer){
-            view.setImageResource((Integer) detailImageId);
-        }else if(detailImageId instanceof Bitmap){
-            view.setImageBitmap((Bitmap) detailImageId);
-        }
+        String picture_url = (String) map.get("picture_url");
+        new DetailCarImageUrlAsyncTask(view, context).execute(picture_url);
+//        Object detailImageId = map.get("iv_default_detail_image_id");
+//        if (detailImageId instanceof Integer){
+//            view.setImageResource((Integer) detailImageId);
+//        }else if(detailImageId instanceof Bitmap){
+//            view.setImageBitmap((Bitmap) detailImageId);
+//        }
         return view;
     }
 }
