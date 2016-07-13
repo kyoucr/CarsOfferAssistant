@@ -22,5 +22,6 @@ public class LoadingActivity extends AppCompatActivity {
         Intent intent = new Intent(LoadingActivity.this, MainActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.fade, R.anim.hold);
+        finish();
     }
 }
