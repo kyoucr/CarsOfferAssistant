@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -77,6 +78,10 @@ public class AppointmentActivity extends AppCompatActivity {
             gender = "女";
         }
         String city = (String) show_city_tv.getText();
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(phone)){
+            Toast.makeText(this,"用户名或者手机号不能为空！",Toast.LENGTH_LONG).show();
+            return;
+        }
         Customer customer = new Customer(name, phone, gender, city);
         DBHelper helper = new DBHelper(this, "customer.db", null, 1);
         SQLiteDatabase database = helper.getWritableDatabase();
